@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<!-- Title and other stuffs -->
+<title>首页</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+<style type="text/css">
+body,table {
+	font-size: 12px;
+}
+
+table {
+	table-layout: fixed;
+	empty-cells: show;
+	border-collapse: collapse;
+	margin: 0 auto;
+	width: 80%;
+	height: 100%;
+}
+
+td {
+	height: 30px;
+}
+
+h1,h2,h3 {
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+}
+
+.table {
+	border: 1px solid #cad9ea;
+	color: #666;
+}
+
+.table th {
+	background-repeat: repeat-x;
+	height: 30px;
+}
+
+.table td,.table th {
+	border: 1px solid #cad9ea;
+	padding: 0 1em 0;
+}
+
+.table tr.alter {
+	background-color: #f5fafe;
+}
+</style>
+<!-- JS -->
+<script src="${res}/common/js/jquery-1.6.2.min.js"></script>
+<!-- jQuery -->
+
+<script type="text/javascript">
+$(function(){
+	 	$("button[dtype=data]").each(function(idx,el){
+			$(el).bind("click",function(){
+				 var td = $(this).parent("td");
+				 var input = $("指标：<input size='8'  dtype='data'><br/>");
+				 input.appendTo(td);
+			 }); 
+		 });
+	 	
+	 	$("input[dtype=data]").each(function(idx,el){
+		 	$(el).bind("blur",function(){
+				alert("2132");
+			 });
+	 	 });
+		 
+		 $("button[dtype=even]").each(function(idx,el){
+			$(el).bind("click",function(){
+				 var td = $(this).parent("td");
+				 td.append("事件：<input size='16'  dtype='even'><br/>");
+			 }); 
+		 });
+		 
+		 $("button[dtype=addrow]").each(function(idx,el){
+			$(el).bind("click",function(){
+				 var table = $("table")[1];
+				$("input",table).each(function(idx,input){
+					//$(input).attr({readonly:"true"});
+				});
+			
+				 var otr = $("tr:eq(0)",table) ;
+				 var ntr = otr.clone(true);
+				 ntr.insertBefore($(el).parent().parent("tr"));
+				 
+				$("input[dtype=data]",ntr).each(function(idx,ipt){
+					 var value = $(ipt).val().split(":")[0];
+					 if(value != ''){
+					 	$(ipt).val(value+": ");
+					 }
+				 })
+			 }); 
+		 });
+});
+</script>
+</head>
+
+<body>
+	<table class="table">
+		<thead>
+			<tr>
+				<th colspan="6"><h2>病例管理系统</h2></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td colspan="2">213</td>
+				<td colspan="2">1321</td>
+				<td colspan="2">321</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<table class="table">
+		<tbody>
+			<tr>
+				<td style="width: 5%">时间：<input size="3" dtype="date"><br/></td>
+				<td style="width: 20%">
+						<button  style="height: 20px;width: 100px" dtype="data">添加数据</button>
+						<button  style="height: 20px;width: 100px" dtype="even">添加事件</button><br>
+						指标：<input size="8"  dtype="data"><br/>
+				</td>
+				<td style="width: 5%">时间：<input size="3" dtype="date"></td>
+				<td  style="width: 20%">
+						<button  style="height: 20px;width: 100px" dtype="data">添加数据</button>
+						<button  style="height: 20px;width: 100px" dtype="even">添加事件</button><br>
+						指标：<input size="8"  dtype="data"><br/>
+				</td>
+				<td style="width: 5%">时间：<input size="3" dtype="date"></td>
+				<td  style="width: 20%">
+						<button  style="height: 20px;width: 100px" dtype="data">添加数据</button>
+						<button  style="height: 20px;width: 100px" dtype="even">添加事件</button><br>
+						指标：<input size="8"  dtype="data"><br/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td  colspan="6"><button dtype="addrow">添加一行</button></td>
+			</tr>
+		</tbody>
+			
+	</table>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+    <!-- 处理文件上传 -->
+<!--    <bean id="multipartResolver"
+     class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        &lt;!&ndash; 默认编码 (ISO-8859-1) &ndash;&gt;
+        <property name="defaultEncoding" value="utf-8"/>
+        &lt;!&ndash; 最大内存大小 (10240)&ndash;&gt;
+        <property name="maxInMemorySize" value="10240"/>
+        &lt;!&ndash; 上传后的临时目录名 (WebUtils#TEMP_DIR_CONTEXT_ATTRIBUTE) &ndash;&gt;
+        <property name="uploadTempDir" value="/upload_temp/"/>
+        &lt;!&ndash; 最大文件大小，-1为无限止(-1),注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和  &ndash;&gt;
+        <property name="maxUploadSize" value="-1"/>
+        
+    </bean>-->
+    
+    <!-- SpringMVC在超出上传文件限制时，会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->
+    <!-- 该异常是SpringMVC在检查上传的文件信息时抛出来的，而且此时还没有进入到Controller方法中 -->
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <!-- 遇到MaxUploadSizeExceededException异常时，自动跳转到/jsp/fileError.jsp页面 -->
+                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">
+                    fileError
+                </prop>
+            </props>
+        </property>
+    </bean>
+	
+	 <!--密码加密器-->
+	<bean id="pwdEncoder" class="com.damuzee.common.security.md5.Md5Encoder"/>
+	
+	<bean id="session" class="com.damuzee.core.web.session.HttpSessionProvider"/>
+	
+	
+	<!-- 配置EMail发送,要自己配置username和password -->
+	<bean id="mailsender" class="com.damuzee.common.support.message.JavaEmailSenderImpl">      
+	   <property name="host" value="smtp.qq.com"/>      
+	   <property name="username" value=""/>      
+	   <property name="password" value=""/>      
+	  <property name="javaMailProperties">  
+           <props>  
+               <prop key="mail.smtp.auth">true</prop>  
+               <prop key="mail.smtp.timeout">25000</prop>  
+               <prop key="mail.smtp.port">25</prop>  
+              <prop key="mail.smtp.socketFactory.port">465</prop>  
+              <prop key="mail.smtp.socketFactory.fallback">false</prop>  
+              <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>  
+          </props>  
+      </property>          
+	</bean>  
+	
+	<bean id="senderService" class="com.damuzee.core.manager.impl.SenderManagerImpl">     
+	    <property name="sender" ref="mailsender"></property>     
+	    <property name="freeMarkerConfigurer" ref="freemarkerConfig"></property>     
+	</bean>
+	
+	
+	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/WEB-INF/system"/>
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="template_update_delay">0</prop>
+				<prop key="defaultEncoding">UTF-8</prop>
+				<prop key="url_escaping_charset">UTF-8</prop>
+				<prop key="locale">zh_CN</prop>
+				<prop key="boolean_format">true,false</prop>
+				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+				<prop key="date_format">yyyy-MM-dd</prop>
+				<prop key="time_format">HH:mm:ss</prop>
+				<prop key="number_format">0.######</prop>
+				<prop key="whitespace_stripping">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
+		<property name="config">
+			<bean class="com.google.code.kaptcha.util.Config">
+				<constructor-arg>
+					<props>
+						<prop key="kaptcha.border">yes</prop>
+						<prop key="kaptcha.border.color">gray </prop>
+						<prop key="kaptcha.noise.color">white</prop>
+						<prop key="kaptcha.textproducer.font.color">64,0,0</prop>
+						<prop key="kaptcha.image.width">130</prop>
+						<prop key="kaptcha.textproducer.font.size">55</prop>
+						<prop key="kaptcha.image.height">50</prop>
+						<prop key="kaptcha.session.key">code</prop>
+						<prop key="kaptcha.textproducer.char.length">4</prop>
+						<prop key="kaptcha.textproducer.font.names">宋体,楷体,新宋体</prop>
+					</props>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+</beans>
