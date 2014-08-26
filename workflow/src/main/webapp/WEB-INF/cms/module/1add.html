@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns:t>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+		<!-- Title and other stuffs -->
+		<title>员工管理</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="author" content="" />
+		<!-- Stylesheets -->
+		<link href="${res}/bootstrap/style/bootstrap.min.css" rel="stylesheet" />
+
+		<!-- Font awesome icon -->
+		<link rel="stylesheet" href="${res}/bootstrap/style/font-awesome.css" />
+
+		<!-- jQuery UI -->
+		<link rel="stylesheet" href="${res}/bootstrap/style/jquery-ui.css" />
+
+		<link rel="stylesheet" href="${res}/freeui/css/ace.min.css">
+		
+		<link rel="stylesheet" href="${res}/jqueryui/css/jquery.gritter.css">
+
+		<link rel="stylesheet" href="${res}/freeui/css/ace-skins.min.css">
+
+		<!-- Favicon -->
+		<link rel="shortcut icon"
+			href="${res}/bootstrap/img/favicon/favicon.png" />
+
+		<script src="${res}/bootstrap/js/jquery.js"></script>
+		<!-- jQuery -->
+		<script>
+			$(function() {
+				var widget = new Widget($(".widget-header"));
+
+			/* 	widget.addButton('addbnt', '添加');
+				widget.addButton('eidtbnt', '修改');
+				widget.addButton('delbnt', '删除'); */
+				widget.addTitle("公众号绑定");
+			});
+		</script>
+</head>
+
+<body>
+	<!-- Header starts -->
+	<#include "../header.html"/>
+	<!-- Header ends -->
+
+	<!-- Main starts -->
+	<div class="main-container" id="main-container">
+		<div class="main-container-inner">
+			<#include "../sidebar.html"/>
+
+			<div class="main-content">
+				<div class="breadcrumbs" id="breadcrumbs">
+					<ul class="breadcrumb">
+						<li><i class="icon-home home-icon"></i> <a href="#">首页</a></li>
+						<li class="active">控制台</li>
+					</ul>
+					<!-- .breadcrumb -->
+
+					<div class="nav-search" id="nav-search">
+						<form class="form-search">
+							<span class="input-icon"> <input type="text"
+								placeholder="Search ..." class="nav-search-input"
+								id="nav-search-input" autocomplete="off" /> <i
+								class="icon-search nav-search-icon"></i>
+							</span>
+						</form>
+					</div>
+					<!-- #nav-search -->
+				</div>
+
+				<!-- page-content stats -->
+				<div class="page-content">
+					<div class="page-header">
+						<h1>
+							控制台 <small><i class="icon-double-angle-right"></i>查看</small>
+						</h1>
+					</div>
+					<!-- /.page-header -->
+
+					<div class="row">
+						<div class="col-xs-12">
+							<@ui.widget title="公众号绑定"> 
+								<@ui.form id="acctBindForm" action="save.do" > 
+									<br />
+									<@ui.input lable="名称" name='typeName'/> 
+									<@ui.input lable="类型" name='type'/><@ui.tr/>
+									<@ui.input lable="是否文本" name='isText' type='boolean'/>
+									<@ui.input lable="是否文本区" name='isAretext' type='boolean'/>
+									<@ui.input lable="是否文件" name='isFile' type='boolean'/><@ui.tr/>
+									<@ui.input lable=" 是否整型" name='isInt' type='boolean'/>
+									<@ui.input lable="是否浮点" name='isDouble' type='boolean'/>
+									<@ui.input lable="是否图片" name='isImg' type='boolean'/><@ui.tr/>
+									<@ui.input lable="是否下拉" name='isSelect' type='boolean'/>
+									<@ui.input lable="是否多选" name='isMutil' type='boolean'/>
+									<@ui.input lable="是否单选" name='isText' type='boolean'/><@ui.tr/>
+									<@ui.input lable="最大长度" name='maxLength'/>
+									<@ui.input lable="最小长度" name='minLength'/>
+									<@ui.input lable="浮点精度" name='precise'/><@ui.tr/>
+									<@ui.input lable="多选框值" name='valueItem'/>
+									<@ui.input lable="默认值" name='defaultValue'/>
+									<@ui.input lable="帮助信息" name='helpInfo'/>
+								 </@ui.form> 
+							</@ui.widget>
+						</div>
+					</div>
+				</div>
+				<!-- page-content end -->
+			</div>
+			<!-- Main end -->
+			<!-- JS -->
+			<script src="${res}/bootstrap/js/bootstrap.js"></script>
+			<!-- Bootstrap -->
+			<script src="${res}/bootstrap/js/jquery-ui-1.9.2.custom.min.js"></script>
+			<!-- jQuery UI -->
+			<script src="${res}/bootstrap/js/custom.js"></script>
+			<!-- Custom codes -->
+
+			<script type="text/javascript" src="${res}/ace2/assets/js/ace.min.js"></script>
+			<script type="text/javascript" src="${res}/ace2/assets/js/ace-extra.min.js"></script>
+			<script type="text/javascript" src="${res}/jqueryui/js/jquery.gritter.min.js"></script>
+</body>
+</html>
