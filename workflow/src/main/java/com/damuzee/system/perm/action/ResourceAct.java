@@ -44,7 +44,7 @@ public class ResourceAct {
         Map map = JSONUtil.stringToMap(json);
 
         Map list = resourceRepos.findResourceByPage(map);
-        JsonResult result = JsonResult.success(list.get(Constaints.PAGE_RESULT));
+        JsonResult result = JsonResult.page(list);
          return result;
     }
 
