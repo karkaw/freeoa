@@ -20,7 +20,7 @@ $(function(){
     });
 
     //提交保存
-    var submitBtn = UI.get("resModle").getSubmit();//获取Madal的提交按钮
+    var submitBtn = UI.get("resModle").getSubmitBtn();//获取Madal的提交按钮
     submitBtn.unbind("click").bind("click",function(){
         var func =[];
         $("#resOperForm .form-group").each(function(idx,el){
@@ -28,7 +28,7 @@ $(function(){
         });
         var params = {"func":func}
         UI.get("resForm").setParam(params).submit(function(){ //提交数据
-            UI.get("resGrid").load();       //提交完成刷新grid
+            UI.get("resGrid").reload();       //提交完成刷新grid
             UI.get("resTree").reload();     //重新加载树
             UI.get("resModle").hide();      //关闭Modal
         });
@@ -56,7 +56,7 @@ $(function(){
         var form = new UI.Form({url:'delete.do'});
         form.setParam({"ids":data});
         form.submit(function(){
-            UI.get("resGrid").load();   //提交完成刷新grid
+            UI.get("resGrid").reload();   //提交完成刷新grid
             UI.get("resTree").reload();     //重新加载树
         })
     }
