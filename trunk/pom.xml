@@ -12,8 +12,6 @@
 		<module>workflow</module>
 		<module>mongodb</module>
 		<module>sqlbuilder</module>
-        <module>WebqqCore</module>
-        <module>robot</module>
 		<module>freeui</module>
 	</modules>
 
