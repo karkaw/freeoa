@@ -1,5 +1,7 @@
 package com.damuzee.system.perm.repos;
 
+import org.damuzee.mongo.MongoMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +13,7 @@ public abstract class ResourceRepos {
     public abstract  String saveResource(Map map);
 
     public abstract List findResource(Map map);
+    public abstract Map findResourceByPage(Map map);
 
     public abstract  void deleteResource(List<String> idList);
     public abstract  void updateResource(Map map);

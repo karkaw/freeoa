@@ -2,6 +2,7 @@ package com.damuzee.system.perm.repos.impl;
 
 import com.damuzee.core.auth.util.EncryptUtils;
 import com.damuzee.system.perm.repos.UserRepos;
+import org.damuzee.mongo.MongoMap;
 import org.damuzee.mongo.MongoTemplate;
 import org.damuzee.mongo.annotation.Collectoion;
 import org.springframework.beans.factory.annotation.Autowired;

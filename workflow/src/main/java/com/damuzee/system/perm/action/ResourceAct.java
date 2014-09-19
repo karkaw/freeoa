@@ -3,6 +3,7 @@ package com.damuzee.system.perm.action;
 import com.damuzee.core.util.JSONUtil;
 import com.damuzee.core.web.bean.JsonResult;
 import com.damuzee.system.perm.repos.ResourceRepos;
+import org.damuzee.mongo.Constaints;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,9 +43,9 @@ public class ResourceAct {
     public JsonResult list(String json) {
         Map map = JSONUtil.stringToMap(json);
 
-        List list = resourceRepos.findResource(map);
-        JsonResult result = JsonResult.success(list);
-        return result;
+        Map list = resourceRepos.findResourceByPage(map);
+        JsonResult result = JsonResult.success(list.get(Constaints.PAGE_RESULT));
+         return result;
     }
 
     @RequestMapping(value = "/tree.do", method = RequestMethod.POST)
