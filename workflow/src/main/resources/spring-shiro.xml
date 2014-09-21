@@ -37,8 +37,7 @@
         <!-- 配置信息转换，将用@responsebody注解的返回值转换为json返回前台，编码为utf-8 -->
         <property name="messageConverters">
             <list>
-                <bean
-                        class="org.springframework.http.converter.StringHttpMessageConverter">
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                     <property name="supportedMediaTypes">
                         <list>
                             <value>text/html;charset=UTF-8</value>
@@ -117,6 +116,7 @@
             <value>
                 /login.do* = anon
                 /res/** = anon
+                /f/** = anon
                 /** = authc
             </value>
         </property>
@@ -125,13 +125,13 @@
     <!--自定义Realm 继承自AuthorizingRealm -->
     <bean id="monitorRealm" class="com.damuzee.core.auth.shiro.ShiroDbRealm"></bean>
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager"></bean>
-    <bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager"/>
+    <!--<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager"/>-->
 
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <!--设置自定义realm -->
         <property name="realm" ref="monitorRealm" />
        <!-- <property name="sessionManager" ref="sessionManager"/>-->
-        <property name="cacheManager" ref="shiroCacheManager" />
+        <!--<property name="cacheManager" ref="shiroCacheManager" />-->
     </bean>
 
     <!-- securityManager -->

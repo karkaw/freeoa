@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2014/7/18.
+ * Created by  karka.w on 2014/7/18.
  */
 public abstract class ResourceRepos {
 
