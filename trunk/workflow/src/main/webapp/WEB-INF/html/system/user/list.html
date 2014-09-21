@@ -17,7 +17,7 @@
 		<!-- jQuery -->
 		<script>
 			$(function() {
-				var widget = new Widget("userWidget");
+				var widget = UI.get("userWidget");
 				var addbut = widget.addButton('addbnt', '添加');
                 addbut.bind("click",function(){
                     window.location.href = 'add.do';

@@ -21,7 +21,7 @@ import java.util.Map;
 /**
  * 资源管理和操作管理
  * <p/>
- * Created by Administrator on 14-7-27.
+ * Created by  karka.w on 14-7-27.
  */
 
 @Controller
