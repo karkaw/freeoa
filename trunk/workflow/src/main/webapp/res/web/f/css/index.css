@@ -1,0 +1,124 @@
+@charset "utf-8";
+h4{font-size:14px; font-weight:bold; color:#333; font-family:"宋体","黑体", Arial}
+.orange{color:#ffb507;} .orange a{color:#ffb507;} .orange a:hover{text-decoration:underline;}
+.red{color:#FF0000;} .red a{color:#FF0000;} .red a:hover{color:#FF0000; text-decoration:underline;}
+.blue{color:#236fb1;} .blue a{color:#236fb1;} .blue a:hover{color:#236fb1; text-decoration:underline;}
+
+/*    HOME  BEGIN */ 
+.left{width:192px; height:auto;  float:left; background-color:#f6f6f6; border-right:1px #d2d2d2 solid; padding:10px 0; min-height:670px; margin-right:8px;}
+.person{margin-bottom:15px;}
+.person dt{float:left; margin-right:5px;}
+.person dd{line-height:24px;}
+
+.appli{width:191px; height:auto; margin-bottom:8px;}
+.appli .appliTitle{width:180px; height:30px; line-height:30px; background-color:#236fb1; color:#FFFFFF; font-weight:bold; padding-left:5px;}
+.appli .appliCon{width:180px; margin-top:5px;}
+.appli .appliCon li{margin-bottom:5px; width:180px; height:24px; line-height:24px; padding-left:6px; *padding-left:0;*width:170px;}
+.appli .appliCon li:hover{width:180px; height:24px; background-color:#cecece;*width:170px;}
+.name1{float:left; line-height:24px; background:url(../images/tubiao1.gif) no-repeat left center; padding-left:20px;}
+.name2{float:left; line-height:24px; background:url(../images/tubiao2.png) no-repeat left center; padding-left:20px;}
+.name3{float:left; line-height:24px; background:url(../images/tubiao3.gif) no-repeat left center; padding-left:20px;}
+.name4{float:left; line-height:24px; background:url(../images/tubiao4.gif) no-repeat left center; padding-left:20px;}
+.name5{float:left; line-height:24px; background:url(../images/tubiao5.gif) no-repeat left center; padding-left:20px;}
+.number{float:right; width:24px; height:24px; line-height:24px; background-color:#cecece; color:#236fb1; text-align:center; font-weight:bold;}
+.number a{color:#236fb1;} .number a:hover{color:#FF3300;}
+.more{padding-left:6px; font-weight:bold; color:#236fb1;}
+.more a{color:#236fb1;}
+
+
+.right{width:779px; height:auto; float:left;}
+.rTop{width:777px; height:175px; border:1px #d2d2d2 solid; margin-bottom:15px;}
+.count{width:755px;height:22px; margin-left:10px; margin-top:8px; margin-bottom:5px;}
+.imgList{width:755px; margin-left:10px; height:70px;}
+.imgList ul{width:755px;float:left;}
+.imgList ul li{width:50px; height:70px; text-align:center; color:#0756aa; line-height:20px; float:left; margin:0 6px; *margin:0 5px; overflow:hidden;} 
+.imgList ul li a{color:#0756aa;} .imgList ul li a:hover{color:#0756aa; text-decoration:underline;}
+.release{width:755px; margin-left:10px;}
+.release .rel_but{width:100px; height:36px; font-weight:bold; color:#333333; padding-left:28px; line-height:32px; background:url(../images/chuan.jpg) no-repeat; border:0;vertical-align:middle;}
+.release .rel_inp{width:520px; height:30px;line-height:32px;border:3px #c9d7e4 solid;vertical-align:middle;}
+.release .rel_but2{width:100px; height:36px; font-weight:bold; color:#333333; padding-left:26px; line-height:32px; background:url(../images/chuan2.jpg) no-repeat; border:0;vertical-align:middle;}
+
+.rbottom{width:779px; height:auto; overflow:hidden}
+.bLeft{width:535px; height:auto; margin-right:8px; float:left;}
+.bLeft dl{width:535px; height:auto; margin-bottom:15px; border-bottom:1px #e7e7e7 solid; padding-bottom:8px;}
+.bLeft dt{width:50px; height:auto;float:left; margin-right:10px;}
+.bLeft dd{line-height:22px; margin-bottom:5px;}
+.title{font-size:14px; color:#236fb1;}
+
+.bRight{width:235px; height:auto; float:left;}
+.maybe{width:235px; height:auto; margin-bottom:8px; overflow:hidden;}
+.maybe .mayTitle{width:235px; height:30px; background:url(../images/mayTitle.gif) repeat-x left center; line-height:30px;}
+.maybe .mayTitle .mayName{background-color:#FFFFFF; padding-right:5px; float:left; height:30px; line-height:30px;}
+.maybe .mayTitle .all{background-color:#FFFFFF; padding-left:5px; float:right;}
+.maybe .mayCon{width:235px; height:auto;}
+.maybe .mayCon dl{margin:4px 4px; _margin:4px 3px; width:50px; height:96px; float:left; overflow:hidden}
+.maybe .mayCon dl dd{width:50px; height:18px; line-height:18px; text-align:center; color:#b3b3b3;}
+.maybe .mayCon dl dd a{color:#0756aa;}
+.jia{width:50px; height:24px; line-height:24px; padding-left:12px; text-align:center; color:#93a4b7; background:url(../images/jia.jpg) no-repeat;border:0;}
+/*    HOME  end */ 
+
+
+/*    quan  BEGIN */ 
+.cate{width:192px; height:auto;  float:left; background-color:#f6f6f6; border-right:1px #d2d2d2 solid; min-height:670px; margin-right:8px;}
+.cate li{width:186px; height:57px;color:#6f6e6e; line-height:24px; padding:0 3px;margin-bottom:1px;}
+.cate li:hover, .cate li.hover{width:186px; height:57px; background-color:#236fb1; color:#cbe5fc;}
+.cate li:hover a,.hover a{color:#FFFFFF;}
+
+.Qright{width:777px; height:auto; float:left; border:1px #d2d2d2 solid; padding:10px 0;}
+.choice{width:80px; margin-left:10px; background:url(../images/choice.gif) no-repeat right center; overflow:hidden; color:#236fb1; font-size:14px; font-weight:bold; margin-bottom:10px;}
+.chTitle{width:755px; height:31px; background:url(../images/ch_bg.jpg) repeat-x left top; margin-left:10px; overflow:hidden;margin-bottom:10px;}
+.chTitle li{width:105px; height:30px; background:url(../images/ch_hover.jpg) no-repeat; margin-right:5px; text-align:center; line-height:30px;float:left; font-size:14px; font-weight:bold;}
+.chTitle li:hover, .chTitle li.on{width:105px; height:30px;background:url(../images/ch_hover.jpg) no-repeat; margin-top:1px; color:#333;}
+
+.seaPer{width:755px; height:auto; margin-left:10px; margin-bottom:10px;}
+.seaInput{width:230px; height:27px; border:1px #c9d7e4 solid; background:url(../images/seaInp.jpg) no-repeat left center;vertical-align:middle;}
+.seaButton{width:70px; height:29px; background:url(../images/seaButton.gif) no-repeat; text-align:center; font-weight:bold; border:0;vertical-align:middle;}
+
+.friend{width:755px; height:auto; margin-left:10px; margin-bottom:8px;}
+.chList{width:755px; height:auto;border-bottom:1px #e2e2e2 solid; padding-bottom:8px; overflow:hidden}
+.chList li{width:50px; height:70px; margin:5px 18px 5px 25px; _margin:5px 17px 5px 22px; text-align:center; line-height:22px; float:left;}
+.friend table{font-size:14px; color:#236fb1;}
+.friInput{width:auto; height:24px; border:1px #c9d7e4 solid; line-height:24px; color:#333333}
+.friTarea{border:1px #c9d7e4 solid;}
+.friButton{width:99px; height:36px; text-align:center; color:#FFFFFF; font-weight:bold; background:url(../images/quanButton.gif) no-repeat; line-height:36px; border:0}
+.quxiao{width:81px; height:35px; background:url(../images/quxiao.gif) no-repeat; line-height:35px; color:#333333; font-weight:bold; border:0;}
+/*    quan  end */ 
+
+/*    atten  BEGIN */ 
+.aLeft{width:727px; height:auto; margin-right:18px; float:left;}
+.apply{width:727px; height:auto; margin-bottom:10px; overflow:hidden}
+.apply .applyTitle{width:727px; height:30px; line-height:30px; background:url(../images/mayTitle.gif) repeat-x left center;} 
+.apply .applyTitle .applyName{font-weight:bold; font-size:14px; background-color:#FFFFFF;padding-right:5px; line-height:30px;}
+.apply .applyCon{width:727px; height:30px; line-height:30px; color:#666666;}
+.applyCon a{color:#236fb1;}
+.yes{width:58px; height:26px; background:url(../images/yes.jpg) no-repeat; line-height:24px; text-align:center; color:#FFFFFF; border:0}
+.no{width:58px; height:26px; background:url(../images/no.jpg) no-repeat; line-height:24px; text-align:center; color:#333333; border:0}
+
+.seaFriend{width:727px; height:auto; background-color:#f7f7f7; padding:10px; overflow:hidden;}
+.seaFriend ul{width:727px; height:30px;}
+.seaFriend li{width:auto; height:30px; background:url(../images/seaLi.jpg) no-repeat; padding-left:8px; font-size:14px; float:left; margin-right:8px;}
+.seaFriend li:hover, .on2{font-weight:bold;}
+.first{background:none;}
+.zhao{width:77px; height:27px; line-height:27px; background:url(../images/zhao.jpg) no-repeat; padding-left:18px; border:0;}
+
+.more2{float:right; font-size:14px; background-color:#FFFFFF; padding-left:5px;}
+.espec{width:727px; height:auto;}
+.espec li{width:50px; height:70px;  margin:5px 16px 5px 23px; _margin:5px 15px 5px 20px; float:left; line-height:22px; overflow:hidden; text-align:center}
+/*    atten  end */ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

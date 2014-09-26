@@ -1,0 +1,50 @@
+@charset "utf-8";
+body,div,span,p,a,input,dl,dt,dd,ul,ol,li,h4,h3{margin:0;padding:0;}
+body {
+	font-family:"宋体", Arial,"新宋体", Helvetica, sans-serif;
+	font-size:12px;
+	color:#333333;
+	background:#f8f8f8 url(../images/login.jpg) repeat-x left top;
+}
+a{text-decoration:none;color:#000;outline:none;/*ff*/hide-focus:expression(this.hideFocus=true);/*ie*/}
+a:hover{color:#236fb1;}
+img{border:0;}
+li{list-style:none;}
+p{margin:10px 0;}
+.l{float:left;}
+.r{float:right;}
+.undis{display:none;} 
+.clearfix{width:100%;height:1px;margin-top:-1px;font-size:0px;line-height:0px;clear:both;}
+
+#header{width:980px;height:69px; margin:0 auto;}
+.logo{width:auto; height:69px;float:left;margin-top:0;padding-top:0;}
+.text{float:right; line-height:69px; color:#cae4fd;}
+.text a{color:#FFFFFF;} .text a:hover{color:#FFFFFF; text-decoration:underline;}
+
+
+#content{width:980px;height:auto;margin:0 auto;}
+.logLeft{width:2px; height:auto; background:url(../images/lLeft.jpg) no-repeat; min-height:460px;float:left;}
+.logCon{width:976px; height:auto; background:url(../images/login_bg.jpg) repeat-x;min-height:460px; float:left; padding-top:33px; padding-bottom:10px;}
+.logRight{width:2px; height:auto; background:url(../images/lRight.jpg) no-repeat;min-height:460px; float:left;}
+
+
+.logTable{width:580px; margin-left:40px;_margin-left:20px;float:left;}
+.logTitle{margin-left:10px; margin-bottom:15px;}
+.regis{width:580px; height:auto; font-size:14px;} .regis a{color:#0168b3; font-size:12px;} .regis a:hover{color:#0168b3; text-decoration:underline;}
+.logInp{width:240px; height:28px; border:1px #cecece solid; background-color:#FFFFFF;}
+.notes{background:url(../images/notes.gif) no-repeat left center; font-size:12px; color:#666666; padding-left:8px;}
+
+.logImg{float:left;width:310px; height:auto;}
+.logImg img{width:306px; height:393px; padding:1px; border:1px #d1d1d1 solid;}
+
+.gray{color:#9b9b9b; font-size:12px;} .gray a{color:#9b9b9b;} .gray a:hover{color:#236fb1;}
+
+
+/*     FOOT    */ 
+#footer{width:980px; height:auto; border-top:1px #85aed2 solid;overflow:hidden;padding:10px 0; text-align:center; margin:0 auto;}
+
+
+
+
+
+
