@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script type="text/javascript">
+    ClassA = function (sColor) {
+
+        this.init = function(){
+            alert("A init");
+        }
+
+    }
+    ClassB = function (sColor, sName) {
+
+        ClassA.apply(this  , arguments);
+
+        this.init = function(){
+            alert("B init");
+        }
+        this.init();
+    }
+
+    var  classb = new ClassB();
+</script>
+<body>
+
+</body>
+</html>
