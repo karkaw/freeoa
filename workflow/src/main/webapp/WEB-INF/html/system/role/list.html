@@ -17,7 +17,7 @@
 		<!-- jQuery -->
 		<script>
 			$(function() {
-				var widget = UI.get("userWidget");
+				var widget = UI.get("roleWidget");
 				var addbut = widget.addButton('addbnt', '添加');
                 addbut.bind("click",function(){
                     window.location.href = 'add.do';
@@ -68,7 +68,7 @@
 					<div class="row">
 						<div class="col-xs-12">
                         <@ui.widget id="roleWidget" title="资源列表">
-                            <@ui.grid id="roleGrid"  action="list.do"  height="450px" value=page;user,i,has_next >
+                            <@ui.grid id="roleGrid"  action="jlist.do"  height="450px" value=page;user,i,has_next >
                                 <@ui.column type='checkbox'   name="_id"></@ui.column>
                                 <@ui.column title="名称"      name="resName"></@ui.column>
                                 <@ui.column title="编码"      name="parentId" class="hidden-sm hidden-xs"></@ui.column>

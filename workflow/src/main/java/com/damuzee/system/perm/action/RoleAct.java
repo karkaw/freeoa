@@ -27,7 +27,7 @@ public class RoleAct {
         return "/role/list";
     }
 
-    @RequestMapping(value = "/j_list.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/jlist.do", method = RequestMethod.GET)
     public String jList(ModelMap map) {
         List list = roleRepos.findRoles(new HashMap());
         map.put("rolelist",list);
