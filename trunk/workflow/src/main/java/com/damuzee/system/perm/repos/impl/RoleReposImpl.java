@@ -34,4 +34,9 @@ public class RoleReposImpl implements RoleRepos {
         template.setCollection("roles");
         template.update(map);
     }
+
+    public  Map findRoleByPage(Map map){
+        template.setCollection("roles");
+        return  template.findByPage(map);
+    }
 }
