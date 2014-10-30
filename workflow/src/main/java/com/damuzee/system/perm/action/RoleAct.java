@@ -32,11 +32,12 @@ public class RoleAct {
         return "/role/list";
     }
 
-    @RequestMapping(value = "/jlist.do", method = RequestMethod.GET)
-    public String jList(ModelMap map) {
-        List list = roleRepos.findRoles(new HashMap());
-        map.put("rolelist",list);
-        return "/role/list";
+    @RequestMapping(value = "/jlist.do", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult jList(ModelMap map) {
+        Map list = roleRepos.findRoleByPage(map);
+        JsonResult result = JsonResult.page(list);
+        return result;
     }
 
     @RequestMapping(value = "/save.do", method = RequestMethod.POST)

@@ -12,4 +12,6 @@ public interface RoleRepos {
     public abstract List findRoles(Map map);
 
     public abstract  void updateRole(Map map);
+
+    public abstract Map findResourceByPage(Map map);
 }

@@ -21,7 +21,7 @@ public class RoleReposImpl implements RoleRepos {
     MongoTemplate template;
 
     public String saveRole(Map map) {
-        template.setCollection("resource");
+        template.setCollection("roles");
         return template.save(map);
     }
 
@@ -31,7 +31,7 @@ public class RoleReposImpl implements RoleRepos {
     }
 
     public  void updateRole(Map map){
-        template.setCollection("resource");
+        template.setCollection("roles");
         template.update(map);
     }
 }
