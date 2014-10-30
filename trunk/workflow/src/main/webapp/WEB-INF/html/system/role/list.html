@@ -70,8 +70,8 @@
                         <@ui.widget id="roleWidget" title="资源列表">
                             <@ui.grid id="roleGrid"  action="jlist.do"  height="450px" value=page;user,i,has_next >
                                 <@ui.column type='checkbox'   name="_id"></@ui.column>
-                                <@ui.column title="名称"      name="resName"></@ui.column>
-                                <@ui.column title="编码"      name="parentId" class="hidden-sm hidden-xs"></@ui.column>
+                                <@ui.column title="名称"      name="roleName"></@ui.column>
+                                <@ui.column title="编码"      name="roleCode" class="hidden-sm hidden-xs"></@ui.column>
                                 <@ui.column title="操作" align="center">
                                     <a>修改</a> <a>删除</a>
                                 </@ui.column>
