@@ -10,4 +10,6 @@ public interface RoleRepos {
     public abstract  String saveRole(Map map);
 
     public abstract List findRoles(Map map);
+
+    public abstract  void updateRole(Map map);
 }

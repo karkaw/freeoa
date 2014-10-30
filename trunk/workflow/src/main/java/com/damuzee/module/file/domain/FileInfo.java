@@ -1,16 +1,14 @@
 package com.damuzee.module.file.domain;
 
-import java.util.UUID;
+import com.damuzee.common.util.DateUtil;
+import com.damuzee.module.file.persistence.FileInfoMapper;
+import org.mybatis.sql.BaseBean;
+import org.mybatis.sql.annotation.BaseResultMap;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.mybatis.sql.BaseBean;
-import org.mybatis.sql.annotation.BaseResultMap;
-
-import com.damuzee.common.util.DateUtil;
-import com.damuzee.module.file.persistence.FileInfoMapper;
+import java.util.UUID;
 
 
 
