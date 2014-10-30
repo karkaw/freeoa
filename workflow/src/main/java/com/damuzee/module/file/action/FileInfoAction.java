@@ -1,20 +1,13 @@
 package com.damuzee.module.file.action;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-
+import com.damuzee.module.file.domain.FileInfo;
+import com.damuzee.module.file.service.FileInfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.damuzee.module.file.domain.FileInfo;
-import com.damuzee.module.file.service.FileInfoService;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 
 @Controller
 public class FileInfoAction {

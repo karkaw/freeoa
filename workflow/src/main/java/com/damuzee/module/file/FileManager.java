@@ -1,8 +1,8 @@
 package com.damuzee.module.file;
 
-import javax.annotation.Resource;
-
 import com.damuzee.module.file.service.FileInfoService;
+
+import javax.annotation.Resource;
 
 public class FileManager {
 	
