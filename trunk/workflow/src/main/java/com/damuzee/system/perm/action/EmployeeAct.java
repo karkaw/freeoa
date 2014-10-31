@@ -16,8 +16,8 @@ import java.util.Map;
  * Created by karka.w on 2014/7/24.
  */
 @Controller
-@RequestMapping(value = "admin")
-public class AdminAct {
+@RequestMapping(value = "employee")
+public class EmployeeAct {
 
     @Autowired
     UserRepos userRepos ;
@@ -26,19 +26,19 @@ public class AdminAct {
     public String list(ModelMap map ){
         List list = userRepos.findUsers(new HashMap());
         map.put("userlist",list);
-        return "/admin/list" ;
+        return "/employee/list" ;
     }
 
     @RequestMapping(value = "add.do")
     public String add(){
 
-        return "/admin/add" ;
+        return "/employee/add" ;
     }
 
     @RequestMapping(value = "save.do",method = RequestMethod.POST)
     public String save(String json){
         Map mapvo = JSONUtil.stringToMap(json);
         userRepos.saveUser(mapvo);
-        return "/admin/list" ;
+        return "/employee/list" ;
     }
 }

@@ -57,14 +57,14 @@
 					<div class="row">
                         <div class="col-xs-3">
                             <#--<@ui.widget id="resWidget" title="资源树">-->
-                                <@ui.tree url="tree.do" id='resTree'>
+                                <@ui.tree url="tree.do" id='resTree'  lable="resName" nodeid="code">
 
                                 </@ui.tree>
                            <#--</@ui.widget>-->
                         </div>
 						<div class="col-xs-9">
 							<@ui.widget id="userWidget" title="资源列表">
-                                <@ui.grid id="resGrid"  action="list.do"  height="450px" value=page;user,i,has_next >
+                                <@ui.grid id="resGrid"  action="list.do"  height="450px" >
                                     <@ui.column type='checkbox'   name="_id"></@ui.column>
                                     <@ui.column title="名称"      name="resName"></@ui.column>
                                     <@ui.column title="上级"      name="parentId" class="hidden-sm hidden-xs"></@ui.column>
@@ -160,6 +160,6 @@
     </@ui.modal>
     <!-- Main end -->
 
-    <script type="text/javascript" src="${res}/web/system/resource/resource.js"></script>
+    <script type="text/javascript" src="${res}/web/system/resource.js"></script>
 </body>
 </html>

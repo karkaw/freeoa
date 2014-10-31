@@ -69,13 +69,13 @@
 		</init-param>
 		<load-on-startup>4</load-on-startup>
 	</servlet>
-
     <servlet>
-        <servlet-name>report</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <servlet-name>workflow</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath*:servlet-report.xml</param-value>
+            <param-value>classpath*:servlet-workflow.xml</param-value>
         </init-param>
         <load-on-startup>4</load-on-startup>
     </servlet>
@@ -110,15 +110,15 @@
 		<url-pattern>/module/*</url-pattern>
 	</servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>workflow</servlet-name>
+        <url-pattern>/wf/*</url-pattern>
+    </servlet-mapping>
+
 	<servlet-mapping>
 		<servlet-name>system</servlet-name>
 		<url-pattern>/system/*</url-pattern>
 	</servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>report</servlet-name>
-        <url-pattern>/report/*</url-pattern>
-    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>auth</servlet-name>

@@ -31,8 +31,7 @@ public class ResourceAct {
 
     @RequestMapping(value = "/list.do", method = RequestMethod.GET)
     public String vlist(ModelMap map) {
-        //List list = resourceRepos.findResource(new HashMap());
-        //map.put("resList",list);
+
         return "/resource/tree";
     }
 

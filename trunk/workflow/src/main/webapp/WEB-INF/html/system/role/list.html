@@ -22,6 +22,32 @@
                 addbut.bind("click",function(){
                      var modal = UI.get("roleModle").show();
                 });
+
+                //多选删除
+                var delbut = widget.addButton('delbnt', '删除');
+                delbut.unbind("click").bind("click",function(){
+                    var ids = UI.get("roleGrid").getSelectValues(true);
+                    if(ids != null){
+                        deleteResource(ids);
+                    }
+                });
+
+                //删除按钮
+                $("#roleGrid").find("tr a:eq(1)").bind("click",function(){
+                    var id = $(this).parent().parent("tr").find("input:checkbox").val();
+                    if(id != null){
+                        deleteResource([id]);
+                    }
+                });
+
+                //提交删除数据
+                var deleteResource = function(data){
+                    var form = new UI.Form({url:'delete.do'});
+                    form.setParam({"ids":data});
+                    form.submit(function(){
+                        UI.get("roleGrid").reload();   //提交完成刷新grid
+                    })
+                };
 			});
 		</script>
 </head>
@@ -68,7 +94,7 @@
 					<div class="row">
 						<div class="col-xs-12">
                         <@ui.widget id="roleWidget" title="资源列表">
-                            <@ui.grid id="roleGrid"  action="jlist.do"  height="450px" value=page;user,i,has_next >
+                            <@ui.grid id="roleGrid"  action="jlist.do"  height="450px" >
                                 <@ui.column type='checkbox'   name="_id"></@ui.column>
                                 <@ui.column title="名称"      name="roleName"></@ui.column>
                                 <@ui.column title="编码"      name="roleCode" class="hidden-sm hidden-xs"></@ui.column>
@@ -85,7 +111,7 @@
 			<!-- Main end -->
         </div>
     </div>
-    <@ui.modal id="roleModle" title="添加资源">
+    <@ui.modal id="roleModle" title="添加资源"  gridId="roleGrid">
     <fieldset>
         <@ui.form id="roleForm" action="save.do" formClass="form-horizontal" hasButton=false submitForward="list.do">
             <div class="panel panel-default">
