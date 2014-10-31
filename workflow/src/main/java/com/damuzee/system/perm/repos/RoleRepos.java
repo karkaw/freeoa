@@ -14,4 +14,6 @@ public interface RoleRepos {
     public abstract  void updateRole(Map map);
 
     public abstract Map findRoleByPage(Map map);
+
+    public abstract  void deleteRoleById(List<String> idList);
 }

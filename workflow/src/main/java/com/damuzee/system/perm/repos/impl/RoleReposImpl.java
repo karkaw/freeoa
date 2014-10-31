@@ -17,12 +17,12 @@ import java.util.Map;
 @Collectoion(name="resource")
 public class RoleReposImpl implements RoleRepos {
 
+    private static  final String ROLES = "roles" ;
     @Autowired
     MongoTemplate template;
 
     public String saveRole(Map map) {
-        template.setCollection("roles");
-        return template.save(map);
+        return template.save(ROLES,map);
     }
 
     public List findRoles(Map map) {
@@ -31,12 +31,16 @@ public class RoleReposImpl implements RoleRepos {
     }
 
     public  void updateRole(Map map){
-        template.setCollection("roles");
-        template.update(map);
+        template.update(ROLES,map);
     }
 
     public  Map findRoleByPage(Map map){
-        template.setCollection("roles");
-        return  template.findByPage(map);
+        return  template.findByPage(ROLES,map);
+    }
+
+    public void deleteRoleById(List<String> idList) {
+        for (String id : idList){
+            template.deleteById(ROLES,id);
+        }
     }
 }

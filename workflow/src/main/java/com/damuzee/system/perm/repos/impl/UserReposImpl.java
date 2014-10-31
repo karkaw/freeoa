@@ -17,6 +17,8 @@ import java.util.Map;
 @Collectoion(name="userinfo")
 public class UserReposImpl  extends UserRepos {
 
+    private static  final String USERINFO  = "userinfo";
+
     @Autowired
     MongoTemplate template;
 
@@ -25,12 +27,10 @@ public class UserReposImpl  extends UserRepos {
         if (password != null){
             map.put("passWord", EncryptUtils.encryptMD5(password));
         }
-        template.setCollection("userinfo");
-        return template.save(map);
+        return template.save(USERINFO,map);
     }
 
     public   List findUsers(Map map){
-        template.setCollection("userinfo");
-       return  template.find(map);
+       return  template.find(USERINFO,map);
     }
 }

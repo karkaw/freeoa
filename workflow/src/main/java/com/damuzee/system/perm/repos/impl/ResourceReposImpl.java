@@ -16,32 +16,28 @@ import java.util.Map;
 @Collectoion(name="resource")
 public class ResourceReposImpl extends ResourceRepos {
 
+    private static final String RESOURCE = "resource" ;
     @Autowired
     MongoTemplate template;
 
     public String saveResource(Map map) {
-        template.setCollection("resource");
-        return template.save(map);
+        return template.save(RESOURCE,map);
     }
 
     public   List findResource(Map map){
-        template.setCollection("resource");
-       return  template.find(map);
+       return  template.find(RESOURCE,map);
     }
     public   Map findResourceByPage(Map map){
-        template.setCollection("resource");
-        return  template.findByPage(map);
+        return  template.findByPage(RESOURCE,map);
     }
 
     public void deleteResource(List<String> idList) {
-        template.setCollection("resource");
         for (String id : idList){
-            template.deleteById(id);
+            template.deleteById(RESOURCE,id);
         }
     }
 
     public   void updateResource(Map map){
-        template.setCollection("resource");
-        template.update(map);
+        template.update(RESOURCE,map);
     }
 }

@@ -56,4 +56,12 @@ public class RoleAct {
         return result;
     }
 
+    @RequestMapping(value = "/delete.do", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult delete(String json) {
+        Map<String, List> listvo = (Map) JSONUtil.stringToMap(json);
+        roleRepos.deleteRoleById(listvo.get("ids"));
+
+        return JsonResult.success("ok");
+    }
 }

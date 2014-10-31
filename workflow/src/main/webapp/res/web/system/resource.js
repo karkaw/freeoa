@@ -59,7 +59,7 @@ $(function(){
             UI.get("resGrid").reload();   //提交完成刷新grid
             UI.get("resTree").reload();     //重新加载树
         })
-    }
+    };
 
     //删除操作的按钮
     $(".form-group .icon-remove").bind("click",function(){
