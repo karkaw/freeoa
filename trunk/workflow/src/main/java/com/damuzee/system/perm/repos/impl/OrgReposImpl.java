@@ -1,9 +1,7 @@
 package com.damuzee.system.perm.repos.impl;
 
 import com.damuzee.system.perm.repos.OrgRepos;
-import com.damuzee.system.perm.repos.ResourceRepos;
 import org.damuzee.mongo.MongoTemplate;
-import org.damuzee.mongo.annotation.Collectoion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +12,6 @@ import java.util.Map;
  * Created by karka.w on 2014/7/18.
  */
 @Service
-@Collectoion(name = "resource")
 public class OrgReposImpl extends OrgRepos {
 
     private static final String ORG = "org" ;
