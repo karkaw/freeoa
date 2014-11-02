@@ -17,6 +17,35 @@
 		<!-- jQuery -->
 		<script>
 			$(function() {
+
+                //获取对象
+                var data = null ;
+                $.post("../../wf/object/get.do",{},function(resText){
+                    data = resText
+                    for(var i = 0 ; i < data.length ; i++ ){
+                        var button = $("<lable class='btn btn-info'/>");
+                        button.attr("id",data[i]._id);
+                        button.text(data[i].name);
+                        button.appendTo("#objectRight div:eq(0)");
+                        button.unbind("click").bind("click",function(){
+                            var id = button.attr("id");
+                            var attr = data[$(this).index()]["attribute"];
+
+                            $('#objectRight div:gt(0)').remove();
+                            for(var j = 0 ; j < attr.length ; j++ ){
+                                var row = $("<div class='row'></div>");
+                                var name = $("<div class='col-sm-8'>"+attr[j].attrName+"</div>");
+                                var input = $("<div class='col-sm-4'>" +
+                                            "   <input type='checkbox' value='"+attr[j].attrCode+"'/" +
+                                            "</div>");
+                                name.appendTo(row);
+                                input.appendTo(row);
+                                row.appendTo("#objectRight");
+                            }
+                        });
+                    }
+                });
+
 				var widget = UI.get("roleWidget");
 				var addbut = widget.addButton('addbnt', '添加');
                 addbut.bind("click",function(){
@@ -49,6 +78,8 @@
                     })
                 };
 			});
+
+
 		</script>
 </head>
 
@@ -133,6 +164,26 @@
                     </div>
                  </div>
             </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">对象权限</h3>
+                </div>
+                <div class="panel-body" id="objectRight">
+                    <div class="row">
+
+                    </div>
+                </div>
+            </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">菜单权限</h3>
+            </div>
+            <div class="panel-body" id="menuRight">
+                <div class="row">
+
+                </div>
+            </div>
+        </div>
         </@ui.form>
     </fieldset>
     </@ui.modal>
