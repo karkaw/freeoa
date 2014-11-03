@@ -72,4 +72,13 @@ public class ObjectAct {
         return objects;
     }
 
+    @RequestMapping(value = "/delete.do", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult delete(String json, HttpServletRequest request) {
+        Map<String, List> listvo = (Map) JSONUtil.stringToMap(json);
+        objectRepos.deleteObjectById(listvo.get("ids"));
+
+        return JsonResult.success("ok");
+    }
+
 }
