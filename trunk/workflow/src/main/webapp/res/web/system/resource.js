@@ -6,7 +6,7 @@ $(function(){
         $("#resOperForm .form-group:gt(0)").each(function(){
             $(this).remove();
         });
-        UI.get("resForm").removeValues();
+        UI.resetForm("resForm");
         var grid = UI.get("resGrid");
         try{
             var parentCode = grid.getSelection(); //获取grid勾选中的数据
