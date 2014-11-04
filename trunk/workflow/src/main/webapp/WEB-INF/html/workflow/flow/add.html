@@ -13,11 +13,11 @@
     <#include "/html/head.html"/>
     <@head/>
 
-    <link type="text/javascript" src="${res}/myflow/css/myflow.css"></link>
+    <link type="text/css" href="${res}/myflow/lib/jquery-ui-1.8.4.custom/css/smoothness/jquery-ui-1.8.4.custom.css" />
 
     <script type="text/javascript" src="${res}/myflow/lib/raphael-min.js"></script>
-    <script type="text/javascript" src="${res}/myflow/lib/jquery-ui-1.8.4.custom/js/jquery.min.js"></script>
     <script type="text/javascript" src="${res}/myflow/lib/jquery-ui-1.8.4.custom/js/jquery-ui.min.js"></script>
+
     <script type="text/javascript" src="${res}/myflow/myflow.js"></script>
     <script type="text/javascript" src="${res}/myflow/myflow.jpdl4.js"></script>
     <script type="text/javascript" src="${res}/myflow/myflow.editors.js"></script>
@@ -121,7 +121,6 @@
                                         <table border="1" width="100%" cellpadding="0" cellspacing="0">
 
                                         </table>
-                                        <div>&nbsp;</div>
                                     </div>
                                 </div>
 							</@ui.widget>
@@ -133,26 +132,53 @@
 			<!-- Main end -->
         </div>
 
-        <div class="pop-editor-label" title="点击编辑" id="enterEditer">
+        <div class="pop-editor-label" title="点击编辑" id="enterEditer"  style="display: none">
             ...
         </div>
 
-        <table class="table" id="enterProp" style="display: none">
-            <caption>进入条件配置</caption>
+    <div class="ui-draggable ui-resizable" id="enterPropDiv" style="display: none">
+        <table id="enterProp"  border="1" bgcolor="#f0f8ff">
             <thead>
-            <tr>
-                <th>操作类型</th>
-                <th>操作对象</th>
-                <th>操作内容</th>
-            </tr>
+                <tr>
+                    <th colspan="4" align="center" bgcolor="gray">进入条件配置</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th width="30%">操作类型</th>
+                    <th width="30%">操作对象</th>
+                    <th width="35%">操作内容</th>
+                </tr>
             </thead>
+
             <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                <tr style="display: none">
+                    <td>-</td>
+                    <td>
+                        <select name="propName">
+                            <option>时间</option>
+                            <option>时间</option>
+                            <option>时间</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="propType">
+                            <option> > </option>
+                            <option> < </option>
+                            <option> != </option>
+                            <option> = </option>
+                            <option> in </option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" name="propValue"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="center"> + </td>
+                </tr>
             </tbody>
         </table>
+    </div>
+
 </body>
 </html>
