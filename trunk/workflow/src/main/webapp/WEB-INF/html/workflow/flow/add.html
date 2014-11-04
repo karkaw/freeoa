@@ -13,11 +13,13 @@
     <#include "/html/head.html"/>
     <@head/>
 
+    <link type="text/javascript" src="${res}/myflow/css/myflow.css"></link>
+
     <script type="text/javascript" src="${res}/myflow/lib/raphael-min.js"></script>
     <script type="text/javascript" src="${res}/myflow/lib/jquery-ui-1.8.4.custom/js/jquery.min.js"></script>
     <script type="text/javascript" src="${res}/myflow/lib/jquery-ui-1.8.4.custom/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="${res}/myflow/myflow.js"></script>
-    <script type="text/javascript" src="${res}/myflow/myflow.jpdl3.js"></script>
+    <script type="text/javascript" src="${res}/myflow/myflow.jpdl4.js"></script>
     <script type="text/javascript" src="${res}/myflow/myflow.editors.js"></script>
     <script type="text/javascript">
         $(function(){
@@ -111,18 +113,13 @@
                                             <img src="${res}/myflow/img/16/end_event_terminate.png" />&nbsp;&nbsp;结束
                                         </div>
                                     </div>
-                                    <div class="col-lg-9" id="myflow">
+                                    <div class="col-lg-8" id="myflow">
 
                                     </div>
-                                    <div class="col-lg-2" id="myflow_props">
+                                    <div class="col-lg-3" id="myflow_props">
                                         <div id="myflow_props_handle" class="ui-widget-header">属性</div>
                                         <table border="1" width="100%" cellpadding="0" cellspacing="0">
-                                            <tr>
-                                                <td>aaa</td>
-                                            </tr>
-                                            <tr>
-                                                <td>aaa</td>
-                                            </tr>
+
                                         </table>
                                         <div>&nbsp;</div>
                                     </div>
@@ -135,5 +132,27 @@
 			</div>
 			<!-- Main end -->
         </div>
+
+        <div class="pop-editor-label" title="点击编辑" id="enterEditer">
+            ...
+        </div>
+
+        <table class="table" id="enterProp" style="display: none">
+            <caption>进入条件配置</caption>
+            <thead>
+            <tr>
+                <th>操作类型</th>
+                <th>操作对象</th>
+                <th>操作内容</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
 </body>
 </html>
