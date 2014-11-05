@@ -13,13 +13,14 @@
     <#include "/html/head.html"/>
     <@head/>
 
-    <link type="text/css" href="${res}/myflow/lib/jquery-ui-1.8.4.custom/css/smoothness/jquery-ui-1.8.4.custom.css" />
+    <link type="text/css" href="${res}/myflow/css/myflow.css" rel="stylesheet" />
+    <link type="text/css" href="${res}/jquery-ui/css/jquery-ui-1.8.4.custom.css" />
 
     <script type="text/javascript" src="${res}/myflow/lib/raphael-min.js"></script>
-    <script type="text/javascript" src="${res}/myflow/lib/jquery-ui-1.8.4.custom/js/jquery-ui.min.js"></script>
-
+    <script type="text/javascript" src="${res}/jquery-ui-1.8.4.custom/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${res}/jquery-ui-1.8.4.custom/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="${res}/myflow/myflow.js"></script>
-    <script type="text/javascript" src="${res}/myflow/myflow.jpdl4.js"></script>
+    <script type="text/javascript" src="${res}/myflow/myflow.jpdl3.js"></script>
     <script type="text/javascript" src="${res}/myflow/myflow.editors.js"></script>
     <script type="text/javascript">
         $(function(){
@@ -82,7 +83,7 @@
 						<div class="col-xs-12">
 							<@ui.widget title="添加流程定义" id="addUserName">
                                 <div class="row">
-                                    <div class="col-lg-1" id="myflow_tools">
+                                    <div class="col-lg-1" id="myflow_tools" style="padding: 0px;margin-left:10px">
                                         <div id="myflow_tools_handle" style="text-align: center;" class="ui-widget-header">工具集</div>
                                         <div class="node" id="myflow_save"><img src="${res}/myflow/img/save.gif" />&nbsp;&nbsp;保存</div>
                                         <div>
@@ -132,15 +133,16 @@
 			<!-- Main end -->
         </div>
 
-        <div class="pop-editor-label" title="点击编辑" id="enterEditer"  style="display: none">
+        <div class="pop-editor-label" title="点击编辑" id="propEditer"  style="display: none">
             ...
         </div>
+    </div>
 
-    <div class="ui-draggable ui-resizable" id="enterPropDiv" style="display: none">
-        <table id="enterProp"  border="1" bgcolor="#f0f8ff">
+    <div class="pop-editor-panel" id="enterPropDiv" style="display: none">
+        <table id="enterProp"  cellpadding="0" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th colspan="4" align="center" bgcolor="gray">进入条件配置</th>
+                    <th class="pop-panel-header" colspan="4">进入条件配置<img src="${res}/myflow/img/close.png" class="pop-panel-close-btn"/></th>
                 </tr>
                 <tr>
                     <th></th>
@@ -151,17 +153,17 @@
             </thead>
 
             <tbody>
-                <tr>
-                    <td>-</td>
-                    <td>
-                        <select name="propName">
+                <tr style="display: none">
+                    <td class="panel-row-btn">-</td>
+                    <td >
+                        <select name="propName" class="input-control condition_name">
                             <option>时间</option>
                             <option>时间</option>
                             <option>时间</option>
                         </select>
                     </td>
-                    <td>
-                        <select name="propType">
+                    <td class="width50">
+                        <select name="propType" class="input-control condition_op">
                             <option> > </option>
                             <option> < </option>
                             <option> != </option>
@@ -170,14 +172,12 @@
                         </select>
                     </td>
                     <td>
-                        <input type="text" name="propValue"/>
+                        <input type="text" name="propValue" class="input-control condition_value"/>
                     </td>
-                </tr>
-                <tr>
-                    <td colspan="4" align="center"> + </td>
                 </tr>
             </tbody>
         </table>
+        <div class="panel-add-btn ">+</div>
     </div>
 
 </body>
