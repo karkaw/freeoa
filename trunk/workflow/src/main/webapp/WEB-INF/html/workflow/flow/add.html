@@ -133,9 +133,9 @@
 			<!-- Main end -->
         </div>
 
-        <div class="pop-editor-label" title="点击编辑" id="propEditer"  style="display: none">
-            ...
-        </div>
+    </div>
+
+    <div class="pop-editor-label" title="点击编辑" id="propEditer"  style="display: none"> ...
     </div>
 
     <div class="pop-editor-panel" id="enterPropDiv" style="display: none">
@@ -146,9 +146,9 @@
                 </tr>
                 <tr>
                     <th></th>
-                    <th width="30%">操作类型</th>
-                    <th width="30%">操作对象</th>
-                    <th width="35%">操作内容</th>
+                    <th width="30%">属性</th>
+                    <th width="30%">添加符</th>
+                    <th width="35%">条件值</th>
                 </tr>
             </thead>
 
@@ -157,9 +157,6 @@
                     <td class="panel-row-btn">-</td>
                     <td >
                         <select name="propName" class="input-control condition_name">
-                            <option>时间</option>
-                            <option>时间</option>
-                            <option>时间</option>
                         </select>
                     </td>
                     <td class="width50">
@@ -180,5 +177,40 @@
         <div class="panel-add-btn ">+</div>
     </div>
 
+    <div class="pop-editor-panel" id="initPropDiv" style="display: none">
+        <table id="initProp"  cellpadding="0" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th class="pop-panel-header" colspan="4">进入条件配置<img src="${res}/myflow/img/close.png" class="pop-panel-close-btn"/></th>
+            </tr>
+            <tr>
+                <th></th>
+                <th width="30%">操作类型</th>
+                <th width="30%">操作对象</th>
+                <th width="35%">操作内容</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr style="display: none">
+                <td class="panel-row-btn">-</td>
+                <td >
+                    <select name="propType" class="input-control condition_name">
+                        <option>属性</option>
+                    </select>
+                </td>
+                <td class="width50">
+                    <select name="propName" class="input-control condition_op">
+
+                    </select>
+                </td>
+                <td>
+                    <input type="text" name="propValue" class="input-control condition_value"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="panel-add-btn ">+</div>
+    </div>
 </body>
 </html>

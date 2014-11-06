@@ -72,6 +72,14 @@ public class ObjectAct {
         return objects;
     }
 
+    @RequestMapping(value = "/getAttr.do", method = RequestMethod.POST)
+    @ResponseBody
+    public List getAttr(String json,HttpServletRequest request){
+        Map<String, Object> mapvo = JSONUtil.stringToMap(json);
+        List attrs = objectRepos.findObjectsAttrs(mapvo);
+        return attrs;
+    }
+
     @RequestMapping(value = "/delete.do", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult delete(String json, HttpServletRequest request) {
