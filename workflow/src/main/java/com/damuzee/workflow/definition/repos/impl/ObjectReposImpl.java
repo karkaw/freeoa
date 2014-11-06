@@ -18,6 +18,7 @@ public class ObjectReposImpl implements ObjectRepos{
 
     private static  final String OBJECTS = "objects" ;
 
+    private static  final  String ATTRIBUTE = "attribute";
     @Autowired
     MongoTemplate template;
 
@@ -42,5 +43,12 @@ public class ObjectReposImpl implements ObjectRepos{
         for (String id : idList){
             template.deleteById(OBJECTS,id);
         }
+    }
+
+    public    List findObjectsAttrs(Map codeMap){
+        Map<String,Object> attrsMap = template.findOne(OBJECTS, codeMap);
+        List attrs = (List)attrsMap.get(ATTRIBUTE);
+
+        return attrs == null ? new ArrayList(): attrs ;
     }
 }
