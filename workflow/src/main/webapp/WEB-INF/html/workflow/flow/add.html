@@ -84,46 +84,46 @@
 					<div class="row"  style="height: auto">
 						<div class="col-xs-12">
 							<@ui.widget title="添加流程定义" id="addUserName">
-                                    <div  id="myflow_tools" style="padding: 0px;margin-left:10px">
-                                        <div id="myflow_tools_handle" style="text-align: center;" class="ui-widget-header">工具集</div>
-                                        <div class="node" id="myflow_save"><img src="${res}/myflow/img/save.gif" />&nbsp;&nbsp;保存</div>
-                                        <div>
-                                            <hr />
-                                        </div>
-                                        <div class="node selectable" id="pointer">
-                                            <img  src="${res}/myflow/img/select16.gif" />&nbsp;&nbsp;选择
-                                        </div>
-                                        <div class="node selectable" id="path">
-                                            <img src="${res}/myflow/img/16/flow_sequence.png" />&nbsp;&nbsp;连接
-                                        </div>
-                                        <div>
-                                            <hr />
-                                        </div>
-                                        <div class="node state" id="start" type="start">
-                                            <img src="${res}/myflow/img/16/start_event_empty.png" />&nbsp;&nbsp;开始
-                                        </div>
-                                        <div class="node state" id="task" type="task">
-                                            <img src="${res}/myflow/img/16/task_empty.png" />&nbsp;&nbsp;任务
-                                        </div>
-                                        <div class="node state" id="fork" type="fork">
-                                            <img src="${res}/myflow/img/16/gateway_parallel.png" />&nbsp;&nbsp;分支
-                                        </div>
-                                        <div class="node state" id="join" type="join">
-                                            <img src="${res}/myflow/img/16/gateway_parallel.png" />&nbsp;&nbsp;合并
-                                        </div>
-                                        <div class="node state" id="end" type="end">
-                                            <img src="${res}/myflow/img/16/end_event_terminate.png" />&nbsp;&nbsp;结束
-                                        </div>
+                                <div  id="myflow_tools" style="padding: 0px;margin-left:10px">
+                                    <div id="myflow_tools_handle" style="text-align: center;" class="ui-widget-header">工具集</div>
+                                    <div class="node" id="myflow_save"><img src="${res}/myflow/img/save.gif" />&nbsp;&nbsp;保存</div>
+                                    <div>
+                                        <hr />
                                     </div>
-                                    <div  id="myflow" style="background-image: url('${res}/myflow/img/bg.png') ">
+                                    <div class="node selectable" id="pointer">
+                                        <img  src="${res}/myflow/img/select16.gif" />&nbsp;&nbsp;选择
+                                    </div>
+                                    <div class="node selectable" id="path">
+                                        <img src="${res}/myflow/img/16/flow_sequence.png" />&nbsp;&nbsp;连接
+                                    </div>
+                                    <div>
+                                        <hr />
+                                    </div>
+                                    <div class="node state" id="start" type="start">
+                                        <img src="${res}/myflow/img/16/start_event_empty.png" />&nbsp;&nbsp;开始
+                                    </div>
+                                    <div class="node state" id="task" type="task">
+                                        <img src="${res}/myflow/img/16/task_empty.png" />&nbsp;&nbsp;任务
+                                    </div>
+                                    <div class="node state" id="fork" type="fork">
+                                        <img src="${res}/myflow/img/16/gateway_parallel.png" />&nbsp;&nbsp;分支
+                                    </div>
+                                    <div class="node state" id="join" type="join">
+                                        <img src="${res}/myflow/img/16/gateway_parallel.png" />&nbsp;&nbsp;合并
+                                    </div>
+                                    <div class="node state" id="end" type="end">
+                                        <img src="${res}/myflow/img/16/end_event_terminate.png" />&nbsp;&nbsp;结束
+                                    </div>
+                                </div>
+                                <div  id="myflow" style="background-image: url('${res}/myflow/img/bg.png') ">
 
-                                    </div>
-                                    <div  id="myflow_props">
-                                        <div id="myflow_props_handle" class="ui-widget-header">属性</div>
-                                        <table border="1" width="100%" cellpadding="0" cellspacing="0">
+                                </div>
+                                <div  id="myflow_props">
+                                    <div id="myflow_props_handle" class="ui-widget-header">属性</div>
+                                    <table border="1" width="100%" cellpadding="0" cellspacing="0">
 
-                                        </table>
-                                    </div>
+                                    </table>
+                                </div>
 							</@ui.widget>
 						</div>
 					</div>
@@ -146,9 +146,9 @@
                 </tr>
                 <tr>
                     <th></th>
-                    <th width="30%">属性</th>
-                    <th width="30%">添加符</th>
-                    <th width="35%">条件值</th>
+                    <th>属性</th>
+                    <th>添加符</th>
+                    <th>条件值</th>
                 </tr>
             </thead>
 
@@ -185,9 +185,9 @@
             </tr>
             <tr>
                 <th></th>
-                <th width="30%">操作类型</th>
-                <th width="30%">操作对象</th>
-                <th width="35%">操作内容</th>
+                <th>操作类型</th>
+                <th>操作对象</th>
+                <th>操作内容</th>
             </tr>
             </thead>
 
@@ -200,6 +200,111 @@
                     </select>
                 </td>
                 <td class="width50">
+                    <select name="propName" class="input-control condition_op">
+
+                    </select>
+                </td>
+                <td>
+                    <input type="text" name="propValue" class="input-control condition_value"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="panel-add-btn ">+</div>
+    </div>
+
+    <div class="pop-editor-panel" id="rolesPropDiv" style="display: none">
+        <table id="rolesProp"  cellpadding="0" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th class="pop-panel-header" colspan="4">进入条件配置<img src="${res}/myflow/img/close.png" class="pop-panel-close-btn"/></th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>类型</th>
+                <th>条件</th>
+                <th>对象</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr style="display: none">
+                <td class="panel-row-btn">-</td>
+                <td >
+                    <select name="propType" class="input-control condition_name">
+                        <option>属性</option>
+                    </select>
+                </td>
+                <td class="width50">
+                    <select name="propName" class="input-control condition_op">
+
+                    </select>
+                </td>
+                <td>
+                    <input type="text" name="propValue" class="input-control condition_value"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="panel-add-btn ">+</div>
+    </div>
+
+    <div class="pop-editor-panel" id="permsPropDiv" style="display: none">
+        <table id="permsProp"  cellpadding="0" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th class="pop-panel-header" colspan="4">进入条件配置<img src="${res}/myflow/img/close.png" class="pop-panel-close-btn"/></th>
+                </tr>
+                <tr>
+                    <th>对象属性</th>
+                    <th colspan="3">权限</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr style="display: none">
+                    <td>
+                        <span></span><input type="hidden" name="attrCode"/>
+                    </td>
+                    <td class="width50">
+                        <label class="check-box-item"><input type="checkbox"  class="read" name="read"/>读</label>
+                    </td>
+                    <td class="width50">
+                        <label class="check-box-item"> <input type="checkbox" class="write" name="write"/>写</label>
+                    </td>
+                    <td class="width50">
+                        <label class="check-box-item"> <input type="checkbox" class="default" name="default"/>默认</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pop-editor-panel" id="approvePropDiv" style="display: none">
+        <table id="approveProp"  cellpadding="0" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th class="pop-panel-header" colspan="4">进入条件配置<img src="${res}/myflow/img/close.png" class="pop-panel-close-btn"/></th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>操作类型</th>
+                <th>操作对象</th>
+                <th>操作内容</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr style="display: none">
+                <td class="panel-row-btn">-</td>
+                <td>
+                    <select name="propType" class="input-control condition_name">
+                        <option>属性</option>
+                        <option>任务</option>
+                        <option>子流程</option>
+                    </select>
+                </td>
+                <td >
                     <select name="propName" class="input-control condition_op">
 
                     </select>
