@@ -20,26 +20,28 @@
     <script type="text/javascript" src="${res}/myflow/myflow.js"></script>
     <script type="text/javascript" src="${res}/myflow/myflow.jpdl3.js"></script>
     <script type="text/javascript" src="${res}/myflow/myflow.editors.js"></script>
-
-
-
     <script type="text/javascript">
         $(function(){
             $(function() {
-                $('#myflow')
-                        .myflow(
-                        {
-                            basePath : "${res}/myflow/",
-                            restore :{},
-                            tools : {
-                                save : {
-                                    onclick : function(data) {
-                                        alert('save:\n' + data);
-                                    }
+                $('#myflow').myflow({
+                    basePath : "${res}/myflow/",
+                    restore :{},
+                    tools : {
+                        save : {onclick : function(data) {
+                            $.post("save.do",{json:data},function(result){
+                                if($.gritter){
+                                    $.gritter.add({
+                                        title: '提示信息',
+                                        text: result.msg || "操作成功！",
+                                        class_name: 'gritter-' + result.msgType
+                                    });
+                                }else{
+                                    alert(result.msg);
                                 }
-                            }
-                        });
-
+                            });
+                        }}
+                    }
+                });
             });
         });
     </script>
