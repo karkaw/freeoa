@@ -34,7 +34,8 @@ public class RoleAct {
 
     @RequestMapping(value = "/jlist.do", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult jList(ModelMap map) {
+    public JsonResult jList(String json) {
+        Map<String, List> map = (Map) JSONUtil.stringToMap(json);
         Map list = roleRepos.findRoleByPage(map);
         JsonResult result = JsonResult.page(list);
         return result;
