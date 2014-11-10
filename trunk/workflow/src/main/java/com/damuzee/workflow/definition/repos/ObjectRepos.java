@@ -21,7 +21,7 @@ public interface ObjectRepos {
      *通过对象编码查询对象属性
      *
      * @param
-     *  map [code]  对象编码
+     *  codeMap [code]  对象编码
      *
      * @return
      *  attribute 对象属性
