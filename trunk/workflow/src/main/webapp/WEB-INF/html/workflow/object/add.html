@@ -16,6 +16,8 @@
     <script type="text/javascript">
         $(function(){
 
+            SPT = "&" ;      //对象定义分隔符
+
             //获取继承对象
             $.post("get.do",{},function(resText){
                 var data = resText ;
@@ -59,7 +61,7 @@
                 tr.each(function(idx,ele){
                     $(ele).remove();
                     var attr = UI.getFormParam($(ele));
-                    attr.attrCode =  $("#code").val() + "." + attr.attrCode
+                    attr.attrCode =  $("#code").val() + SPT + attr.attrCode
                     attribute.push(attr);
                 });
                 object.attribute = attribute ;
