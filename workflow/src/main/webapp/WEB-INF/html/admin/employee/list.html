@@ -13,42 +13,15 @@
 
         <#include "/html/head.html"/>
         <@head />
-        <script src="${res}/freeui/js/form.js"></script>
 
 		<!-- jQuery -->
 		<script>
 			$(function() {
-				var widget = UI.get("flowWidget");
+				var widget = UI.get("userWidget");
 				var addbut = widget.addButton('addbnt', '添加');
                 addbut.bind("click",function(){
                     window.location.href = 'add.do';
                 });
-
-                //多选删除
-                var delbut = widget.addButton('delbnt', '删除');
-                delbut.unbind("click").bind("click",function(){
-                    var ids = UI.get("flowGrid").getSelectValues(true);
-                    if(ids != null){
-                        deleteResource(ids);
-                    }
-                });
-
-                //删除按钮
-                $("#flowGrid").find("tr a:eq(1)").bind("click",function(){
-                    var id = $(this).parent().parent("tr").find("input:checkbox").val();
-                    if(id != null){
-                        deleteResource([id]);
-                    }
-                });
-
-                //提交删除数据
-                var deleteResource = function(data){
-                    var form = new UI.Form({url:'delete.do'});
-                    form.submit({"ids":data},function(){
-                        UI.get("flowGrid").removeRowById(data);
-                    })
-                };
-
 			});
 		</script>
 </head>
@@ -87,24 +60,25 @@
 				<div class="page-content">
 					<div class="page-header">
 						<h1>
-							控制台 <small><i class="icon-double-angle-right"></i>流程定义管理</small>
+							控制台 <small><i class="icon-double-angle-right"></i>员工管理</small>
 						</h1>
 					</div>
 					<!-- /.page-header -->
 
 					<div class="row">
 						<div class="col-xs-12">
-							<@ui.widget id="flowWidget">
-                                <@ui.grid id="flowGrid"  action="jlist.do"  height="450px" >
-                                    <@ui.column type='checkbox'   name="_id"></@ui.column>
-                                    <@ui.column title="名称"      name="name"></@ui.column>
-                                    <@ui.column title="标题"      name="title"></@ui.column>
-                                    <@ui.column title="描述"      name="desc" class="hidden-sm hidden-xs"></@ui.column>
-                                    <@ui.column title="类型"      name="type"></@ui.column>
+							<@ui.widget id="userWidget">
+                                <@ui.grid id="userGrid"  action="jlist.do"  height="450px" >
+                                    <@ui.column type='checkbox'     name="_id"></@ui.column>
+                                    <@ui.column title="用户名"      name="userName"></@ui.column>
+                                    <@ui.column title="描述"      name="description"></@ui.column>
+                                    <@ui.column title="姓"          name="firstName" class="hidden-sm hidden-xs"></@ui.column>
+                                    <@ui.column title="名字"        name="lastName" class="hidden-sm hidden-xs"></@ui.column>
                                     <@ui.column title="操作" align="center">
                                         <a>修改</a> <a>删除</a>
                                     </@ui.column>
                                 </@ui.grid>
+                                </table>
 							</@ui.widget>
 						</div>
 					</div>

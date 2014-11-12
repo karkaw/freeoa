@@ -65,7 +65,7 @@
     <bean id="freemarkerViewResolver" class="com.damuzee.core.web.springmvc.RichFreeMarkerViewResolver">
         <property name="cache" value="true"/>
         <property name="suffix" value=".html"/>
-        <property name="root" value="html/system"/>
+        <property name="root" value="html/admin"/>
         <property name="contentType" value="text/html; charset=UTF-8"/>
         <property name="exposeRequestAttributes" value="false"/>
         <property name="exposeSessionAttributes" value="false"/>

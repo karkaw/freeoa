@@ -28,16 +28,20 @@
                     restore :{},
                     tools : {
                         save : {onclick : function(data) {
-                            $.post("save.do",{json:data},function(result){
+                            $.post("save.do",{json:data},function(data){
                                 if($.gritter){
                                     $.gritter.add({
                                         title: '提示信息',
-                                        text: result.msg || "操作成功！",
-                                        class_name: 'gritter-' + result.msgType
+                                        text: data.msg || "操作成功！",
+                                        class_name: 'gritter-' + data.msgType
                                     });
                                 }else{
-                                    alert(result.msg);
+                                    alert(data.msg);
                                 }
+                                setInterval(function(){
+                                    window.location.href = "list.do" ;
+                                }, 800);
+
                             });
                         }}
                     }

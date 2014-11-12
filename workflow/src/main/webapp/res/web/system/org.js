@@ -19,8 +19,8 @@ $(function(){
     //提交保存
     var submitBtn = UI.get("orgModle").getSubmitBtn();//获取Madal的提交按钮
     submitBtn.unbind("click").bind("click",function(){
-        var params = {}
-        UI.get("orgForm").setParam(params).submit(function(){ //提交数据
+        //var params = {};
+        UI.get("orgForm").submit(null,function(){ //提交数据
             UI.get("orgGrid").reload();       //提交完成刷新grid
             UI.get("orgTree").reload();     //重新加载树
             UI.get("orgModle").hide();      //关闭Modal
@@ -47,9 +47,8 @@ $(function(){
     //提交删除数据
     var deleteResource = function(data){
         var form = new UI.Form({url:'delete.do'});
-        form.setParam({"ids":data});
-        form.submit(function(){
-            UI.get("orgGrid").reload();   //提交完成刷新grid
+        form.submit({"ids":data},function(){
+            UI.get("orgGrid").removeRowById(data) ;  //提交完成刷新grid
             UI.get("orgTree").reload();     //重新加载树
         })
     };

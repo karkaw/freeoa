@@ -27,6 +27,7 @@ import java.util.Map;
 @RequestMapping(value = "flow")
 public class FlowAct {
 
+
     @Autowired
     FlowRepos flowRepos ;
 
@@ -41,16 +42,44 @@ public class FlowAct {
 
         return "/flow/add";
     }
+    @RequestMapping(value = "/jlist.do", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult jList(ModelMap map) {
+        Map list = flowRepos.findFlowByPage(map);
+        JsonResult result = JsonResult.page(list);
+        return result;
+    }
 
     @RequestMapping(value = "/save.do", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult save(String json, HttpServletRequest request) {
-        System.out.print(json);
-        Map<String, Object> listvo = (Map<String, Object>) JSONUtil.stringToMap(json);
+    public JsonResult save(String json) {
+        Map<String, Object> listvo =  JSONUtil.stringToMap(json);
+        Map<String,Object> propsMap = (Map<String,Object>)listvo.get(Flow.PROPS);
+        propsMap = ( Map<String,Object> )propsMap.get(Flow.PROPS);
+
         Map<String,Object> flowMap = new HashMap<String, Object>();
         flowMap.put(Flow.RESTORE,json);
 
-        flowRepos.saveFlow(listvo);
+        //工作流配置
+        for(String key : propsMap.keySet()){
+            Map<String,Object> value  = (Map<String,Object>)propsMap.get(key) ;
+            flowMap.put(key,value.get(Flow.VALUE));
+        }
+
+        //任务paths属性
+        flowMap.put(Flow.PATHS,listvo.get(Flow.PATHS));
+        //states
+        flowMap.put(Flow.STATES,listvo.get(Flow.STATES));
+
+        String id = flowRepos.saveFlow(flowMap);
+        return JsonResult.success(id);
+    }
+
+    @RequestMapping(value = "/delete.do", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult delete(String json, HttpServletRequest request) {
+        Map<String, List> listvo = (Map) JSONUtil.stringToMap(json);
+        flowRepos.deleteFlowById(listvo.get("ids"));
         return JsonResult.success("ok");
     }
 }
