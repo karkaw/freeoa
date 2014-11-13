@@ -39,14 +39,19 @@
 		<filter-name>shiroFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
 	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener
-		</listener-class>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+    <!--Spring-->
 	<listener>
-		<listener-class>org.springframework.web.util.IntrospectorCleanupListener
-		</listener-class>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
+
+    <!--配置-->
+    <listener>
+        <listener-class>com.damuzee.core.web.listener.WebConfigListener</listener-class>
+    </listener>
 	<servlet>
 		<servlet-name>module</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet
@@ -110,6 +115,22 @@
         <load-on-startup>4</load-on-startup>
     </servlet>
 
+    <servlet>
+        <servlet-name>system</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:servlet-system.xml</param-value>
+        </init-param>
+        <load-on-startup>4</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>system</servlet-name>
+        <url-pattern>/system/*</url-pattern>
+    </servlet-mapping>
+
+
     <servlet-mapping>
         <servlet-name>work</servlet-name>
         <url-pattern>/work/*</url-pattern>
@@ -168,8 +189,7 @@
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.eot</url-pattern>
 	</servlet-mapping>
-	
-	
+
 	<session-config>
 		<session-timeout>20</session-timeout>
 	</session-config>

@@ -57,51 +57,14 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<@ui.widget title="添加模板" id="tempWidget">
-								<@ui.form id="tempForm" action="save.do" formClass="form-horizontal">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label" for="userName">用户名</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="userName"
-                                                           placeholder="输入用户名"/>
-                                                </div>
-
-                                                <label class="col-sm-2 control-label" for="passWord">密码</label>
-                                                <div class="col-sm-4">
-                                                    <input type="password"  class="form-control" id="passWord"
-                                                           placeholder="输入密码"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label" for="firstName">姓</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="firstName"
-                                                       placeholder="输入姓"/>
-                                                </div>
-
-                                                <label class="col-sm-2 control-label" for="lastName">名字</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="lastName"
-                                                       placeholder="输入名字"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label  class="col-sm-2 control-label" for="description">描述</label>
-                                                <div class="col-sm-10">
-                                                    <textarea type="text" class="form-control" id="description"
-                                                           placeholder="输入对用户的描述"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
+								<@ui.form id="tempForm" action="save.do" class="">
+                                    <div class="form-group">
+                                        <label for="code">编码</label>
+                                        <input type="text" name="code" class="form-control"/>
                                     </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">权限</h3>
-                                        </div>
-                                        <div class="panel-body">
-
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="context" >内容</label>
+                                        <textarea name="context" rows="20" cols="80" class="form-control"></textarea>
                                     </div>
                                 </@ui.form>
 							</@ui.widget>
