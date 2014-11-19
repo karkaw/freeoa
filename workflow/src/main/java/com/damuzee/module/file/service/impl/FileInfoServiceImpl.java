@@ -23,11 +23,9 @@ import java.util.UUID;
  * @author rka.w
  *
  */
-@Service
 public class FileInfoServiceImpl implements FileInfoService {
 	
-	@Resource
-	private  FileInfoMapper mapper ;
+
 	
 	/**
 	 * 上传文件
@@ -59,8 +57,7 @@ public class FileInfoServiceImpl implements FileInfoService {
 			fileInfo.setPath(path +"/"+ fileName);
 			fileInfo.setSize(file.getSize());
 			fileInfo.setType(file.getContentType());
-			mapper.save(fileInfo);
-	
+
 		
 			file.transferTo(targetFile);
 		} catch (IllegalStateException e) {
@@ -77,27 +74,26 @@ public class FileInfoServiceImpl implements FileInfoService {
 	}
 	
 	public Page< FileInfo> getFileInfoList(Page<  FileInfo> page,   FileInfo  bean) {
-		return mapper.selectPageByWhere(page,   bean);
+		return null;
 	}
 
 	public void saveFileInfo( FileInfo bean) {
-		 
-		mapper.insert(bean);
-	}
-	
- 
-	public List<FileInfo> getFileInfoList( FileInfo bean) {
-		 
-		return mapper.selectList(bean);
+
 	}
 
-	 
-	public void updateFileInfo( FileInfo bean) {
-		mapper.update(bean); 
+
+	public List<FileInfo> getFileInfoList( FileInfo bean) {
+
+		return null;
 	}
-	
+
+
+	public void updateFileInfo( FileInfo bean) {
+
+	}
+
 	public FileInfo getFileInfo(FileInfo bean){
-		return mapper.select(bean); 
+		return null;
 	}
 
 }
