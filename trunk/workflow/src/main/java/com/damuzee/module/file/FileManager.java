@@ -6,10 +6,7 @@ import javax.annotation.Resource;
 
 public class FileManager {
 	
-	
-	
-	@Resource
-	private FileInfoService fileInfoService ;
+
 	
 	
 }

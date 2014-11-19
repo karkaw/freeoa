@@ -12,6 +12,6 @@
         <context:include-filter type="regex" expression=".shiro.impl"/>
     </context:component-scan>
 
-	<import resource="application-dao.xml" />
+<!--	<import resource="application-dao.xml" />-->
 	<import resource="application-mongo.xml"/>
 </beans>

@@ -16,8 +16,7 @@ import java.util.UUID;
  * auto generator
  */
  
-@Table(name = "sys_file_info")
-@BaseResultMap(name=FileInfoMapper.class)
+
 public class FileInfo extends BaseBean implements java.io.Serializable {
  
 	@Id

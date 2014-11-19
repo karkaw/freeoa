@@ -9,13 +9,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
-@Controller
+
 public class FileInfoAction {
-	
-	@Resource
-	private FileInfoService fileService ;
-	
-	@RequestMapping("download.do")  
+
     public void downloadFile(Long id,HttpServletResponse response){  
         response.setCharacterEncoding("utf-8");  
         response.setContentType("multipart/form-data");  
@@ -23,7 +19,7 @@ public class FileInfoAction {
         try {  
         	FileInfo fileInfo = new FileInfo();
         	fileInfo.setFileId(id);
-        	fileInfo = fileService.getFileInfo(fileInfo);
+        	//fileInfo = fileService.getFileInfo(fileInfo);
         	String filePath = fileInfo.getPath();
         	
         	File file = null; 

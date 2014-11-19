@@ -10,141 +10,25 @@
     <meta name="description" content=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="author" content=""/>
-    <link href="${res}/formbuild/css/site.css" rel="stylesheet" type="text/css"/>
+    <link href="${res}/form-design/css/form-desing.css" rel="stylesheet" type="text/css"/>
 
-    <style type="text/css">
-        .widget-item {
-            float: left;
-            width: 92%;
-            margin: 6px 4%;
-            border: 1px dashed #999;
-            padding: 5px 15px;
-            cursor: move;
-            border-radius: 2px;
-            -webkit-transition: background ease-in-out 0.15s;
-            -moz-transition: background ease-in-out 0.15s;
-            transition: background ease-in-out 0.15s;
-            background-color: #f5f5f5;
-            position: relative;
-            z-index: 100;
-        }
+    <#include "/html/head.html"/>
+    <@head/>
 
-        .form-layout{
-
-        }
-
-        .column-layout{
-            display: table;
-            width: 100%;
-            border-width: 1px 0;
-            border-style: solid;
-            border-color: #7fcdfd;
-            position: relative;
-            margin: 5px 0;
-            background: #ecf9ff;
-        }
-
-        .column-layout .cell {
-            display: table-cell;
-            vertical-align: top;
-            height: 51px;
-            border: 1px solid #7FCDFD;
-        }
-
-         .form-placeholder-filed {
-             display:inline-block;
-             border:1px dashed #DB4040;
-             height:70px !important;
-             width: 100%;
-        }
-
-    </style>
-<#include "/html/head.html"/>
-<@head/>
+    <script type="text/javascript" src="${res}/form-design/js/form-desing-core.js"></script>
     <script type="text/javascript">
         $(function () {
 
-            $(".nav li ").click(function(e){
-                $(".nav .active").removeClass("active");
-                $(this).addClass("active");
-                $(".span0,.span1").hide();
-                $(".span" + $(this).index()).show();
+            $(".form-lead-tab li ").click(function (e) {
+                $(".form-lead-tab .active").removeClass("active");
+                $(this).find("a").addClass("active");
+                $(".widget-list").parent().hide();
+                $("#" + $(this).attr("for")).show();
             });
 
-            $(".nav div").each(function (idx, ele) {
-                var size =  1 ;
-                var type = "" ;
-                var X = 0;
-                var Y = 0;
-                var DX = 0;
-                var DY = 0;
-
-
-
-                $(ele).bind('mousedown', function () {
-                    size = parseInt($(this).attr("col"));
-                    var $target = $("#editView .columns_js");
-
-                    var drag = $("<div></div>");
-                    var place = $("<div class='form-placeholder-filed'></div>");
-
-                    drag.text($(this).text());
-                    drag.appendTo("body");
-
-                    X = $(this).offset().left;
-                    Y = $(this).offset().top;
-
-                    var top ;
-
-                    drag.css({ cursor: 'move', position: 'absolute', left: X, top: Y});
-                    $(document).bind('mousemove', function (e) {
-                        DX = e.pageX;
-                        DY = e.pageY;
-                        drag.css({ position: 'absolute', left: DX, top: DY});
-
-                        tops = $.grep($target, function(num, index){
-                            place.text($(num).position().top)
-                            return ($(num).position().top - DY + (place.height()/2)  >0 );
-                        });
-
-                        if(tops.length >0){
-                            place.insertBefore(tops[0])
-                        }else{
-                            place.appendTo("#editView");
-                        }
-                    });
-                    $(document).bind('mouseup', function () {
-                        var row;
-                        if()
-                        if(size == 2){
-                            row = $("<div class='row column-layout columns_js'><div class='col-sm-6 cell'></div><div class='col-sm-6 cell'></div></div>");
-                        }else if(size == 3){
-                            row = $("<div class='row column-layout columns_js'><div class='col-sm-4 cell'></div><div class='col-sm-4 cell'></div><div class='col-sm-4 cell'></div></div>");
-                        }
-
-                       // row.appendTo("#editView");
-                        row.replaceAll(place);
-                        drag.remove();
-                        $(document).unbind('mousemove');
-                        $(document).unbind('mouseup');
-                    })
-                });
-
-                $("#editView").delegate(".cell","mouseenter",function(){
-                    $(this).css({ display:"inline-block",border:"1px dashed #DB4040"})
-                });
-                $("#editView").delegate(".cell","mouseleave",function(){
-                    $(this).css({ display:"",border:"1px solid #7FCDFD"})
-                });
-
-            });
+            $("#sidebar").addClass("menu-min")
         })
     </script>
-
-    <style type='text/css'>
-
-    </style>
-
 </head>
 
 <body>
@@ -155,85 +39,107 @@
 <!-- Main starts -->
 <div class="main-container" id="main-container">
     <div class="main-container-inner">
-    <#include "/html/sidebar.html"/>
+        <#include "/html/sidebar.html"/>
         <div class="main-content">
             <div>
-                <div class="col-sm-2">
-                    <nav class="navbar navbar-default" role="navigation">
-                        <div>
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="#">布局控件</a></li>
-                                <li><a href="#">表单控件</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                    <div class="span0">
-                        <ul class="nav nav-list">
-                            <div class="widget-item" title="拖拽至页面中间区域" type="layou" col="2">
+                <div id="form-widget" class="pull-left form-widget">
+                    <div class="form-lead">
+                        <ul class="form-lead-tab">
+                            <li for="form-widget-list"><a class="j_widget_tab active">布局控件</a></li>
+                            <li for="layout-widget-list"><a href="#">表单控件</a></li>
+                        </ul>
+                    </div>
+                    <div id="form-widget-list">
+                        <ul class="widget-list widget-layout bg-white">
+                            <div class="widget-item" title="拖拽至页面中间区域" type="layout" col="2">
                                 <span class="title">一行两列布局</span>
                                 <span class="widgetMark layout-1"></span>
                             </div>
-                            <div class="widget-item" title="拖拽至页面中间区域" type="layou" col="3">
+                            <div class="widget-item" title="拖拽至页面中间区域" type="layout" col="3">
                                 <span class="title">一行三列布局</span>
                                 <span class="widgetMark layout-1"></span>
                             </div>
-                            <div class="widget-item" title="拖拽至页面中间区域" type="layou" col="3">
+                            <div class="widget-item" title="拖拽至页面中间区域" type="layout" col="3">
                                 <span class="title">一行两列布局</span>
                                 <span class="widgetMark layout-1"></span>
                             </div>
                         </ul>
                     </div>
-                    <div class="span1" style="display: none">
-                        <ul class="nav nav-list">
-                            <div class="widget-item" title="拖拽至页面中间区域" type="form">
+                    <div id="layout-widget-list" style="display: none">
+                        <ul class="widget-list widget-layout bg-white">
+                            <div class="widget-item" title="拖拽至页面中间区域" type="text">
                                 <span class="title">文本框</span>
                                 <span class="widgetMark layout-1"></span>
                             </div>
 
-                            <div class="widget-item" title="拖拽至页面中间区域" type="layou" componentsize="2">
+                            <div class="widget-item" title="拖拽至页面中间区域" type="textarea">
                                 <span class="title">多行文本</span>
                                 <span class="widgetMark layout-1"></span>
                             </div>
 
-                            <div class="widget-item" title="拖拽至页面中间区域" componentkey="ColumnPanel" componentsize="2">
+                            <div class="widget-item" title="拖拽至页面中间区域" type="select">
                                 <span class="title">下拉菜单</span>
                                 <span class="widgetMark layout-1"></span>
                             </div>
 
-                            <div class="widget-item" title="拖拽至页面中间区域" componentkey="ColumnPanel" componentsize="2">
+                            <div class="widget-item" title="拖拽至页面中间区域" type="radio">
                                 <span class="title">单选框</span>
                                 <span class="widgetMark layout-1"></span>
                             </div>
 
-                            <div class="widget-item" title="拖拽至页面中间区域" componentkey="ColumnPanel" componentsize="2">
+                            <div class="widget-item" title="拖拽至页面中间区域" type="checked">
                                 <span class="title">复选框</span>
                                 <span class="widgetMark layout-1"></span>
                             </div>
 
-                            <div class="widget-item" title="拖拽至页面中间区域" componentkey="ColumnPanel" componentsize="2">
-                                <span class="title">复选框</span>
-                                <span class="widgetMark layout-1"></span>
-                            </div>
 
-                            <div class="widget-item" title="拖拽至页面中间区域" componentkey="ColumnPanel" componentsize="2">
-                                <span class="title">宏控件</span>
-                                <span class="widgetMark layout-1"></span>
-                            </div>
-                            <div class="widget-item" title="拖拽至页面中间区域" componentkey="ColumnPanel" componentsize="2">
+                            <div class="widget-item" title="拖拽至页面中间区域" type="grid">
                                 <span class="title">列表控件</span>
                                 <span class="widgetMark layout-1"></span>
                             </div>
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-8 form-layout" id="editView">
+                <div class="form-design pull-left" id="editView">
+                    <div id="form-view" class="form-view">
+                        <div class="form-head form-head_js">
+                            <p class="form-name">123213</p>
+                            <div class="form-description">wqe2132w</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="formEdit" class="pull-left form-widget">
+                    <div class="form-lead">
+                        <ul class="form-lead-tab">
+                            <li><a class="j_widget_tab active">控件设置</a></li>
+                            <li><a href="#">设置表单</a></li>
+                        </ul>
+                    </div>
+                    <div id="edit-widget">
 
+                    </div>
+                    <div id="edit-form" style="display: none">
+                        <div class="form-group">
+                            <label>标题</label>
+
+                            <div class="c-danger"></div>
+                            <input id="name-form" type="text" class="form-control ds-b w-full" value="wqe" maxlength="100"
+                                   ownership="personal">
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-2">
-1
-                </div>
+
             </div>
         </div>
+    </div>
+
+    <div class="field field_js field-hoz" title="拖拽至页面中间区域" componentkey="Text" style="display: none;">
+        <span class="j_widgetDele widgetDele-btn"><i class="icon-remove-sign"></i></span>
+        <label class="widget-title"><span class="widget-title_js">文本输入框</span><span class="c-danger widget-required_js"></span></label>
+
+        <div class="widget-content">
+            <div class="field-description hide">描述</div>
+            <input type="text" class="form-control medium"></div>
     </div>
 </body>
 

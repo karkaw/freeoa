@@ -39,11 +39,13 @@
             <version>1.2.3</version>
         </dependency>
 
+<!--
         <dependency>
             <artifactId>shiro-freemarker-tags</artifactId>
             <groupId>com.jagregory</groupId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
+-->
 
 		<dependency>
 			<groupId>com.damuzee</groupId>
