@@ -1,6 +1,6 @@
 $(function(){
     //添加
-    var widget = UI.get("userWidget");
+    var widget = UI.get("resWidget");
     var addbut = widget.addButton('addbnt', '添加');
     addbut.unbind("click").bind("click",function(){
         $("#resOperForm .form-group:gt(0)").each(function(){
@@ -116,5 +116,10 @@ $(function(){
             }catch (e){}
         }
     };
+
+    var tree = UI.get("resTree");
+    tree.setMouseRightEvent(function(){
+        addbut.click();
+    });
 
 });

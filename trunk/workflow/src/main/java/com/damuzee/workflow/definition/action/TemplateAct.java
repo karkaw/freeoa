@@ -40,6 +40,12 @@ public class TemplateAct {
         return "/template/add" ;
     }
 
+    @RequestMapping(value = "design.do")
+    public String design(){
+
+        return "/template/design" ;
+    }
+
     @RequestMapping(value = "jlist.do", method = RequestMethod.POST)
     @ResponseBody
     public Map<String,Object> jlist(String json){

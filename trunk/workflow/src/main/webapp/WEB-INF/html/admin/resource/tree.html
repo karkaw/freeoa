@@ -63,7 +63,7 @@
                            <#--</@ui.widget>-->
                         </div>
 						<div class="col-xs-9">
-							<@ui.widget id="userWidget" title="资源列表">
+							<@ui.widget id="resWidget" title="资源列表">
                                 <@ui.grid id="resGrid"  action="list.do"  height="450px" >
                                     <@ui.column type='checkbox'   name="_id"></@ui.column>
                                     <@ui.column title="名称"      name="resName"></@ui.column>
@@ -86,7 +86,7 @@
 
     <@ui.modal id="resModle" title="添加资源">
         <fieldset>
-            <@ui.form id="resForm" action="save.do" formClass="form-horizontal" hasButton=false
+            <@ui.form id="resForm" action="save.do" class="form-horizontal" hasButton=false
                 submitForward="tree.do">
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -128,7 +128,7 @@
                     </div>
                 </div>
             </@ui.form>
-            <@ui.form id="resOperForm" action="save.do" formClass="form-horizontal" hasButton=false>
+            <@ui.form id="resOperForm" action="save.do" class="form-horizontal" hasButton=false>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">操作</h3>
