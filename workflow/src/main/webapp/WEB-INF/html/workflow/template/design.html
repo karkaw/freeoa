@@ -18,6 +18,7 @@
     <script type="text/javascript" src="${res}/form-design/js/form-desing-core.js"></script>
     <script type="text/javascript" src="${res}/form-design/js/form-design-plugins.js"></script>
     <script type="text/javascript" src="${res}/form-design/js/form-design-config.js"></script>
+    <script type="text/javascript" src="${res}/form-design/js/form-design-control.js"></script>
     <script type="text/javascript">
         $(function () {
 
@@ -74,12 +75,12 @@
                 //判断是否是修改
                 var formid = $("#formid").val();
                 var params = {ocode:ocode,content:thtml,props:props} ;
-                if(id){
+                if(formid){
                     params.formid = formid ;
                 }
                 $.post("nsave.do",{json:JSON.stringify(params)},function(data){
                     alert("保存成功");
-
+                    $("#formid").val(data);
                 });
             });
         })
@@ -312,6 +313,30 @@
                 <div class="field-description hide">描述</div>
                 <div style="padding: 6px 12px;">
                      <input type="file" class="form-control"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="field field_js field-hoz" style="display: none;" id="grid">
+            <span class="j_widgetDele widgetDele-btn"><i class="icon-remove-sign"></i></span>
+            <label class="widget-title"><span>详细列表</span><span class="required"></span></label>
+
+            <div class="widget-content">
+                <div class="field-description hide">描述</div>
+                <div style="padding: 6px 12px;">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="field field_js field-hoz" style="display: none;" id="grid">
+            <span class="j_widgetDele widgetDele-btn"><i class="icon-remove-sign"></i></span>
+            <label class="widget-title"><span>表单</span><span class="required"></span></label>
+
+            <div class="widget-content">
+                <div class="field-description hide">描述</div>
+                <div style="padding: 6px 12px;">
+
                 </div>
             </div>
         </div>

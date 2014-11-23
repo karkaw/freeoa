@@ -1,8 +1,6 @@
 package com.damuzee.workflow.definition.repos.impl;
 
 import com.damuzee.workflow.definition.repos.TemplateRepos;
-import org.damuzee.mongo.Constaints;
-import org.damuzee.mongo.MongoMap;
 import org.damuzee.mongo.MongoTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +32,7 @@ public class TemplateReposImpl extends TemplateRepos{
         /*MongoMap filter = new MongoMap();
         filter.put("ocode",1);
 
-        map.put(Constaints.PAGE_FILTER,filter);*/
+        map.put(MongoConstaints.PAGE_FILTER,filter);*/
         return template.findByPage(TEMPLATE,map);
     }
 

@@ -16,7 +16,7 @@
     <script type="text/javascript">
         $(function(){
 
-            SPT = "&" ;      //对象定义分隔符
+            var SPT = "-" ;      //对象定义分隔符
 
             //获取继承对象
             $.post("get.do",{},function(resText){
@@ -42,6 +42,10 @@
                    input.val(data[k]);
                 }
                 ctr.appendTo("#showAttr");
+                ctr.bind("click",function(){
+                    var attrCode = $(this).find("td:eq(1)").text();
+                    $("#attrCode").val(attrCode + SPT)
+                })
                 ctr.show();
                 UI.resetForm($("#addAttr"));
             });
@@ -205,28 +209,28 @@
                                              </div>
                                              <div class="col-sm-4" id="addAttr">
                                                  <div class="form-group">
-                                                     <label for="attrCode" class="col-sm-2 control-label">编码</label>
-                                                     <div class="col-sm-10">
+                                                     <label for="attrCode" class="col-sm-4 control-label">编码</label>
+                                                     <div class="col-sm-8">
                                                          <input type="text" class="form-control" id="attrCode"
                                                                 placeholder="请输入编码">
                                                      </div>
                                                  </div>
                                                  <div class="form-group">
-                                                     <label for="attrName" class="col-sm-2 control-label">名称</label>
-                                                     <div class="col-sm-10">
+                                                     <label for="attrName" class="col-sm-4 control-label">名称</label>
+                                                     <div class="col-sm-8">
                                                          <input type="text" class="form-control" id="attrName"
                                                                 placeholder="请输入名称">
                                                      </div>
                                                  </div>
                                                  <div class="form-group">
-                                                     <label  class="col-sm-2 control-label">描述</label>
-                                                     <div class="col-sm-10">
+                                                     <label  class="col-sm-4 control-label">描述</label>
+                                                     <div class="col-sm-8">
                                                          <textarea class="form-control" name="attrDesc"></textarea>
                                                      </div>
                                                  </div>
                                                  <div class="form-group">
-                                                     <label  class="col-sm-2 control-label">类型</label>
-                                                     <div class="col-sm-10">
+                                                     <label  class="col-sm-4 control-label">类型</label>
+                                                     <div class="col-sm-8">
                                                         <select name="attrType">
                                                             <option value="java.lang.String">字符串</option>
                                                             <option value="java.util.Date">日期</option>
