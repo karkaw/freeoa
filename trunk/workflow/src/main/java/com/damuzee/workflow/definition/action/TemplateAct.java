@@ -76,9 +76,9 @@ public class TemplateAct {
     @ResponseBody
     public String nsave(String json){
         Map<String,Object> mapvo = JSONUtil.stringToMap(json);
-        templateRepos.saveTemplate(mapvo);
+        String id = templateRepos.saveTemplate(mapvo);
 
-        return "/employee/list" ;
+        return id ;
     }
 
     @RequestMapping(value = "/delete.do", method = RequestMethod.POST)

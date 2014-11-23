@@ -51,9 +51,10 @@
                 controls.each(function(idx,ele){
                     var control = $(ele) ;
                     var type = control.data("type");
+                    var id = control.data("id");
 
                     var config = $.formdesign.config[type];
-                    var prop = {type:type} ;
+                    var prop = {type:type,id:id} ;
                     for(var key in config){
                         if(control.data(key)){
                             prop[key] = control.data(key);
@@ -70,9 +71,15 @@
                 var ocode = $.formdesign.attrs.object.code ;
                 var thtml = $("#form-preview").html();
 
-
-                $.post("nsave.do",{json:JSON.stringify({ocode:ocode,content:thtml,props:props})},function(){
+                //判断是否是修改
+                var formid = $("#formid").val();
+                var params = {ocode:ocode,content:thtml,props:props} ;
+                if(id){
+                    params.formid = formid ;
+                }
+                $.post("nsave.do",{json:JSON.stringify(params)},function(data){
                     alert("保存成功");
+
                 });
             });
         })
@@ -89,6 +96,7 @@
         <div class="main-container-inner">
             <#include "/html/sidebar.html"/>
             <div class="main-content">
+                <input id="formid" name="formid" type="hidden"/>
                 <div style="height: 40px;width: 100%;padding-top: 2px;background-color:wheat">
                     <span style="padding-top: 10px;text-align: center">自定义表单设计器</span>
                     <div class="pull-right userbtns">
