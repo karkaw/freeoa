@@ -31,10 +31,10 @@ public class TemplateReposImpl extends TemplateRepos{
     }
 
     public Map findTemplateByPage(Map map) {
-        MongoMap filter = new MongoMap();
-        filter.put("code",1);
+        /*MongoMap filter = new MongoMap();
+        filter.put("ocode",1);
 
-        map.put(Constaints.PAGE_FILTER,filter);
+        map.put(Constaints.PAGE_FILTER,filter);*/
         return template.findByPage(TEMPLATE,map);
     }
 
