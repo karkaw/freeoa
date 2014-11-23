@@ -5,6 +5,7 @@ import com.damuzee.core.util.JSONUtil;
 import com.damuzee.core.web.bean.JsonResult;
 import com.damuzee.module.file.service.FileService;
 import com.damuzee.workflow.definition.repos.TemplateRepos;
+import org.damuzee.mongo.MongoConstaints;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,8 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "template")
 public class TemplateAct {
+
+    public static final String FORMID = "formid" ;
 
     @Autowired
     TemplateRepos templateRepos ;
@@ -76,9 +79,15 @@ public class TemplateAct {
     @ResponseBody
     public String nsave(String json){
         Map<String,Object> mapvo = JSONUtil.stringToMap(json);
-        String id = templateRepos.saveTemplate(mapvo);
-
-        return id ;
+        String formid = null ;
+        if(mapvo.containsKey(FORMID)){
+            formid = (String)mapvo.remove(FORMID);
+            mapvo.put(MongoConstaints.ID,formid);
+            templateRepos.updateTemplate(mapvo);
+        }else {
+            formid = templateRepos.saveTemplate(mapvo);
+        }
+        return formid ;
     }
 
     @RequestMapping(value = "/delete.do", method = RequestMethod.POST)
