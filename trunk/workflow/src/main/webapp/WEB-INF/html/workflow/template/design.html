@@ -52,7 +52,7 @@
                 controls.each(function(idx,ele){
                     var control = $(ele) ;
                     var type = control.data("type");
-                    var id = control.data("id");
+                    var id = control.attr("id");
 
                     var config = $.formdesign.config[type];
                     var prop = {type:type,id:id} ;
