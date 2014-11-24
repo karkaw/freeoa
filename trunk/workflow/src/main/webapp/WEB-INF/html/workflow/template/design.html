@@ -31,8 +31,9 @@
 
             $("#sidebar").addClass("menu-min");
 
+            //预览
             $(".userbtns a:eq(0)").bind("click",function(){
-                //预览
+
                 var preview = $("#form-preview").html($("#editView").html());
                 preview.find(".field-active").removeClass("field-active");
                 preview.find("*").removeAttr("style");
@@ -40,10 +41,12 @@
                $("#form-preview").parent().removeClass("hide");
             });
 
+
             $("#form-preview").prev("button").bind("click",function(){
                 $("#form-preview").parent().removeClass("hide").addClass("hide");
             });
 
+            //保存模板
             $(".userbtns a:eq(1)").bind("click",function(){
 
                 var controls = $("#editView").find(".field");
@@ -69,12 +72,14 @@
                 preview.find(".field-active").removeClass("field-active");
                 preview.find("*").removeAttr("style");
 
+                var name = $("#form-preview .form-name").text();
+                var desc = $("#form-preview .form-description").text();
                 var ocode = $.formdesign.attrs.object.code ;
-                var thtml = $("#form-preview").html();
+                var thtml = preview.html();
 
                 //判断是否是修改
                 var formid = $("#formid").val();
-                var params = {ocode:ocode,content:thtml,props:props} ;
+                var params = {ocode:ocode,content:thtml,name:name,desc:desc,props:props} ;
                 if(formid){
                     params.formid = formid ;
                 }

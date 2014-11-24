@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -55,6 +56,26 @@ public class TemplateAct {
         Map<String,Object> mapvo = JSONUtil.stringToMap(json);
         Map<String,Object> map = templateRepos.findTemplateByPage(mapvo);
         return map ;
+    }
+
+    @RequestMapping(value = "/get.do", method = RequestMethod.POST)
+    @ResponseBody
+    public List get(String json, HttpServletRequest request) {
+        Map<String, Object> mapvo = JSONUtil.stringToMap(json);
+
+        List objects = templateRepos.findTemplate(mapvo);
+
+        return objects;
+    }
+
+    @RequestMapping(value = "/find.do", method = RequestMethod.POST)
+    @ResponseBody
+    public Map find(String json, HttpServletRequest request) {
+        Map<String, Object> mapvo = JSONUtil.stringToMap(json);
+
+        Map object = templateRepos.findTemplateById(mapvo);
+
+        return object;
     }
 
     @RequestMapping(value = "save.do",method = RequestMethod.POST)
