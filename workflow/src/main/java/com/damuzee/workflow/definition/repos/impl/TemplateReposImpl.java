@@ -28,6 +28,10 @@ public class TemplateReposImpl extends TemplateRepos{
         return template.find(TEMPLATE,map);
     }
 
+    public  Map findTemplateById(Map map){
+        return template.findOne(TEMPLATE,map);
+    }
+
     public Map findTemplateByPage(Map map) {
         /*MongoMap filter = new MongoMap();
         filter.put("ocode",1);
