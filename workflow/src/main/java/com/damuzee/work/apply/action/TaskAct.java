@@ -1,5 +1,6 @@
 package com.damuzee.work.apply.action;
 
+import com.damuzee.common.util.ObjectUtil;
 import com.damuzee.core.util.JSONUtil;
 import com.damuzee.core.web.bean.JsonResult;
 import com.damuzee.work.apply.repos.TaskRepos;
@@ -33,7 +34,7 @@ public class TaskAct {
     @RequestMapping(value = "/save.do", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult save(HttpServletRequest request) {
-        Map<String, Object> listvo =  request.getParameterMap();
+        Map<String, Object> listvo = ObjectUtil.convertParamToMap(request,null);
 
         String id = taskAct.saveTask(listvo);
         return JsonResult.success(id);
