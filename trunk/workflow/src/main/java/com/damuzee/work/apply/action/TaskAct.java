@@ -1,5 +1,6 @@
 package com.damuzee.work.apply.action;
 
+import com.damuzee.common.web.RequestUtils;
 import com.damuzee.core.web.bean.JsonResult;
 import com.damuzee.work.apply.repos.TaskRepos;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,9 @@ public class TaskAct {
     @RequestMapping(value = "/save.do", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult save(HttpServletRequest request) {
-        Map<String, Object> listvo = request.getParameterMap();
+        Map<String, Object> params = RequestUtils.getRequestMap(request);
 
-        String id = taskAct.saveTask(listvo);
+        String id = taskAct.saveTask(params);
         return JsonResult.success(id);
     }
 
