@@ -49,6 +49,9 @@
                         $.post("../../wf/template/find.do", {json:JSON.stringify({_id:formid})}, function (tpl) {
                             $("#form-preview").empty();
                             $("#form-preview").append(tpl["content"]);
+                            var object_code = $("<input type='hidden' name='object-code'/>");
+                            object_code.val(tpl["ocode"]);
+                            object_code.appendTo($("#form-preview"));
                            var modal =  UI.get("applyModle");
                             modal.css({width:"60%"});
                             modal.show();
@@ -72,38 +75,11 @@
                                 alert(data.msg);
                             }
                             UI.get("applyModle").hide();
+                            UI.get("applyGrid").reload();
                         }
                     });
                 })
             });
-
-            var widget = UI.get("applyWidget");
-
-            //多选删除
-            var delbut = widget.addButton('delbnt', '删除');
-            delbut.unbind("click").bind("click", function () {
-                var ids = UI.get("applyGrid").getSelectValues(true);
-                if (ids != null) {
-                    deleteResource(ids);
-                }
-            });
-
-            //删除按钮
-            $("#applyGrid").find("tr a:eq(1)").bind("click", function () {
-                var id = $(this).parent().parent("tr").find("input:checkbox").val();
-                if (id != null) {
-                    deleteResource([id]);
-                }
-            });
-
-            //提交删除数据
-            var deleteResource = function (data) {
-                var form = new UI.Form({url: 'delete.do'});
-                form.submit({"ids": data}, function () {
-                    // UI.get("applyGrid").reload();   //提交完成刷新grid
-                    UI.get("applyGrid").removeRowById(data);
-                })
-            };
         });
     </script>
 </head>
@@ -153,10 +129,10 @@
                     <@ui.widget id="applyWidget" title="我的申请单列表">
                         <@ui.grid id="applyGrid"  action="jlist.do"  height="450px" >
                             <@ui.column type='checkbox'   name="_id"></@ui.column>
-                            <@ui.column title="名称"      name="applyName"></@ui.column>
-                            <@ui.column title="编码"      name="applyCode" class="hidden-sm hidden-xs"></@ui.column>
+                            <@ui.column title="标题"      name="form-title"></@ui.column>
+                            <@ui.column title="描述"      name="form-desc" class="hidden-sm hidden-xs"></@ui.column>
                             <@ui.column title="操作" align="center">
-                                <a>修改</a> <a>删除</a>
+                                <a>修改</a>
                             </@ui.column>
                         </@ui.grid>
                     </@ui.widget>

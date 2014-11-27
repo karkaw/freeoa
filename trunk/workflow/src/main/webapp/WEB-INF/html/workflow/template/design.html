@@ -79,7 +79,7 @@
 
                 //判断是否是修改
                 var formid = $("#formid").val();
-                var params = {ocode:ocode,content:thtml,name:name,desc:desc,props:props} ;
+                var params = {object_code:ocode,content:thtml,name:name,desc:desc,props:props} ;
                 if(formid){
                     params.formid = formid ;
                 }
@@ -213,8 +213,10 @@
                     <div id="editView" class="form-design pull-left">
                         <div id="form-view" class="form-view">
                             <div class="form-head form-head_js">
+                                <input type="hidden" name="form-title" value=""/>
+                                <input type="hidden" name="form-desc"  value=""/>
                                 <p class="form-name">标题</p>
-                                <div class="form-description">标题描述</div>
+                                <div class="form-description">标题描述 </div>
                             </div>
                             <div id="widget-control" class="widget-control form-view_js ui-sortable" style="min-height:112px;">
 

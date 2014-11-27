@@ -9,6 +9,7 @@ $(function(){
             var parentCode = grid.getSelection(); //获取grid勾选中的数据
             if(parentCode != null){
                 $("#parentId").val(parentCode.code) ;
+                $(".parentid").text(parentCode.code) ;
             }
         }catch(e) {
             console.log(e);
@@ -21,9 +22,9 @@ $(function(){
     submitBtn.unbind("click").bind("click",function(){
         //var params = {};
         UI.get("orgForm").submit(null,function(){ //提交数据
-            UI.get("orgGrid").reload();       //提交完成刷新grid
-            UI.get("orgTree").reload();     //重新加载树
-            UI.get("orgModle").hide();      //关闭Modal
+            UI.get("orgGrid").reload();             //提交完成刷新grid
+            UI.get("orgTree").reload();             //重新加载树
+            UI.get("orgModle").hide();              //关闭Modal
         });
     });
 
