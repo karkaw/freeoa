@@ -20,10 +20,11 @@ $(function(){
     //提交保存
     var submitBtn = UI.get("orgModle").getSubmitBtn();//获取Madal的提交按钮
     submitBtn.unbind("click").bind("click",function(){
-        //var params = {};
-        UI.get("orgForm").submit(null,function(){ //提交数据
+        var params = {code:$("#parentId").val() + $("#code").val()};
+        UI.get("orgForm").submit(params,function(result){ //提交数据
+            var data =  eval("(" +result.responseText + ")").result;
             UI.get("orgGrid").reload();             //提交完成刷新grid
-            UI.get("orgTree").reload();             //重新加载树
+            UI.get("orgTree").addTreeNode(data,data["parentId"] ||null) ;             //重新加载树
             UI.get("orgModle").hide();              //关闭Modal
         });
     });
@@ -54,7 +55,7 @@ $(function(){
         })
     };
 
-    //删除操作的按钮
+    //删除机构的按钮
     $(".form-group .icon-remove").bind("click",function(){
         var div = $(this).parent().parent(".form-group");
         div.remove();
@@ -85,5 +86,9 @@ $(function(){
             }catch (e){}
         }
     };
+
+    UI.get("orgTree").nodeClick = function(treeid){
+         UI.get("orgGrid").reload({code:treeid});
+    }
 
 });
