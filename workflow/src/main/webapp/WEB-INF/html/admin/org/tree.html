@@ -55,14 +55,14 @@
 					<!-- /.page-header -->
 
 					<div class="row">
-                        <div class="col-xs-3">
+                        <div class="col-xs-4" style="width: 300px">
                             <#--<@ui.widget id="orgWidget" title="资源树">-->
                                 <@ui.tree url="tree.do" id='orgTree'  lable="orgName" nodeid="code">
 
                                 </@ui.tree>
                            <#--</@ui.widget>-->
                         </div>
-						<div class="col-xs-9">
+						<div class="col-xs-8">
 							<@ui.widget id="orgWidget" title="资源列表">
                                 <@ui.grid id="orgGrid"  action="list.do"  height="450px" value=page;user,i,has_next >
                                     <@ui.column type='checkbox'   name="_id"></@ui.column>
@@ -100,7 +100,7 @@
                             <div class="col-sm-4">
                                 <div class="input-group">
                                     <span class="input-group-addon parentid"></span>
-                                    <input type="text" class="form-control" placeholder="机构编码">
+                                    <input type="text" class="form-control" name="code" id="code" placeholder="机构编码">
                                     <input type="hidden"  name="parentId" id="parentId"/>
                                 </div>
                             </div>

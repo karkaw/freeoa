@@ -1,8 +1,8 @@
 package com.damuzee.admin.perm.action;
 
+import com.damuzee.admin.perm.repos.OrgRepos;
 import com.damuzee.core.util.JSONUtil;
 import com.damuzee.core.web.bean.JsonResult;
-import com.damuzee.admin.perm.repos.OrgRepos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,7 +36,6 @@ public class OrgAction {
     @ResponseBody
     public JsonResult list(String json) {
         Map map = JSONUtil.stringToMap(json);
-
         Map list = orgRepos.findOrgByPage(map);
         JsonResult result = JsonResult.page(list);
         return result;
@@ -71,9 +70,7 @@ public class OrgAction {
             orgRepos.updateOrg(mapvo);
         }
 
-        JsonResult result = JsonResult.success(null);
-
-        return null;
+        return JsonResult.success(mapvo);
     }
 
     @RequestMapping(value = "/delete.do", method = RequestMethod.POST)
