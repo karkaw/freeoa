@@ -6,10 +6,10 @@ $(function(){
         UI.get("orgForm").removeValues();
         var grid = UI.get("orgGrid");
         try{
-            var parentCode = grid.getSelection(); //获取grid勾选中的数据
-            if(parentCode != null){
-                $("#parentId").val(parentCode.code) ;
-                $(".parentid").text(parentCode.code) ;
+            var parent = UI.get("orgTree").getSelectValues()[0].code  || grid.getSelection().code; //获取grid勾选中的数据
+            if(parent){
+                $("#parent").val(parent) ;
+                $(".parent").text(parent) ;
             }
         }catch(e) {
             console.log(e);
@@ -20,11 +20,11 @@ $(function(){
     //提交保存
     var submitBtn = UI.get("orgModle").getSubmitBtn();//获取Madal的提交按钮
     submitBtn.unbind("click").bind("click",function(){
-        var params = {code:$("#parentId").val() + $("#code").val()};
+        var params = {code:$("#parent").val() + $("#code").val()};
         UI.get("orgForm").submit(params,function(result){ //提交数据
             var data =  eval("(" +result.responseText + ")").result;
             UI.get("orgGrid").reload();             //提交完成刷新grid
-            UI.get("orgTree").addTreeNode(data,data["parentId"] ||null) ;             //重新加载树
+            UI.get("orgTree").addTreeNode(data,data["parent"] ||null) ;             //重新加载树
             UI.get("orgModle").hide();              //关闭Modal
         });
     });
@@ -89,6 +89,7 @@ $(function(){
 
     UI.get("orgTree").nodeClick = function(treeid){
          UI.get("orgGrid").reload({code:treeid});
+
     }
 
 });

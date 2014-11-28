@@ -1,5 +1,7 @@
 package com.damuzee.admin.perm.action;
 
+import com.damuzee.admin.perm.domain.Org;
+import com.damuzee.admin.perm.domain.Resource;
 import com.damuzee.core.util.JSONUtil;
 import com.damuzee.core.web.bean.JsonResult;
 import com.damuzee.admin.perm.repos.ResourceRepos;
@@ -26,6 +28,9 @@ import java.util.Map;
 @RequestMapping(value = "/resource")
 public class ResourceAct {
 
+    public static final String ID = "id";
+    public static final String _ID = "_id";
+
     @Autowired
     private ResourceRepos resourceRepos;
 
@@ -49,10 +54,10 @@ public class ResourceAct {
     @ResponseBody
     public List tree(@RequestParam Map<String, Object> mapvo) {
         Map queryMap = new HashMap();
-        if (mapvo.get("id") == null || mapvo.get("id").equals("")) {
-            queryMap.put("parentId", "");
+        if (mapvo.get(ID) == null || mapvo.get(ID).equals("")) {
+            queryMap.put(Resource.PARENT, null);
         } else {
-            queryMap.put("parentId", mapvo.get("id"));
+            queryMap.put(Resource.PARENT, mapvo.get(ID));
         }
         List list = resourceRepos.findResource(queryMap);
         return list;
@@ -68,7 +73,7 @@ public class ResourceAct {
     public JsonResult save(String json, HttpServletRequest request) {
         Map<String, Object> mapvo = JSONUtil.stringToMap(json);
 
-        if (mapvo.get("_id") == null){
+        if (mapvo.get(_ID) == null){
             resourceRepos.saveResource(mapvo);
         }else{
             resourceRepos.updateResource(mapvo);

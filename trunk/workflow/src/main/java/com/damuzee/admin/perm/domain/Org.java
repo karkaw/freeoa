@@ -6,5 +6,5 @@ package com.damuzee.admin.perm.domain;
 public class Org {
 
     public static  final  String CODE = "code" ;
-    public static final  String PARENT_ID = "parentId" ;
+    public static final  String PARENT = "parent" ;
 }
