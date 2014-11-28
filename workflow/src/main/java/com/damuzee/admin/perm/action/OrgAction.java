@@ -1,6 +1,9 @@
 package com.damuzee.admin.perm.action;
 
+import com.damuzee.admin.perm.domain.Org;
 import com.damuzee.admin.perm.repos.OrgRepos;
+import com.damuzee.common.Constants;
+import com.damuzee.common.util.MongodbUtil;
 import com.damuzee.core.util.JSONUtil;
 import com.damuzee.core.web.bean.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,8 @@ import java.util.Map;
 @RequestMapping(value = "/org")
 public class OrgAction {
 
+    public static  final String ID = "id" ;
+
     @Autowired
     OrgRepos orgRepos ;
 
@@ -36,6 +41,10 @@ public class OrgAction {
     @ResponseBody
     public JsonResult list(String json) {
         Map map = JSONUtil.stringToMap(json);
+
+        if(map.containsKey(Org.CODE)){
+            map.put(Org.CODE, MongodbUtil.likeLeft((String) map.get(Org.CODE)));
+        }
         Map list = orgRepos.findOrgByPage(map);
         JsonResult result = JsonResult.page(list);
         return result;
@@ -45,10 +54,10 @@ public class OrgAction {
     @ResponseBody
     public List tree(@RequestParam Map<String, Object> mapvo) {
         Map queryMap = new HashMap();
-        if (mapvo.get("id") == null || mapvo.get("id").equals("")) {
-            queryMap.put("parentId", null);
+        if (mapvo.get(ID) == null || mapvo.get(ID).equals("")) {
+            queryMap.put(Org.PARENT, null);
         } else {
-            queryMap.put("parentId", mapvo.get("id"));
+            queryMap.put(Org.PARENT, mapvo.get(ID));
         }
         List list = orgRepos.findOrg(queryMap);
         return list;

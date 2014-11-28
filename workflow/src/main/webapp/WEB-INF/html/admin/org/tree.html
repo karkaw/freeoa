@@ -13,6 +13,17 @@
     <link rel="stylesheet" href="${res}/freeui/css/tree.css">
     <#include "/html/head.html"/>
     <@head />
+    <style type="text/css">
+        body{
+            -moz-user-select: -moz-none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -57,7 +68,7 @@
 					<div class="row">
                         <div class="col-xs-4" style="width: 300px">
                             <#--<@ui.widget id="orgWidget" title="资源树">-->
-                                <@ui.tree url="tree.do" id='orgTree'  lable="orgName" nodeid="code">
+                                <@ui.tree url="tree.do" id='orgTree'  label="name" nodeid="code">
 
                                 </@ui.tree>
                            <#--</@ui.widget>-->
@@ -66,8 +77,8 @@
 							<@ui.widget id="orgWidget" title="资源列表">
                                 <@ui.grid id="orgGrid"  action="list.do"  height="450px" value=page;user,i,has_next >
                                     <@ui.column type='checkbox'   name="_id"></@ui.column>
-                                    <@ui.column title="名称"      name="orgName"></@ui.column>
-                                    <@ui.column title="上级"      name="parentId" class="hidden-sm hidden-xs"></@ui.column>
+                                    <@ui.column title="名称"      name="name"></@ui.column>
+                                    <@ui.column title="上级"      name="parent" class="hidden-sm hidden-xs"></@ui.column>
                                     <@ui.column title="编码"      name="code"></@ui.column>
                                     <@ui.column title="描述"      name="description" class="hidden-xs"></@ui.column>
                                     <@ui.column title="操作" align="center">
@@ -90,18 +101,18 @@
                     <div class="panel-body">
                         <input type="hidden" id="_id" name="_id"/>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label"  for="orgName">名称</label>
+                            <label class="col-sm-2 control-label"  for="name">名称</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="orgName"  id="orgName"
+                                <input type="text" class="form-control" name="name"  id="name"
                                        placeholder="输入对资源名称"/>
                             </div>
 
                             <label class="col-sm-2 control-label" for="code">编码</label>
                             <div class="col-sm-4">
                                 <div class="input-group">
-                                    <span class="input-group-addon parentid"></span>
+                                    <span class="input-group-addon parent"></span>
                                     <input type="text" class="form-control" name="code" id="code" placeholder="机构编码">
-                                    <input type="hidden"  name="parentId" id="parentId"/>
+                                    <input type="hidden"  name="parent" id="parent"/>
                                 </div>
                             </div>
                         </div>

@@ -11,7 +11,7 @@ $(function(){
         try{
             var parentCode = grid.getSelection(); //获取grid勾选中的数据
             if(parentCode != null){
-                $("#parentId").val(parentCode.code) ;
+                $("#parent").val(parentCode.code) ;
             }
         }catch(e) {
             console.log(e);

@@ -10,9 +10,35 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="" />
+    <link rel="stylesheet" href="${res}/freeui/css/tree.css">
     <#include "/html/head.html"/>
     <@head/>
 
+    <script type="text/javascript">
+       $(function(){
+           //获取部门
+           $("#orgcode").click(function(clickEvent){
+               var orgModle = UI.get("orgModle");
+               orgModle.css({width:"450px"});
+               orgModle.show();
+               orgModle.getSubmitBtn().bind("click",function(){
+                   var objs = UI.get("orgTree").getSelectValues();
+                   var orgStr = "" ;
+                   for(var i = 0 ; i < objs.length ; i++){
+                       var obj = objs[i];
+                       if(obj){
+                           if(i != 0){
+                               orgStr += ";"
+                           }
+                           orgStr += obj["code"] + "," +  obj["name"] ;
+                       }
+                   }
+                   $("#orgcode").val(orgStr);
+                   UI.get("orgModle").hide();
+               });
+           });
+       });
+    </script>
 </head>
 
 <body>
@@ -87,12 +113,20 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="orgcode">选择部门</label>
+                                                <div  class="col-sm-4">
+                                                    <input type="text" class="form-control" name="orgcode" id="orgcode"
+                                                           placeholder="选择部门"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <label  class="col-sm-2 control-label" for="description">描述</label>
                                                 <div class="col-sm-10">
                                                     <textarea type="text" class="form-control" id="description"
                                                            placeholder="输入对用户的描述"></textarea>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                     <div class="panel panel-default">
@@ -112,5 +146,11 @@
 			</div>
 			<!-- Main end -->
         </div>
+
+        <@ui.modal id="orgModle" title="选择部门" >
+            <@ui.tree url="../org/tree.do" id='orgTree'  label="name" nodeid="code">
+
+            </@ui.tree>
+        </@ui.modal>
 </body>
 </html>

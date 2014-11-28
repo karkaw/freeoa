@@ -10,7 +10,7 @@
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="author" content="" />
-
+        <link rel="stylesheet" href="${res}/freeui/css/tree.css">
         <#include "/html/head.html"/>
         <@head />
 
@@ -23,7 +23,7 @@
                 $.post("../../wf/object/get.do",{},function(resText){
                     data = resText
                     for(var i = 0 ; i < data.length ; i++ ){
-                        var button = $("<lable class='btn btn-info'/>");
+                        var button = $("<label class='btn btn-info'/>");
                         button.attr("id",data[i]._id);
                         button.text(data[i].name);
                         button.appendTo("#objectRight div:eq(0)");
@@ -52,7 +52,7 @@
                     }
 
                     //Modal提交按钮绑定提交事件,放在请求里面  是为了避免JS的加载问题
-                    UI.get("roleModle").getSubmitBtn().unbind("click").bind("click",function(){
+                    UI.get("roleModle").getSubmitBtn().bind("click",function(){
                         //提交表单
                         var form = new UI.Form({id:"roleForm"});
                         var role = UI.getFormParam($("#roleForm div:eq(0) .panel-body"));
@@ -112,6 +112,27 @@
                     })
                 };
 
+                //获取部门
+                $("#orgcode").click(function(clickEvent){
+                    var orgModle = UI.get("orgModle");
+                    orgModle.css({width:"450px"});
+                    orgModle.show();
+                    orgModle.getSubmitBtn().bind("click",function(){
+                        var objs = UI.get("orgTree").getSelectValues();
+                        var orgStr = "" ;
+                        for(var i = 0 ; i < objs.length ; i++){
+                            var obj = objs[i];
+                            if(obj){
+                                if(i != 0){
+                                    orgStr += ";"
+                                }
+                                orgStr += obj["code"] + "," +  obj["name"] ;
+                            }
+                        }
+                        $("#orgcode").val(orgStr);
+                        UI.get("orgModle").hide();
+                    });
+                });
 			});
 		</script>
 </head>
@@ -157,11 +178,11 @@
 
 					<div class="row">
 						<div class="col-xs-12">
-                        <@ui.widget id="roleWidget" title="资源列表">
+                        <@ui.widget id="roleWidget" title="角色列表">
                             <@ui.grid id="roleGrid"  action="jlist.do"  height="450px" >
                                 <@ui.column type='checkbox'   name="_id"></@ui.column>
-                                <@ui.column title="名称"      name="roleName"></@ui.column>
-                                <@ui.column title="编码"      name="roleCode" class="hidden-sm hidden-xs"></@ui.column>
+                                <@ui.column title="名称"      name="rolename"></@ui.column>
+                                <@ui.column title="编码"      name="rolecode" class="hidden-sm hidden-xs"></@ui.column>
                                 <@ui.column title="操作" align="center">
                                     <a>修改</a> <a>删除</a>
                                 </@ui.column>
@@ -175,7 +196,7 @@
 			<!-- Main end -->
         </div>
     </div>
-    <@ui.modal id="roleModle" title="添加资源"  gridId="roleGrid">
+    <@ui.modal id="roleModle" title="添加角色"  gridId="roleGrid">
     <fieldset>
         <@ui.form id="roleForm" action="save.do" class="form-horizontal" hasButton=false submitForward="list.do" submitType="hand">
             <div class="panel panel-default">
@@ -184,15 +205,22 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label"  for="roleName">角色名称</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="roleName"  id="roleName"
+                            <input type="text" class="form-control" name="rolename"  id="roleName"
                                    placeholder="输入角色名称"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="roleCode">角色编码</label>
                         <div  class="col-sm-10">
-                            <input type="text" class="form-control" name="roleCode" id="roleCode"
+                            <input type="text" class="form-control" name="rolecode" id="roleCode"
                                    placeholder="输入角色编码"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="orgcode">选择部门</label>
+                        <div  class="col-sm-10">
+                            <input type="text" class="form-control" name="orgcode" id="orgcode"
+                                   placeholder="选择部门"/>
                         </div>
                     </div>
                  </div>
@@ -222,6 +250,12 @@
         </div>
         </@ui.form>
     </fieldset>
+    </@ui.modal>
+
+    <@ui.modal id="orgModle" title="选择部门" >
+        <@ui.tree url="../org/tree.do" id='orgTree'  label="name" nodeid="code">
+
+        </@ui.tree>
     </@ui.modal>
 </body>
 </html>
