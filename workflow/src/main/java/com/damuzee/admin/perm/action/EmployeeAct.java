@@ -2,13 +2,16 @@ package com.damuzee.admin.perm.action;
 
 import com.damuzee.core.util.JSONUtil;
 import com.damuzee.admin.perm.repos.UserRepos;
+import com.damuzee.core.web.bean.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -43,7 +46,17 @@ public class EmployeeAct {
     @RequestMapping(value = "save.do",method = RequestMethod.POST)
     public String save(String json){
         Map mapvo = JSONUtil.stringToMap(json);
+
         userRepos.saveUser(mapvo);
         return "/employee/list" ;
+    }
+
+    @RequestMapping(value = "/delete.do", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult delete(String json) {
+        Map<String, List> listvo = (Map) JSONUtil.stringToMap(json);
+        userRepos.deleteUser(listvo.get("ids"));
+
+        return JsonResult.success("ok");
     }
 }
