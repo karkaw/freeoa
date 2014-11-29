@@ -17,7 +17,7 @@
     <script type="text/javascript">
        $(function(){
            //获取部门
-           $("#orgcode").click(function(clickEvent){
+           $("#orgtext").click(function(clickEvent){
                var orgModle = UI.get("orgModle");
                orgModle.css({width:"450px"});
                orgModle.show();
@@ -26,14 +26,15 @@
                    var orgStr = "" ;
                    for(var i = 0 ; i < objs.length ; i++){
                        var obj = objs[i];
-                       if(obj){
-                           if(i != 0){
+                       if (!obj) {
+                       } else {
+                           if (i != 0) {
                                orgStr += ";"
                            }
-                           orgStr += obj["code"] + "," +  obj["name"] ;
+                           orgStr += obj["code"] + "," + obj["name"];
                        }
                    }
-                   $("#orgcode").val(orgStr);
+                   $("#orgtext").val(orgStr);
                    UI.get("orgModle").hide();
                });
            });
@@ -113,9 +114,9 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-2 control-label" for="orgcode">选择部门</label>
-                                                <div  class="col-sm-4">
-                                                    <input type="text" class="form-control" name="orgcode" id="orgcode"
+                                                <label class="col-sm-2 control-label" for="orgtext">选择部门</label>
+                                                <div  class="col-sm-4" id="addOrg">
+                                                    <input type="text" class="form-control" name="orgtext" id="orgtext"
                                                            placeholder="选择部门"/>
                                                 </div>
                                             </div>
@@ -148,7 +149,7 @@
         </div>
 
         <@ui.modal id="orgModle" title="选择部门" >
-            <@ui.tree url="../org/tree.do" id='orgTree'  label="name" nodeid="code">
+            <@ui.tree url="../org/tree.do" id='orgTree'  label="name" nodeid="code" mutil="false">
 
             </@ui.tree>
         </@ui.modal>

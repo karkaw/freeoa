@@ -14,6 +14,8 @@
         <#include "/html/head.html"/>
         <@head />
 
+        <script src="${res}/freeui/js/form.js"></script>
+
 		<!-- jQuery -->
 		<script>
 			$(function() {
@@ -22,7 +24,34 @@
                 addbut.bind("click",function(){
                     window.location.href = 'add.do';
                 });
+
+                //多选删除
+                var delbut = widget.addButton('delbnt', '删除');
+                delbut.unbind("click").bind("click",function(){
+                    var ids = UI.get("userGrid").getSelectValues(true);
+                    if(ids != null){
+                        deleteResource(ids);
+                    }
+                });
+
+                //删除按钮
+                $("#userGrid").find("tr a:eq(1)").bind("click",function(){
+                    var id = $(this).parent().parent("tr").find("input:checkbox").val();
+                    if(id != null){
+                        deleteResource([id]);
+                    }
+                });
+
+                //提交删除数据
+                var deleteResource = function(data){
+                    var form = new UI.Form({url:'delete.do'});
+                    form.submit({"ids":data},function(){
+                        // UI.get("roleGrid").reload();   //提交完成刷新grid
+                        UI.get("userGrid").removeRowById(data);
+                    })
+                };
 			});
+
 		</script>
 </head>
 

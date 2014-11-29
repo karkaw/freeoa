@@ -13,4 +13,8 @@ public abstract class UserRepos {
     public abstract List findUsers(Map map);
 
     public abstract Map findUserByPage(Map map) ;
+
+    public abstract  void deleteUser(List<String> idList);
+
+    public abstract  void updateUser(Map map);
 }
