@@ -25,10 +25,11 @@
             $(function() {
                 $('#myflow').myflow({
                     basePath : "${res}/myflow/",
-                    restore :{},
+                    restore :eval("(${restore?default('{}')})") || {},
                     tools : {
                         save : {onclick : function(data) {
-                            $.post("save.do",{json:data},function(data){
+
+                            $.post("save.do",{json:data,id:'${id?default("")}'},function(data){
                                 if($.gritter){
                                     $.gritter.add({
                                         title: '提示信息',
@@ -55,7 +56,7 @@
     </style>
 </head>
 
-<body>
+<body style="overflow:scroll">
 	<!-- Header starts -->
 	<#include "/html/header.html"/>
 	<!-- Header ends -->
@@ -121,7 +122,7 @@
                                         <img src="${res}/myflow/img/16/end_event_terminate.png" />&nbsp;&nbsp;结束
                                     </div>
                                 </div>
-                                <div  id="myflow" style="background-image: url('${res}/myflow/img/bg.png') ">
+                                <div  id="myflow" style="background-image: url('${res}/myflow/img/bg.png'); ">
 
                                 </div>
                                 <div  id="myflow_props">
@@ -238,7 +239,8 @@
                 <td class="panel-row-btn">-</td>
                 <td >
                     <select name="propType" class="input-control condition_name">
-                        <option>属性</option>
+                        <option value="org">机构</option>
+                        <option value="role">角色</option>
                     </select>
                 </td>
                 <td class="width50">
@@ -270,7 +272,7 @@
             <tbody>
                 <tr style="display: none">
                     <td>
-                        <span></span><input type="hidden" name="attrCode"/>
+                        <span></span><input type="hidden" name="attrCode" value=""/>
                     </td>
                     <td class="width50">
                         <label class="check-box-item"><input type="checkbox"  class="read" name="read"/>读</label>
@@ -323,5 +325,11 @@
         </table>
         <div class="panel-add-btn ">+</div>
     </div>
+
+    <@ui.modal id="orgModle" title="选择部门" >
+        <@ui.tree url="../../admin/org/tree.do" id='orgTree'  label="name" nodeid="code" mutil="false">
+
+        </@ui.tree>
+    </@ui.modal>
 </body>
 </html>

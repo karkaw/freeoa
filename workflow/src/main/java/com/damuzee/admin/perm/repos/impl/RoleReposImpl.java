@@ -1,11 +1,14 @@
 package com.damuzee.admin.perm.repos.impl;
 
+import com.damuzee.admin.perm.domain.Employee;
+import com.damuzee.admin.perm.domain.Org;
 import com.damuzee.admin.perm.repos.RoleRepos;
 import org.damuzee.mongo.MongoTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,12 +23,34 @@ public class RoleReposImpl implements RoleRepos {
     MongoTemplate template;
 
     public String saveRole(Map map) {
+        String orgText = (String)map.get(Org.ORG_TEXT);
+        List orgList = new ArrayList();
+        if(orgText !=null && !"".equals(orgText)){
+            String [] orgTexts = orgText.split(";") ;
+            for(String text : orgTexts){
+                orgList.add(text.split(",")[0]);
+            }
+            map.put(Org.ORG_CODE,orgList);
+        }
         return template.save(ROLES,map);
     }
 
     public List findRoles(Map map) {
-        List list =  new ArrayList();
-        return list;
+        Map in= new HashMap();
+
+        String orgText = (String)map.get(Org.ORG_TEXT);
+        Map  query = new HashMap() ;
+        List orgList = new ArrayList();
+        if(orgText != null && !"".equals(orgText)){
+            String [] orgTexts = orgText.split(";") ;
+            for(String text : orgTexts){
+                orgList.add(text.split(",")[0]);
+            }
+            in.put("$in",orgList);
+            query.put(Org.ORG_CODE,in);
+        }
+
+        return template.find(ROLES,query);
     }
 
     public  void updateRole(Map map){

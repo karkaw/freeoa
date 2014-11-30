@@ -12,6 +12,8 @@ public interface FlowRepos {
 
     public abstract List findFlows(Map map);
 
+    public abstract Map findFlow(Map map);
+
     public abstract  void updateFlow(Map map);
 
     public abstract Map findFlowByPage(Map map);
