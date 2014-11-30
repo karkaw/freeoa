@@ -41,6 +41,14 @@ public class RoleAct {
         return result;
     }
 
+    @RequestMapping(value = "/get.do", method = RequestMethod.POST)
+    @ResponseBody
+    public List get(String json) {
+        Map<String, List> map = (Map) JSONUtil.stringToMap(json);
+        List list = roleRepos.findRoles(map);
+        return list;
+    }
+
     @RequestMapping(value = "/save.do", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult save(String json, HttpServletRequest request) {

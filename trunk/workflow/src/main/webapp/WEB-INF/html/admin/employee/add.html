@@ -36,8 +36,19 @@
                    }
                    $("#orgtext").val(orgStr);
                    UI.get("orgModle").hide();
+
+                   //获取角色
+                   $.post("../../admin/role/get.do",{json:JSON.stringify({orgtext : orgStr})},function(data){
+                       $("#roles").empty();
+                       var roles = data ;
+                       $.each(roles,function(i,role){
+                           var checkbox = $("<input type='checkbox' name='roles' value='"+role["rolecode"]+"'/>"+role["rolename"]+"");
+                           checkbox.appendTo("#roles");
+                       });
+                   });
                });
            });
+
        });
     </script>
 </head>
@@ -132,9 +143,9 @@
                                     </div>
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <h3 class="panel-title">权限</h3>
+                                            <h3 class="panel-title">角色分配</h3>
                                         </div>
-                                        <div class="panel-body">
+                                        <div class="panel-body" id="roles">
 
                                         </div>
                                     </div>
@@ -149,7 +160,7 @@
         </div>
 
         <@ui.modal id="orgModle" title="选择部门" >
-            <@ui.tree url="../org/tree.do" id='orgTree'  label="name" nodeid="code" mutil="false">
+            <@ui.tree url="../org/tree.do" id='orgTree'  label="name" nodeid="code" mutil="true">
 
             </@ui.tree>
         </@ui.modal>

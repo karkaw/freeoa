@@ -31,6 +31,11 @@ public class FlowReposImpl implements FlowRepos{
         return list;
     }
 
+    public Map findFlow(Map map) {
+        Map templateMap = template.findOne(FLOW,map);
+        return templateMap;
+    }
+
     public  void updateFlow(Map map){
         template.update(FLOW,map);
     }
