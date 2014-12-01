@@ -82,23 +82,23 @@ public class FlowAct {
     @RequestMapping(value = "/save.do", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult save(String json,String id) {
-        //Map<String, Object> listvo =  JSONUtil.stringToMap(json);
-        //Map<String,Object> propsMap = (Map<String,Object>)listvo.get(Flow.PROPS);
-        //propsMap = ( Map<String,Object> )propsMap.get(Flow.PROPS);
+        Map<String, Object> listvo =  JSONUtil.stringToMap(json);
+        Map<String,Object> propsMap = (Map<String,Object>)listvo.get(Flow.PROPS);
+        propsMap = ( Map<String,Object> )propsMap.get(Flow.PROPS);
 
         Map<String,Object> flowMap = new HashMap<String, Object>();
         flowMap.put(Flow.RESTORE,json);
 
         //工作流配置
-       /* for(String key : propsMap.keySet()){
-            Map<String,Object> value  = (Map<String,Object>)propsMap.get(key) ;
-            flowMap.put(key,value.get(Flow.VALUE));
-        }*/
+       for(String key : propsMap.keySet()) {
+           Map<String, Object> value = (Map<String, Object>) propsMap.get(key);
+           flowMap.put(key, value.get(Flow.VALUE));
+       }
 
         //任务paths属性
-        //flowMap.put(Flow.PATHS,listvo.get(Flow.PATHS));
+        flowMap.put(Flow.PATHS,listvo.get(Flow.PATHS));
         //states
-        //flowMap.put(Flow.STATES,listvo.get(Flow.STATES));
+        flowMap.put(Flow.STATES,listvo.get(Flow.STATES));
 
         if(id != null && !id.equals("")){
             flowMap.put("_id",new ObjectId(id)) ;
