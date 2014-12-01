@@ -13,7 +13,7 @@
 
     <#include "/html/head.html"/>
     <@head />
-
+    <link rel="stylesheet" href="${res}/freeui/css/tree.css">
     <link type="text/css" href="${res}/myflow/css/myflow.css" rel="stylesheet" />
 
     <script type="text/javascript" src="${res}/myflow/lib/raphael-min.js"></script>
@@ -188,7 +188,7 @@
         <table id="initProp"  cellpadding="0" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th class="pop-panel-header" colspan="4">进入条件配置<img src="${res}/myflow/img/close.png" class="pop-panel-close-btn"/></th>
+                <th class="pop-panel-header" colspan="4">初始操作配置<img src="${res}/myflow/img/close.png" class="pop-panel-close-btn"/></th>
             </tr>
             <tr>
                 <th></th>
@@ -224,7 +224,7 @@
         <table id="rolesProp"  cellpadding="0" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th class="pop-panel-header" colspan="4">进入条件配置<img src="${res}/myflow/img/close.png" class="pop-panel-close-btn"/></th>
+                <th class="pop-panel-header" colspan="4">角色配置<img src="${res}/myflow/img/close.png" class="pop-panel-close-btn"/></th>
             </tr>
             <tr>
                 <th></th>
@@ -236,20 +236,24 @@
 
             <tbody>
             <tr style="display: none">
-                <td class="panel-row-btn">-</td>
+                <td class="panel-row-btn" rowspan="2">-</td>
                 <td >
-                    <select name="propType" class="input-control condition_name">
-                        <option value="org">机构</option>
-                        <option value="role">角色</option>
-                    </select>
+                    机构
                 </td>
                 <td class="width50">
-                    <select name="propName" class="input-control condition_op">
-
-                    </select>
+                    =
                 </td>
                 <td>
-                    <input type="text" name="propValue" class="input-control condition_value"/>
+                     <input name="orgtext" type="text"/>
+                </td>
+            </tr>
+            <tr  style="display: none">
+                <td >角色</td>
+                <td class="width50">in</td>
+                <td>
+                    <label class="check-box-item">
+
+                    </label>
                 </td>
             </tr>
             </tbody>
@@ -261,7 +265,7 @@
         <table id="permsProp"  cellpadding="0" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th class="pop-panel-header" colspan="4">进入条件配置<img src="${res}/myflow/img/close.png" class="pop-panel-close-btn"/></th>
+                    <th class="pop-panel-header" colspan="4">权限配置<img src="${res}/myflow/img/close.png" class="pop-panel-close-btn"/></th>
                 </tr>
                 <tr>
                     <th>对象属性</th>
@@ -292,7 +296,7 @@
         <table id="approveProp"  cellpadding="0" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th class="pop-panel-header" colspan="4">进入条件配置<img src="${res}/myflow/img/close.png" class="pop-panel-close-btn"/></th>
+                <th class="pop-panel-header" colspan="4">审批操作配置<img src="${res}/myflow/img/close.png" class="pop-panel-close-btn"/></th>
             </tr>
             <tr>
                 <th></th>
