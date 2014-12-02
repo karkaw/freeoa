@@ -65,7 +65,7 @@
                 tr.each(function(idx,ele){
                     $(ele).remove();
                     var attr = UI.getFormParam($(ele));
-                    attr.attrCode =  $("#code").val() + SPT + attr.attrCode
+                    attr.attrCode =  attr.attrCode
                     attribute.push(attr);
                 });
                 object.attribute = attribute ;

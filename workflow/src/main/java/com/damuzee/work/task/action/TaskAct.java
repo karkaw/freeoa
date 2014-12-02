@@ -5,6 +5,7 @@ import com.damuzee.core.auth.domain.ShiroUser;
 import com.damuzee.core.util.JSONUtil;
 import com.damuzee.core.web.bean.JsonResult;
 import com.damuzee.core.web.session.SessionProvider;
+import com.damuzee.web.util.ObjectConvert;
 import com.damuzee.work.task.domain.Task;
 import com.damuzee.work.task.repos.TaskRepos;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,9 @@ public class TaskAct {
     @RequestMapping(value = "/save.do", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult save(HttpServletRequest request) {
-        Map<String, Object> params = RequestUtils.getRequestMap(request);
+      /*  Map<String, Object> params = RequestUtils.getRequestMap(request);*/
+
+        Map<String, Object> params = ObjectConvert.convertParamToMap(request);
 
         Map userMap = (Map)session.getAttribute(request, ShiroUser.LOGIN_USER_KEY);
 
