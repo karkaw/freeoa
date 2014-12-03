@@ -51,23 +51,23 @@ public class TaskAct {
     @RequestMapping(value = "/save.do", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult save(HttpServletRequest request) {
-      /*  Map<String, Object> params = RequestUtils.getRequestMap(request);*/
+   /*  Map<String, Object> params = RequestUtils.getRequestMap(request); */
 
-        Map<String, Object> params = RequestUtils.getRequestMap(request);
+       // Map<String, Object> params = RequestUtils.getRequestMap(request);
 
-       // Map<String, Object> params = ObjectConvert.convertParamToMap(request);
-        Map<String, Object> ret = new HashMap<String, Object>();
+         Map<String, Object> params = ObjectConvert.convertParamToMap(request);
+         /*Map<String, Object> ret = new HashMap<String, Object>();
         Map<String, Object> ff = new HashMap<String, Object>();
 
         for(String key : params.keySet()){
             ConvertMap.build(new KeyReader(key), ff, params.get(key), ret);
-        }
+        }*/
 
         Map userMap = (Map)session.getAttribute(request, ShiroUser.LOGIN_USER_KEY);
 
-        ret.put(Task.CREATE_USER_ID,userMap.get(ShiroUser.USER_NAME));
+        params.put(Task.CREATE_USER_ID,userMap.get(ShiroUser.USER_NAME));
 
-        String id = taskTepos.saveTask(ret);
+        String id = taskTepos.saveTask(params);
         return JsonResult.success(id);
     }
 

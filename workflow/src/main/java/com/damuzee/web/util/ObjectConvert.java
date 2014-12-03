@@ -52,6 +52,39 @@ public class ObjectConvert {
 		return convertParamToMap(request.getParameterMap());
 	}
 
+    public static Map<String, Object> convertMapToString(Map<String,Object> rMap ,
+            Object params, String key ,int idx ) {
+        if(key == null){
+            key  = "" ;
+        }
+
+        if (params instanceof Map){
+            Map<String,Object> map = (Map<String,Object>)params ;
+            for(String k : map.keySet()){
+               key  += "." +  k ;
+                convertMapToString(rMap,map.get(key), key , -1 );
+            }
+        }else if (params instanceof List){
+            if(idx == -1){
+                idx = 0 ;
+            }
+            List<Object> list = (List)params ;
+            for(int i = 0 ; i<list.size(); i ++){
+                String s = "" ;
+                for(int j = 0 ; j < idx ; j++){
+                    s += "[" + j + "]" ;
+                }
+                key += ":" + key + s;
+                convertMapToString(rMap,list.get(i), key ,idx ++ );
+            }
+        }else {
+            rMap.put(key,params);
+        }
+
+
+        return null ;
+    }
+
 	/**
 	 * 转换参数为Map的层次结构
 	 * 
