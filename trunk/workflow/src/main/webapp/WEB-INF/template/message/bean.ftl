@@ -1,4 +1,4 @@
-package com.damuzee.engine.domain;
+package com.damuzee.core.domain;
 
 import java.sql.Timestamp;
 import javax.persistence.Column;

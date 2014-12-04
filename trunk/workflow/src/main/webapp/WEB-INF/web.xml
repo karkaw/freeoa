@@ -50,7 +50,7 @@
 
     <!--配置-->
     <listener>
-        <listener-class>com.damuzee.engine.web.listener.WebConfigListener</listener-class>
+        <listener-class>com.damuzee.core.web.listener.WebConfigListener</listener-class>
     </listener>
 	<servlet>
 		<servlet-name>module</servlet-name>

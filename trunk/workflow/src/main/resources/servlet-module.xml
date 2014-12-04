@@ -22,14 +22,14 @@
  
  	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="webBindingInitializer">
-			<bean class="com.damuzee.engine.web.springmvc.BindingInitializer"/>
+			<bean class="com.damuzee.core.web.springmvc.BindingInitializer"/>
 		</property>
 	</bean>
 	
      <bean id="jsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
 	
 	<!-- Freemarker Configuration -->
-	<bean id="freemarkerViewResolver" class="com.damuzee.engine.web.springmvc.RichFreeMarkerViewResolver">
+	<bean id="freemarkerViewResolver" class="com.damuzee.core.web.springmvc.RichFreeMarkerViewResolver">
 		<property name="cache" value="true"/>
 		<property name="suffix" value=".html"/>
 		<property name="root" value="html/module"/>
