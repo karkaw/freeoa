@@ -11,7 +11,7 @@
 
     <description>Shiro 配置</description>
 
-    <context:component-scan base-package="com.damuzee.engine.*.action"/>
+    <context:component-scan base-package="com.damuzee.core.*.action"/>
 
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="cacheSeconds" value="-1"/>
@@ -30,7 +30,7 @@
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
         <!-- 自定义数据类型转换 -->
         <property name="webBindingInitializer">
-            <bean class="com.damuzee.engine.web.springmvc.BindingInitializer"/>
+            <bean class="com.damuzee.core.web.springmvc.BindingInitializer"/>
         </property>
         <!-- 配置信息转换，将用@responsebody注解的返回值转换为json返回前台，编码为utf-8 -->
         <property name="messageConverters">
@@ -62,7 +62,7 @@
     </bean>
 
     <!-- Freemarker Configuration -->
-    <bean id="freemarkerViewResolver" class="com.damuzee.engine.web.springmvc.RichFreeMarkerViewResolver">
+    <bean id="freemarkerViewResolver" class="com.damuzee.core.web.springmvc.RichFreeMarkerViewResolver">
         <property name="cache" value="true"/>
         <property name="suffix" value=".html"/>
         <property name="root" value="html/admin"/>
@@ -121,7 +121,7 @@
     </bean>
 
     <!--自定义Realm 继承自AuthorizingRealm -->
-    <bean id="monitorRealm" class="com.damuzee.engine.auth.shiro.ShiroDbRealm"></bean>
+    <bean id="monitorRealm" class="com.damuzee.core.auth.shiro.ShiroDbRealm"></bean>
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager"></bean>
     <!--<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager"/>-->
 
@@ -151,10 +151,10 @@
           class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
 
     <bean id="captchaFormAuthenticationFilter"
-          class="com.damuzee.engine.auth.shiro.CaptchaFormAuthenticationFilter"/>
+          class="com.damuzee.core.auth.shiro.CaptchaFormAuthenticationFilter"/>
 
     <bean id="baseFormAuthenticationFilter"
-          class="com.damuzee.engine.auth.shiro.BaseFormAuthenticationFilter"/>
+          class="com.damuzee.core.auth.shiro.BaseFormAuthenticationFilter"/>
 
 
 </beans>
