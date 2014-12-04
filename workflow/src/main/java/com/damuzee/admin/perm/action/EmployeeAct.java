@@ -1,8 +1,8 @@
 package com.damuzee.admin.perm.action;
 
-import com.damuzee.engine.util.JSONUtil;
+import com.damuzee.core.util.JSONUtil;
 import com.damuzee.admin.perm.repos.UserRepos;
-import com.damuzee.engine.web.bean.JsonResult;
+import com.damuzee.core.web.bean.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
