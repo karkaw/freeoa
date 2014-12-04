@@ -1,7 +1,7 @@
 package com.damuzee.workflow.definition.action;
 
-import com.damuzee.engine.util.JSONUtil;
-import com.damuzee.engine.web.bean.JsonResult;
+import com.damuzee.core.util.JSONUtil;
+import com.damuzee.core.web.bean.JsonResult;
 import com.damuzee.workflow.definition.domain.Flow;
 import com.damuzee.workflow.definition.repos.FlowRepos;
 import org.bson.types.ObjectId;

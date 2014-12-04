@@ -1,9 +1,9 @@
 package com.damuzee.work.task.action;
 
-import com.damuzee.engine.auth.domain.ShiroUser;
-import com.damuzee.engine.util.JSONUtil;
-import com.damuzee.engine.web.bean.JsonResult;
-import com.damuzee.engine.web.session.SessionProvider;
+import com.damuzee.core.auth.domain.ShiroUser;
+import com.damuzee.core.util.JSONUtil;
+import com.damuzee.core.web.bean.JsonResult;
+import com.damuzee.core.web.session.SessionProvider;
 import com.damuzee.web.util.ObjectConvert;
 import com.damuzee.work.task.domain.Task;
 import com.damuzee.work.task.repos.TaskRepos;

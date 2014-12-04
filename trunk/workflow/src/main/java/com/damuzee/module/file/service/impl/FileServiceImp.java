@@ -1,6 +1,6 @@
 package com.damuzee.module.file.service.impl;
 
-import com.damuzee.engine.util.ConfigUtil;
+import com.damuzee.core.util.ConfigUtil;
 import com.damuzee.module.file.service.FileService;
 import org.springframework.stereotype.Service;
 
