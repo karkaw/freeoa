@@ -1,15 +1,14 @@
 package com.damuzee.admin.perm.action;
 
-import com.damuzee.core.util.JSONUtil;
+import com.damuzee.engine.util.JSONUtil;
 import com.damuzee.admin.perm.repos.UserRepos;
-import com.damuzee.core.web.bean.JsonResult;
+import com.damuzee.engine.web.bean.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -49,16 +49,22 @@
                         $.post("../../wf/template/find.do", {json:JSON.stringify({_id:formid})}, function (tpl) {
                             $("#form-preview").empty();
                             $("#form-preview").append(tpl["content"]);
-                            var object_code = $("<input type='hidden' name='object-code'/>");
-                            object_code.val(tpl["object_code"]);
-                            object_code.appendTo($("#form-preview"));
-                           var modal =  UI.get("applyModle");
+                            for(var key in tpl){
+                                if(key == "_id"){
+                                    $("input[name='form_id']", $("#form-preview")).val(tpl["_id"]);
+                                }else{
+                                    var input = $("*[name='"+ key +"']", $("#form-preview"));
+                                    input.val(tpl[key]);
+                                }
+                            }
+                            var modal =  UI.get("applyModle");
                             modal.css({width:"60%"});
                             modal.show();
                         });
                     });
                 }
 
+                //提交保存
                 UI.get("applyModle").getSubmitBtn().unbind("click").bind("click",function(){
                     // 提交保存数据
                     $("#applyForm").ajaxSubmit({
@@ -78,7 +84,30 @@
                             UI.get("applyGrid").reload();
                         }
                     });
-                })
+                });
+
+                //修改按钮
+                $("#applyGrid").find("tr a:eq(0)").bind("click",function(){
+                    var id = $(this).parent().parent("tr").find("input:checkbox").val();
+
+                    $.post("get.do",{id:id},function(data){
+                        var formid = data["form-id"] ;
+                        $.post("../../wf/template/find.do", {json:JSON.stringify({_id:formid})}, function (tpl) {
+                            var  html = $(tpl["content"]);
+
+                            $("input[name='_id']",html).val(id);
+                            $("#form-preview").empty();
+                            html.appendTo($("#form-preview"));
+                            for(var key in data){
+                                var input = $("*[name='"+ key +"']",$("#form-preview"));
+                                input.val(data[key]);
+                            }
+                            var modal =  UI.get("applyModle");
+                            modal.css({width:"60%"});
+                            modal.show();
+                        });
+                    });
+                });
             });
         });
     </script>

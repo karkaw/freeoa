@@ -1,15 +1,13 @@
 package com.damuzee.work.task.action;
 
-import com.damuzee.common.web.RequestUtils;
-import com.damuzee.core.auth.domain.ShiroUser;
-import com.damuzee.core.util.JSONUtil;
-import com.damuzee.core.web.bean.JsonResult;
-import com.damuzee.core.web.session.SessionProvider;
-import com.damuzee.web.util.ConvertMap;
-import com.damuzee.web.util.KeyReader;
+import com.damuzee.engine.auth.domain.ShiroUser;
+import com.damuzee.engine.util.JSONUtil;
+import com.damuzee.engine.web.bean.JsonResult;
+import com.damuzee.engine.web.session.SessionProvider;
 import com.damuzee.web.util.ObjectConvert;
 import com.damuzee.work.task.domain.Task;
 import com.damuzee.work.task.repos.TaskRepos;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,26 +46,37 @@ public class TaskAct {
         return map ;
     }
 
+    @RequestMapping(value = "/get.do", method = RequestMethod.POST)
+    @ResponseBody
+    public Map get(String id) {
+        if(id != null && !id.equals("")){
+            Map map = new HashMap();
+            map.put("_id",new ObjectId(id));
+            Map temp = taskTepos.findTask(map);
+
+            Map outMap = new HashMap();
+            ObjectConvert.convertMapToString(outMap,temp , "","") ;
+            return outMap ;
+        }
+        return null;
+    }
+
     @RequestMapping(value = "/save.do", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult save(HttpServletRequest request) {
-   /*  Map<String, Object> params = RequestUtils.getRequestMap(request); */
-
-       // Map<String, Object> params = RequestUtils.getRequestMap(request);
-
-         Map<String, Object> params = ObjectConvert.convertParamToMap(request);
-         /*Map<String, Object> ret = new HashMap<String, Object>();
-        Map<String, Object> ff = new HashMap<String, Object>();
-
-        for(String key : params.keySet()){
-            ConvertMap.build(new KeyReader(key), ff, params.get(key), ret);
-        }*/
+        Map<String, Object> params = ObjectConvert.convertParamToMap(request);
 
         Map userMap = (Map)session.getAttribute(request, ShiroUser.LOGIN_USER_KEY);
 
         params.put(Task.CREATE_USER_ID,userMap.get(ShiroUser.USER_NAME));
+        String id  = (String)params.remove("_id") ;
+        if (id.equals("")){
+             id = taskTepos.saveTask(params);
+        }else{
+             params.put("_id",new ObjectId(id));
+              taskTepos.updateTask(params);
+        }
 
-        String id = taskTepos.saveTask(params);
         return JsonResult.success(id);
     }
 

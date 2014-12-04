@@ -11,6 +11,8 @@ public interface TaskRepos {
 
     public abstract List findTasks(Map map);
 
+    public abstract Map findTask(Map map);
+
     public abstract  void updateTask(Map map);
 
     public abstract Map findTaskByPage(Map map);

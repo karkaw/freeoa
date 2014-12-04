@@ -67,10 +67,17 @@
                     props.push(prop);
                 });
 
-                //预览
                 var preview = $("#form-preview").html($("#editView").html());
                 preview.find(".field-active").removeClass("field-active");
                 preview.find("*").removeAttr("style");
+
+                var object_code = $("<input type='hidden' name='object_code'/>");
+                var form_id = $("<input type='hidden' name='form_id'/>");
+                var _id = $("<input type='hidden' name='_id'/>");
+
+                form_id.appendTo(preview);
+                object_code.appendTo(preview);
+                _id.appendTo(preview);
 
                 var name = $("#form-preview .form-name").text();
                 var desc = $("#form-preview .form-description").text();

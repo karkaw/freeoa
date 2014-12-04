@@ -25,7 +25,7 @@
  	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
  		<!-- 自定义数据类型转换 -->
 		<property name="webBindingInitializer">
-			<bean class="com.damuzee.core.web.springmvc.BindingInitializer"/>
+			<bean class="com.damuzee.engine.web.springmvc.BindingInitializer"/>
 		</property>
 		 <!-- 配置信息转换，将用@responsebody注解的返回值转换为json返回前台，编码为utf-8 -->
 		<property name="messageConverters">
@@ -58,7 +58,7 @@
 	</bean> 
 
 	<!-- Freemarker Configuration -->
-	<bean id="freemarkerViewResolver" class="com.damuzee.core.web.springmvc.RichFreeMarkerViewResolver">
+	<bean id="freemarkerViewResolver" class="com.damuzee.engine.web.springmvc.RichFreeMarkerViewResolver">
 		<property name="cache" value="true"/>
 		<property name="suffix" value=".html"/>
 		<property name="root" value="html/work"/>

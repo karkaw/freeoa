@@ -2,10 +2,9 @@ package com.damuzee.admin.perm.action;
 
 import com.damuzee.admin.perm.domain.Org;
 import com.damuzee.admin.perm.repos.OrgRepos;
-import com.damuzee.common.Constants;
 import com.damuzee.common.util.MongodbUtil;
-import com.damuzee.core.util.JSONUtil;
-import com.damuzee.core.web.bean.JsonResult;
+import com.damuzee.engine.util.JSONUtil;
+import com.damuzee.engine.web.bean.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
