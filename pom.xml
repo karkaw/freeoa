@@ -13,6 +13,7 @@
 		<module>mongodb</module>
 		<module>sqlbuilder</module>
 		<module>freeui</module>
+        <module>snaker-core</module>
 	</modules>
 
 	<properties>
