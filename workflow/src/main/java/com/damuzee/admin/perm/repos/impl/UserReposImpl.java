@@ -1,7 +1,7 @@
 package com.damuzee.admin.perm.repos.impl;
 
 import com.damuzee.admin.perm.domain.Employee;
-import com.damuzee.core.auth.util.EncryptUtils;
+import com.damuzee.engine.auth.util.EncryptUtils;
 import com.damuzee.admin.perm.repos.UserRepos;
 import org.damuzee.mongo.MongoTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

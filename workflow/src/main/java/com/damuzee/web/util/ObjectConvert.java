@@ -52,37 +52,31 @@ public class ObjectConvert {
 		return convertParamToMap(request.getParameterMap());
 	}
 
-    public static Map<String, Object> convertMapToString(Map<String,Object> rMap ,
-            Object params, String key ,int idx ) {
-        if(key == null){
-            key  = "" ;
+    public static void convertMapToString(Map<String,Object> rMap ,
+            Object params, String preKey , String lastKey  ) {
+        if(!preKey.equals("")){
+            if(lastKey.contains("[")){
+                preKey += lastKey ;
+            }else{
+                preKey += "." + lastKey ;
+            }
+        }else {
+            preKey += lastKey ;
         }
-
         if (params instanceof Map){
             Map<String,Object> map = (Map<String,Object>)params ;
             for(String k : map.keySet()){
-               key  += "." +  k ;
-                convertMapToString(rMap,map.get(key), key , -1 );
+               convertMapToString(rMap,map.get(k),preKey, k  );
             }
         }else if (params instanceof List){
-            if(idx == -1){
-                idx = 0 ;
-            }
             List<Object> list = (List)params ;
             for(int i = 0 ; i<list.size(); i ++){
-                String s = "" ;
-                for(int j = 0 ; j < idx ; j++){
-                    s += "[" + j + "]" ;
-                }
-                key += ":" + key + s;
-                convertMapToString(rMap,list.get(i), key ,idx ++ );
+                convertMapToString(rMap,list.get(i),preKey , "[" + i + "]" );
             }
         }else {
-            rMap.put(key,params);
+            rMap.put(preKey,params);
         }
-
-
-        return null ;
+        return ;
     }
 
 	/**

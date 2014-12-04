@@ -27,6 +27,11 @@ public class TaskReposImpl implements TaskRepos{
         return list;
     }
 
+    public Map findTask(Map map) {
+        Map templateMap = template.findOne(COLLECTION,map);
+        return templateMap;
+    }
+
     public  void updateTask(Map map){
         template.update(COLLECTION,map);
     }

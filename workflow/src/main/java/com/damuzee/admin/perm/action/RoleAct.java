@@ -1,7 +1,7 @@
 package com.damuzee.admin.perm.action;
 
-import com.damuzee.core.util.JSONUtil;
-import com.damuzee.core.web.bean.JsonResult;
+import com.damuzee.engine.util.JSONUtil;
+import com.damuzee.engine.web.bean.JsonResult;
 import com.damuzee.admin.perm.repos.RoleRepos;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
