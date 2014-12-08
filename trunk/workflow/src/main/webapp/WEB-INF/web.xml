@@ -8,6 +8,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			classpath:webApplicationCntent.xml
+            classpath:application-worlflow.xml
 			classpath:kaptcha-config.xml
 			classpath:application-content.xml
 			classpath:spring-shiro.xml
