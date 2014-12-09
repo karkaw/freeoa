@@ -27,11 +27,11 @@ public class UserReposImpl  extends UserRepos {
         if (password != null){
             map.put(Employee.PASS_WORD, EncryptUtils.encryptMD5(password));
         }
-        String orgText = (String)map.get(Employee.ORG_TEXT);
+        String org_text = (String)map.get(Employee.ORG_TEXT);
         List orgList = new ArrayList();
-        if(orgText !=null && !"".equals(orgText)){
-            String [] orgTexts = orgText.split(";") ;
-            for(String text : orgTexts){
+        if(org_text !=null && !"".equals(org_text)){
+            String [] org_texts = org_text.split(";") ;
+            for(String text : org_texts){
                 orgList.add(text.split(",")[0]);
             }
             map.put(Employee.ORG_CODE,orgList);

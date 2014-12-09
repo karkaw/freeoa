@@ -1,7 +1,8 @@
 package com.damuzee.engine;
 
+import com.damuzee.engine.domain.Flow;
 import com.damuzee.engine.domain.Order;
-import com.damuzee.engine.domain.Process;
+
 import java.util.Map;
 
 /**
@@ -14,10 +15,21 @@ public interface IOrderService {
 
     /**
      * 根据流程、操作人员、父流程实例ID创建流程实例
-     * @param process 流程定义对象
+     * @param flow 流程定义对象
      * @param operator 操作人员ID
      * @param args 参数列表
      * @return Order 活动流程实例对象
      */
-    Order createOrder(Process process, String operator, Map<String, Object> args);
+    Order createOrder(Flow flow, String operator, Map<String, Object> args);
+
+    /**
+     * 根据流程、操作人员、父流程实例ID创建流程实例
+     * @param flow 流程定义对象
+     * @param operator 操作人员ID
+     * @param args 参数列表
+     * @param parentId 父流程实例ID
+     * @param parentNodeName 父流程节点模型
+     * @return 活动流程实例对象
+     */
+    Order createOrder(Flow flow, String operator, Map<String, Object> args, String parentId, String parentNodeName);
 }

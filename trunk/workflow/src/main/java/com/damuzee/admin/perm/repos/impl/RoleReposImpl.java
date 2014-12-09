@@ -23,11 +23,11 @@ public class RoleReposImpl implements RoleRepos {
     MongoTemplate template;
 
     public String saveRole(Map map) {
-        String orgText = (String)map.get(Org.ORG_TEXT);
+        String org_text = (String)map.get(Org.ORG_TEXT);
         List orgList = new ArrayList();
-        if(orgText !=null && !"".equals(orgText)){
-            String [] orgTexts = orgText.split(";") ;
-            for(String text : orgTexts){
+        if(org_text !=null && !"".equals(org_text)){
+            String [] org_texts = org_text.split(";") ;
+            for(String text : org_texts){
                 orgList.add(text.split(",")[0]);
             }
             map.put(Org.ORG_CODE,orgList);
@@ -38,12 +38,12 @@ public class RoleReposImpl implements RoleRepos {
     public List findRoles(Map map) {
         Map in= new HashMap();
 
-        String orgText = (String)map.get(Org.ORG_TEXT);
+        String org_text = (String)map.get(Org.ORG_TEXT);
         Map  query = new HashMap() ;
         List orgList = new ArrayList();
-        if(orgText != null && !"".equals(orgText)){
-            String [] orgTexts = orgText.split(";") ;
-            for(String text : orgTexts){
+        if(org_text != null && !"".equals(org_text)){
+            String [] org_texts = org_text.split(";") ;
+            for(String text : org_texts){
                 orgList.add(text.split(",")[0]);
             }
             in.put("$in",orgList);

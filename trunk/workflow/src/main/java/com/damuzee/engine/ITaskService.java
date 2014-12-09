@@ -1,7 +1,7 @@
 package com.damuzee.engine;
 
 import com.damuzee.engine.domain.Task;
-import com.damuzee.engine.model.ProcessModel;
+import com.damuzee.engine.model.FlowModel;
 
 /**
  * 任务实例的操作类
@@ -23,5 +23,5 @@ public interface ITaskService {
      * @param currentTask 当前任务对象
      * @return Task 任务对象
      */
-    Task rejectTask(ProcessModel model, Task currentTask);
+    Task rejectTask(FlowModel model, Task currentTask);
 }

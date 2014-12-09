@@ -91,7 +91,7 @@
                     var id = $(this).parent().parent("tr").find("input:checkbox").val();
 
                     $.post("get.do",{id:id},function(data){
-                        var formid = data["form-id"] ;
+                        var formid = data["form_id"] ;
                         $.post("../../wf/template/find.do", {json:JSON.stringify({_id:formid})}, function (tpl) {
                             var  html = $(tpl["content"]);
 
@@ -158,8 +158,8 @@
                     <@ui.widget id="applyWidget" title="我的申请单列表">
                         <@ui.grid id="applyGrid"  action="jlist.do"  height="450px" >
                             <@ui.column type='checkbox'   name="_id"></@ui.column>
-                            <@ui.column title="标题"      name="form-title"></@ui.column>
-                            <@ui.column title="描述"      name="form-desc" class="hidden-sm hidden-xs"></@ui.column>
+                            <@ui.column title="标题"      name="form_title"></@ui.column>
+                            <@ui.column title="描述"      name="form_desc" class="hidden-sm hidden-xs"></@ui.column>
                             <@ui.column title="操作" align="center">
                                 <a>修改</a>
                             </@ui.column>

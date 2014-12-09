@@ -1,7 +1,8 @@
 package com.damuzee.engine;
 
-import com.damuzee.engine.domain.*;
-import com.damuzee.engine.domain.Process;
+import com.damuzee.engine.domain.Flow;
+
+import java.util.Map;
 
 /**
  * 获取定义的操作类
@@ -15,14 +16,14 @@ public interface IProcessService {
      * @param id 流程定义id
      * @return Process 流程定义对象
      */
-     Process getProcessById(String id);
+    Flow getProcessById(String id);
 
     /**
      * 根据流程name获取流程定义对象
      * @param name 流程定义名称
      * @return Process 流程定义对象
      */
-     Process getProcessByName(String name);
+    Flow getProcessByCode(String name);
 
 
 }
