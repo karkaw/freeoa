@@ -11,6 +11,6 @@ public class Employee {
     public static final String LAST_NAME = "lastname" ;
     public static final String FULL_NAME = "fullname" ;
     public static final String DESCRIPTION = "description" ;
-    public static final String ORG_TEXT = "orgtext" ;
-    public static final String ORG_CODE = "orgcode" ;
+    public static final String ORG_TEXT = "org_text" ;
+    public static final String ORG_CODE = "org_code" ;
 }

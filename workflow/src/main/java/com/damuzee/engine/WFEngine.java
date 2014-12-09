@@ -37,7 +37,14 @@ public interface WFEngine {
      * @param operner  操作人
      * @return
      */
-    public Map startInstance(String id,String operner);
+    public Map startInstanceById(String id,String operner);
 
+    /**
+     *  根据工作流定义启动工作流
+     * @param name       实例编号
+     * @param operner  操作人
+     * @return
+     */
+    public Map startInstanceByName(String name, String operner);
 
 }
