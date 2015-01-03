@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <!-- Title and other stuffs -->
-    <title>我的申请</title>
+    <title>我的任务</title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -24,92 +24,46 @@
     <script type="text/javascript" src="${res}/jquery/js/jquery.form.js"></script>
 
     <!-- jQuery -->
-    <script>
-        $(function () {
+    <script type="text/javascript">
+        $(function(){
+            //审批按钮
+            $("#taskGrid").find("tr a:eq(0)").bind("click",function(){
+                var taskId = $(this).parent().parent("tr").find("input:checkbox").val();
+                var modal =  UI.get("taskModel");
 
-            //获取对象
-            var data = null;
-            $.post("../../wf/template/get.do", {}, function (resText) {
-                data = resText;
-                var form_list = $("#form-list");
-                for (var i = 0; i < data.length; i++) {
-                    var form_item = $('<div class="content">' +
-                            '     <div class="content-item">' +
-                            '        <span class="line-height-1 bigger-170 title"></span>' +
-                            '        <p id="description" class="line-height-1 smaller-90 description"></p>' +
-                            '     </div>' +
-                            '</div>');
-                    form_item.attr("formid", data[i]["_id"]);
-                    form_item.find(".title").text(data[i].name);
-                    form_item.find(".description").text(data[i].desc);
-                    form_item.appendTo(form_list);
+                $.post("get.do",{id:taskId},function(data){
+                    var formid = data["form_id"] ;
+                    $.post("../../wf/template/find.do", {json:JSON.stringify({_id:formid})}, function (tpl) {
+                        var  html = $(tpl["content"]);
 
-                    form_item.bind("click",function(){
-                        var formid = $(this).attr("formid");
-                        $.post("../../wf/template/find.do", {json:JSON.stringify({_id:formid})}, function (tpl) {
-                            $("#form-preview").empty();
-                            $("#form-preview").append(tpl["content"]);
-                            for(var key in tpl){
-                                if(key == "_id"){
-                                    $("input[name='form_id']", $("#form-preview")).val(tpl["_id"]);
-                                }else{
-                                    var input = $("*[name='"+ key +"']", $("#form-preview"));
-                                    input.val(tpl[key]);
-                                }
-                            }
-                            var modal =  UI.get("applyModle");
-                            modal.css({width:"60%"});
-                            modal.show();
-                        });
-                    });
-                }
-
-                //提交保存
-                UI.get("applyModle").getSubmitBtn().unbind("click").bind("click",function(){
-                    // 提交保存数据
-                    $("#applyForm").ajaxSubmit({
-                        url : "save.do",
-                        type : "post",
-                        success : function(data) {
-                            if($.gritter){
-                                $.gritter.add({
-                                    title: '提示信息',
-                                    text: data.msg || "操作成功！",
-                                    class_name: 'gritter-' + data.msgType
-                                });
-                            }else{
-                                alert(data.msg);
-                            }
-                            UI.get("applyModle").hide();
-                            UI.get("applyGrid").reload();
+                        $("input[name='_id']",html).val(taskId);
+                        $("#form-preview").empty();
+                        html.appendTo($("#form-preview"));
+                        for(var key in data){
+                            var input = $("*[name='"+ key +"']",$("#form-preview"));
+                            input.val(data[key]);
                         }
+
+                        modal.css({width:"60%"});
+                        modal.show();
+
                     });
                 });
 
-                //修改按钮
-                $("#applyGrid").find("tr a:eq(0)").bind("click",function(){
-                    var id = $(this).parent().parent("tr").find("input:checkbox").val();
 
-                    $.post("get.do",{id:id},function(data){
-                        var formid = data["form_id"] ;
-                        $.post("../../wf/template/find.do", {json:JSON.stringify({_id:formid})}, function (tpl) {
-                            var  html = $(tpl["content"]);
-
-                            $("input[name='_id']",html).val(id);
-                            $("#form-preview").empty();
-                            html.appendTo($("#form-preview"));
-                            for(var key in data){
-                                var input = $("*[name='"+ key +"']",$("#form-preview"));
-                                input.val(data[key]);
-                            }
-                            var modal =  UI.get("applyModle");
-                            modal.css({width:"60%"});
-                            modal.show();
-                        });
+                var modal =  UI.get("taskModel");
+                var agreeBtn = modal.addButton('agree',"同意");
+                agreeBtn.bind("click",function(){
+                    $.post("agree.do",{taskId:taskId,context:$("#context").val()},function(data){
+                        modal.hide();
                     });
                 });
+
+                var rejectBtn = modal.addButton('reject',"驳回");
+
+                var resumeBtn = modal.addButton('resume',"转交");
             });
-        });
+        })
     </script>
 </head>
 
@@ -133,10 +87,10 @@
 
                 <div class="nav-search" id="nav-search">
                     <form class="form-search">
-							<span class="input-icon"> <input type="text"
-                                                             placeholder="Search /html." class="nav-search-input"
-                                                             id="nav-search-input" autocomplete="off"/> <i
-                                    class="icon-search nav-search-icon"></i>
+							<span class="input-icon">
+                                <input type="text"  placeholder="Search /html." class="nav-search-input"
+                                                             id="nav-search-input" autocomplete="off"/>
+                                <i class="icon-search nav-search-icon"></i>
 							</span>
                     </form>
                 </div>
@@ -148,85 +102,23 @@
                 <div class="page-header">
                     <h1>
                         控制台
-                        <small><i class="icon-double-angle-right"></i>我的申请单</small>
+                        <small><i class="icon-double-angle-right"></i>我的任务</small>
                     </h1>
                 </div>
                 <!-- /.page-header -->
 
                 <div class="row">
-                    <div class="col-xs-6">
-                    <@ui.widget id="applyWidget" title="我的申请单列表">
-                        <@ui.grid id="applyGrid"  action="jlist.do"  height="450px" >
+                    <div class="col-xs-12">
+                    <@ui.widget id="taskWidget" title="我的任务列表">
+                        <@ui.grid id="taskGrid"  action="jlist.do"  height="450px" >
                             <@ui.column type='checkbox'   name="_id"></@ui.column>
-                            <@ui.column title="标题"      name="form_title"></@ui.column>
-                            <@ui.column title="描述"      name="form_desc" class="hidden-sm hidden-xs"></@ui.column>
+                            <@ui.column title="标题"      name="title"></@ui.column>
+                            <@ui.column title="描述"      name="name" class="hidden-sm hidden-xs"></@ui.column>
                             <@ui.column title="操作" align="center">
-                                <a>修改</a>
+                                <a>审批</a>
                             </@ui.column>
                         </@ui.grid>
                     </@ui.widget>
-                    </div>
-                    <div class="col-sm-6">
-                        <h3 class="row header smaller lighter blue">
-                            <span class="col-xs-6">新建表单</span><!-- /span -->
-                        </h3>
-
-                        <div id="accordion" class="accordion-style1 panel-group">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
-                                           href="#collapseOne">
-                                            <i class="bigger-110 icon-angle-down" data-icon-hide="icon-angle-down"
-                                               data-icon-show="icon-angle-right"></i>
-                                            组织机构表单
-                                        </a>
-                                    </h4>
-                                </div>
-
-                                <div class="panel-collapse in" id="collapseOne">
-                                    <div class="panel-body" id="form-list">
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a class="accordion-toggle collapsed" data-toggle="collapse"
-                                           data-parent="#accordion" href="#collapseTwo">
-                                            <i class="bigger-110 icon-angle-right" data-icon-hide="icon-angle-down"
-                                               data-icon-show="icon-angle-right"></i>
-                                            我的表单
-                                        </a>
-                                    </h4>
-                                </div>
-
-                                <div class="panel-collapse collapse" id="collapseTwo" style="height: 0px;">
-                                    <div class="panel-body">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a class="accordion-toggle collapsed" data-toggle="collapse"
-                                           data-parent="#accordion" href="#collapseThree">
-                                            <i class="icon-angle-right bigger-110" data-icon-hide="icon-angle-down"
-                                               data-icon-show="icon-angle-right"></i>
-                                            其它
-                                        </a>
-                                    </h4>
-                                </div>
-
-                                <div class="panel-collapse collapse" id="collapseThree">
-                                    <div class="panel-body">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -236,12 +128,15 @@
     </div>
 </div>
 
-    <@ui.modal id="applyModle" title="申请"  gridId="applyGrid" form="applyForm">
+    <@ui.modal id="taskModel" title="我的任务"  gridId="taskGrid" form="taskForm" showButton=false>
         <fieldset>
-            <@ui.form id="applyForm" action="save.do" class="form-horizontal" hasButton=false submitForward="list.do" submitType="hand">
+            <@ui.form id="taskForm" action="save.do" class="form-horizontal" hasButton=false submitForward="list.do" submitType="hand">
                 <div id="form-preview" class="form-preview clearfix" style="min-height:257px;">
 
                 </div>
+
+                <label>审批意见：</label>
+                <textarea type="text" class="form-control small" placeholder="请填写审批意见" name="context"></textarea>
             </@ui.form>
         </fieldset>
     </@ui.modal>

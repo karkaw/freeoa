@@ -1,8 +1,13 @@
 package com.damuzee.engine.core;
 
+import com.damuzee.common.util.DateUtil;
+import com.damuzee.engine.AbstractRepos;
 import com.damuzee.engine.IOrderService;
 import com.damuzee.engine.domain.Flow;
 import com.damuzee.engine.domain.Order;
+import com.damuzee.engine.model.FlowModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -11,7 +16,7 @@ import java.util.Map;
  * Created by karka.w on 2014/12/8.
  */
 @Service
-public class OrderServiceImpl implements IOrderService {
+public class OrderServiceImpl  extends ReposImpl  implements IOrderService {
 
     public Order createOrder(Flow flow, String operator, Map<String, Object> args) {
         return null;
@@ -27,6 +32,43 @@ public class OrderServiceImpl implements IOrderService {
      * @return 活动流程实例对象
      */
     public Order createOrder(Flow flow, String operator, Map<String, Object> args, String parentId, String parentNodeName){
-        return null;
+        Order order = new Order();
+
+        order.put(Order.PARENT_ID,parentId);
+        order.put(Order.PARENT_NODE_NAME, parentNodeName);
+        order.put(Order.CREATE_TIME, DateUtil.getCurrentDateTime(DateUtil.FORMAT_DATETIME));
+        order.put(Order.LAST_UPDATE_TIME, DateUtil.getCurrentDateTime(DateUtil.FORMAT_DATETIME));
+        order.put(Order.CREATOR, operator);
+        order.put(Order.LAST_UPDATOR, operator);
+        //审批单编号
+        order.put(Order.FORM_ID, args.get(Order.FORM_ID));
+        //流程定义编号
+        order.put(Order.FLOW_ID, flow.get(Flow.FLOW_ID));
+        FlowModel model = flow.getModel();
+        if(model != null && args != null) {
+           /* if(StringHelper.isNotEmpty(model.getExpireTime())) {
+                String expireTime = DateHelper.parseTime(args.get(model.getExpireTime()));
+                order.put(Order.EXPIRE_TIME,expireTime);
+            }*/
+           /* String orderNo = (String)args.get(SnakerEngine.ID);
+            if(StringHelper.isNotEmpty(orderNo)) {
+                order.setOrderNo(orderNo);
+            } else {
+                order.setOrderNo(model.getGenerator().generate(model));
+            }*/
+        }
+
+        //order.setVariable(JsonHelper.toJson(args));
+        String id =  save(order);
+        order.put(Order.ORDER_ID,id) ;
+        return order;
+    }
+
+    public String save(Order order) {
+        return super.saveOrder(order);
+    }
+
+    public void update(Order order) {
+        updateOrder(order);
     }
 }

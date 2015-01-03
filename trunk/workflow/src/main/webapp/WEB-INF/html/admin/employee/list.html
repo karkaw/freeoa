@@ -10,6 +10,7 @@
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="author" content="" />
+        <link rel="stylesheet" href="${res}/freeui/css/tree.css">
 
         <#include "/html/head.html"/>
         <@head />
@@ -19,11 +20,45 @@
 		<!-- jQuery -->
 		<script>
 			$(function() {
+                //添加用户
 				var widget = UI.get("userWidget");
 				var addbut = widget.addButton('addbnt', '添加');
                 addbut.bind("click",function(){
-                    window.location.href = 'add.do';
+                    //window.location.href = 'add.do';
+                    var empModal = UI.get("empModal");
+                    empModal.show() ;
                 });
+
+                //修改按钮
+                $("#userGrid").find("tr a:eq(0)").bind("click",function(){
+                    var id = $(this).parent().parent("tr").find("input:checkbox").val();
+                    if(id != null){
+                       var userForm = UI.get("userForm");
+                        userForm.url = "get.do" ;
+                        userForm.setParam({_id:id});
+                        userForm.fillForm(function(data){
+                            fillDataSuccess(data);
+                        });
+
+                        var empModal = UI.get("empModal");
+                        empModal.show() ;
+                    }
+                });
+
+                //填充数据
+                var fillDataSuccess = function(data){
+                    var _data ;
+                    if(typeof data.msgType != ""){
+                        _data =  data.result;
+                    }
+                    for(var d in _data){
+                        try{
+                            $("#"+d,$("#userForm")).val(_data[d]);
+                        }catch (e){}
+                    }
+                    getRole(_data.org_text, _data.roles);
+                };
+
 
                 //多选删除
                 var delbut = widget.addButton('delbnt', '删除');
@@ -50,7 +85,54 @@
                         UI.get("userGrid").removeRowById(data);
                     })
                 };
+
+                //获取部门
+                $("#org_text").click(function(clickEvent){
+                    var orgModle = UI.get("orgModle");
+                    orgModle.css({width:"450px"});
+                    orgModle.show();
+                    orgModle.getSubmitBtn().bind("click",function(){
+                        var objs = UI.get("orgTree").getSelectValues();
+                        var orgStr = "" ;
+                        for(var i = 0 ; i < objs.length ; i++){
+                            var obj = objs[i];
+                            if (!obj) {
+                            } else {
+                                if (i != 0) {
+                                    orgStr += ";"
+                                }
+                                orgStr += obj["code"] + "," + obj["name"];
+                            }
+                        }
+                        $("#org_text").val(orgStr);
+                        UI.get("orgModle").hide();
+
+                        //获取角色
+                        getRole(orgStr,null);
+
+                    });
+                });
 			});
+
+            /**获取角色**/
+            var getRole = function(_orgStr,_roles){
+                //获取角色
+                $.post("../../admin/role/get.do",{json:JSON.stringify({org_text : _orgStr})},function(data){
+                    $("#roles").empty();
+                    var roles = data ;
+                    $.each(roles,function(i,role){
+                        var checkbox = $("<input type='checkbox' name='roles' value='"+role["rolecode"]+"'/>"+role["rolename"]+"");
+                        checkbox.appendTo("#roles");
+                    });
+
+                    if(_roles){
+                        for(var i = 0 ; i< _roles.length ; i++){
+                            var role = _roles[i] ;
+                            $("#roles input[name='roles'][value='"+role+"']").prop("checked", true);
+                        }
+                    }
+                });
+            }
 
 		</script>
 </head>
@@ -118,5 +200,70 @@
 			<!-- Main end -->
         </div>
     </div>
+
+    <@ui.modal id="empModal" title="用户管理" showButton=false>
+        <@ui.form id="userForm" action="save.do" class="form-horizontal">
+        <input type="hidden" name="_id" id="_id"/>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="username">用户名</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="username"
+                               placeholder="输入用户名"/>
+                    </div>
+
+                    <label class="col-sm-2 control-label" for="passWord">密码</label>
+                    <div class="col-sm-4">
+                        <input type="password"  class="form-control" id="password"
+                               placeholder="输入密码"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="firstname">姓</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="firstname"
+                               placeholder="输入姓"/>
+                    </div>
+
+                    <label class="col-sm-2 control-label" for="lastname">名字</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="lastname"
+                               placeholder="输入名字"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="org_text">选择部门</label>
+                    <div  class="col-sm-4" id="addOrg">
+                        <input type="text" class="form-control" name="org_text" id="org_text"
+                               placeholder="选择部门"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label" for="description">描述</label>
+                    <div class="col-sm-10">
+                        <textarea type="text" class="form-control" id="description"
+                                  placeholder="输入对用户的描述"></textarea>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">角色分配</h3>
+            </div>
+            <div class="panel-body" id="roles">
+
+            </div>
+        </div>
+        </@ui.form>
+    </@ui.modal>
+
+    <@ui.modal id="orgModle" title="选择部门" >
+        <@ui.tree url="../org/tree.do" id='orgTree'  label="name" nodeid="code" mutil="true">
+
+        </@ui.tree>
+    </@ui.modal>
 </body>
 </html>

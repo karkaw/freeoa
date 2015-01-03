@@ -1,5 +1,9 @@
 package com.damuzee.engine;
 
+import com.damuzee.engine.core.Execution;
+import com.damuzee.engine.domain.Task;
+
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -8,10 +12,10 @@ import java.util.Map;
 public interface WFEngine {
 
     /**
-     * 获取process服务
-     * @return IProcessService 流程定义服务
+     * 获取flow服务
+     * @return IFlowService 流程定义服务
      */
-    public IProcessService process();
+    public IFlowService flow();
 
     /**
      * 获取查询服务
@@ -45,6 +49,16 @@ public interface WFEngine {
      * @param operner  操作人
      * @return
      */
-    public Map startInstanceByName(String name, String operner);
+    public Map startInstanceByName(String name, String operner,Map args);
+
+    /**
+     * 同意操作处理
+     *
+     * @param taskId
+     * @param operator
+     * @param args
+     * @return
+     */
+    public List<Task> executeTask(String taskId, String operator, Map<String, Object> args);
 
 }

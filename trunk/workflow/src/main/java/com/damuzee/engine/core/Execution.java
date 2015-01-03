@@ -75,7 +75,7 @@ public class Execution implements Serializable {
 	/**
 	 * 返回的任务列表
 	 */
-	private List<Map> tasks = new ArrayList<Map>();
+	private List<Task> tasks = new ArrayList<Task>();
 	/**
 	 * 是否已合并
 	 * 针对join节点的处理
@@ -90,7 +90,7 @@ public class Execution implements Serializable {
 	 */
 	Execution(Execution execution, Flow flow, String parentNodeName) {
 		if(execution == null || flow == null || parentNodeName == null) {
-			throw new WFException("构造Execution对象失败，请检查execution、process、parentNodeName是否为空");
+			throw new WFException("构造Execution对象失败，请检查execution、processor、parentNodeName是否为空");
 		}
 		this.engine = execution.getEngine();
 		this.flow = flow;
@@ -163,7 +163,7 @@ public class Execution implements Serializable {
 	 * 返回任务结果集
 	 * @return
 	 */
-	public List<Map> getTasks() {
+	public List<Task> getTasks() {
 		return tasks;
 	}
 	
@@ -171,7 +171,7 @@ public class Execution implements Serializable {
 	 * 添加任务集合
 	 * @param tasks
 	 */
-	public void addTasks(List<Map> tasks) {
+	public void addTasks(List<Task> tasks) {
 		this.tasks.addAll(tasks);
 	}
 	
@@ -179,7 +179,7 @@ public class Execution implements Serializable {
 	 * 添加任务
 	 * @param task
 	 */
-	public void addTask(Map task) {
+	public void addTask(Task task) {
 		this.tasks.add(task);
 	}
 
@@ -239,6 +239,8 @@ public class Execution implements Serializable {
 		return engine;
 	}
 
+
+
 	public Order getParentOrder() {
 		return parentOrder;
 	}
@@ -254,4 +256,6 @@ public class Execution implements Serializable {
 	public void setChildOrderId(String childOrderId) {
 		this.childOrderId = childOrderId;
 	}
+
+
 }

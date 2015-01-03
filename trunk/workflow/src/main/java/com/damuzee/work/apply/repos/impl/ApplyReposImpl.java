@@ -13,7 +13,7 @@ import java.util.Map;
  */
 @Service
 public class ApplyReposImpl implements ApplyRepos {
-    private static  final String COLLECTION = "order" ;
+    private static  final String COLLECTION = "form" ;
 
     @Autowired
     MongoTemplate template;

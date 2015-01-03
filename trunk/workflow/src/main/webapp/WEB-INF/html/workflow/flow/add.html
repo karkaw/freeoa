@@ -15,7 +15,82 @@
     <@head />
     <link rel="stylesheet" href="${res}/freeui/css/tree.css">
     <link type="text/css" href="${res}/myflow/css/myflow.css" rel="stylesheet" />
+    <style type="text/css">
+        body {
+            margin: 0;
+            pading: 0;
+            text-align: left;
+            font-family: Arial, sans-serif, Helvetica, Tahoma;
+            font-size: 12px;
+            line-height: 1.5;
+            color: black;
+            background-image: url(img/bg.png);
+        }
 
+        .node {
+            width: 70px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid #fff;
+        }
+
+        .mover {
+            border: 1px solid #ddd;
+            background-color: #ddd;
+        }
+
+        .selected {
+            background-color: #ddd;
+        }
+
+        .state {
+
+        }
+
+        #myflow_tools {
+            position: absolute; top: 10; left: 10; background-color: #fff; width: 70px; cursor: default; padding: 3px;
+        }
+
+        #myflow_props{
+            position: absolute; top: 30; right: 50; background-color: #fff; width: 300px; padding: 3px;
+        }
+        #myflow_props table {
+
+        }
+
+        #myflow_props th {
+            letter-spacing: 2px;
+            text-align: left;
+            padding: 6px;
+            background: #ddd;
+        }
+
+        #myflow_props td {
+            background: #fff;
+            padding: 6px;
+        }
+
+        #pointer {
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        #path {
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        #task {
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        #state {
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+    </style>
     <script type="text/javascript" src="${res}/myflow/lib/raphael-min.js"></script>
     <script type="text/javascript" src="${res}/myflow/myflow.js"></script>
     <script type="text/javascript" src="${res}/myflow/myflow.jpdl3.js"></script>
@@ -236,21 +311,18 @@
 
             <tbody>
             <tr style="display: none">
-                <td class="panel-row-btn" rowspan="2">-</td>
-                <td >
-                    机构
+                <td class="panel-row-btn">-</td>
+                <td  class="width70">
+                    <select>
+                        <option value="0">机构角色</option>
+                        <option value="1">直属领导</option>
+                        <option value="2">自定义</option>
+                        <option value="3">上级角色</option>
+                    </select>
                 </td>
-                <td class="width50">
-                    =
-                </td>
+                <td> = </td>
                 <td>
-                     <input name="org_text" type="text"/>
-                </td>
-            </tr>
-            <tr  style="display: none">
-                <td >角色</td>
-                <td class="width50">in</td>
-                <td>
+                    <input name="org_text" type="text"/>
                     <label class="check-box-item" style="height: auto;">
 
                     </label>

@@ -3,6 +3,7 @@ package com.damuzee.admin.perm.action;
 import com.damuzee.core.util.JSONUtil;
 import com.damuzee.admin.perm.repos.UserRepos;
 import com.damuzee.core.web.bean.JsonResult;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,12 +43,31 @@ public class EmployeeAct {
         return "/employee/add" ;
     }
 
-    @RequestMapping(value = "save.do",method = RequestMethod.POST)
-    public String save(String json){
+    @RequestMapping(value = "get.do")
+    @ResponseBody
+    public JsonResult get(String json){
         Map mapvo = JSONUtil.stringToMap(json);
+        mapvo = userRepos.findUser(mapvo);
 
-        userRepos.saveUser(mapvo);
-        return "/employee/list" ;
+        return JsonResult.success(mapvo);
+    }
+
+    @RequestMapping(value = "edit.do")
+    public String edit(String id){
+
+        return "/employee/edit" ;
+    }
+
+    @RequestMapping(value = "save.do",method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult save(String json){
+        Map mapvo = JSONUtil.stringToMap(json);
+        if(mapvo.containsKey("_id")){
+            userRepos.updateUser(mapvo);
+        }else {
+            userRepos.saveUser(mapvo);
+        }
+        return JsonResult.success("ok");
     }
 
     @RequestMapping(value = "/delete.do", method = RequestMethod.POST)
