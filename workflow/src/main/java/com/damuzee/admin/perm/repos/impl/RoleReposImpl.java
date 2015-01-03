@@ -53,6 +53,11 @@ public class RoleReposImpl implements RoleRepos {
         return template.find(ROLES,query);
     }
 
+    public Map findRole(Map map) {
+
+        return template.findOne(ROLES,map);
+    }
+
     public  void updateRole(Map map){
         template.update(ROLES,map);
     }

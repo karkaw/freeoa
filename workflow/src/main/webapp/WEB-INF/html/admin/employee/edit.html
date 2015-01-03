@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns:t>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+    <!-- Title and other stuffs -->
+    <title>员工管理</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="" />
+    <link rel="stylesheet" href="${res}/freeui/css/tree.css">
+    <#include "/html/head.html"/>
+    <@head/>
+
+    <script type="text/javascript">
+       $(function(){
+           //获取部门
+           $("#org_text").click(function(clickEvent){
+               var orgModle = UI.get("orgModle");
+               orgModle.css({width:"450px"});
+               orgModle.show();
+               orgModle.getSubmitBtn().bind("click",function(){
+                   var objs = UI.get("orgTree").getSelectValues();
+                   var orgStr = "" ;
+                   for(var i = 0 ; i < objs.length ; i++){
+                       var obj = objs[i];
+                       if (!obj) {
+                       } else {
+                           if (i != 0) {
+                               orgStr += ";"
+                           }
+                           orgStr += obj["code"] + "," + obj["name"];
+                       }
+                   }
+                   $("#org_text").val(orgStr);
+                   UI.get("orgModle").hide();
+
+                   //获取角色
+                   $.post("../../admin/role/get.do",{json:JSON.stringify({org_text : orgStr})},function(data){
+                       $("#roles").empty();
+                       var roles = data ;
+                       $.each(roles,function(i,role){
+                           var checkbox = $("<input type='checkbox' name='roles' value='"+role["rolecode"]+"'/>"+role["rolename"]+"");
+                           checkbox.appendTo("#roles");
+                       });
+                   });
+               });
+           });
+
+       });
+    </script>
+</head>
+
+<body>
+	<!-- Header starts -->
+	<#include "/html/header.html"/>
+	<!-- Header ends -->
+
+	<!-- Main starts -->
+	<div class="main-container" id="main-container">
+		<div class="main-container-inner">
+			<#include "/html/sidebar.html"/>
+
+			<div class="main-content">
+				<div class="breadcrumbs" id="breadcrumbs">
+					<ul class="breadcrumb">
+						<li><i class="icon-home home-icon"></i> <a href="#">首页</a></li>
+						<li class="active">控制台</li>
+					</ul>
+					<!-- .breadcrumb -->
+
+					<div class="nav-search" id="nav-search">
+						<form class="form-search">
+							<span class="input-icon"> <input type="text"
+								placeholder="Search ..." class="nav-search-input"
+								id="nav-search-input" autocomplete="off" /> <i
+								class="icon-search nav-search-icon"></i>
+							</span>
+						</form>
+					</div>
+					<!-- #nav-search -->
+				</div>
+
+				<!-- page-content stats -->
+				<div class="page-content">
+					<div class="page-header">
+						<h1>
+							控制台 <small><i class="icon-double-angle-right"></i>添加员工</small>
+						</h1>
+					</div>
+					<!-- /.page-header -->
+
+					<div class="row">
+						<div class="col-xs-12">
+							<@ui.widget title="添加员工" id="addUserName">
+								<@ui.form id="acctBindForm" action="save.do" class="form-horizontal">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="username">用户名</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" id="username"
+                                                           placeholder="输入用户名"/>
+                                                </div>
+
+                                                <label class="col-sm-2 control-label" for="passWord">密码</label>
+                                                <div class="col-sm-4">
+                                                    <input type="password"  class="form-control" id="password"
+                                                           placeholder="输入密码"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="firstname">姓</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" id="firstname"
+                                                       placeholder="输入姓"/>
+                                                </div>
+
+                                                <label class="col-sm-2 control-label" for="lastname">名字</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" id="lastname"
+                                                       placeholder="输入名字"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="org_text">选择部门</label>
+                                                <div  class="col-sm-4" id="addOrg">
+                                                    <input type="text" class="form-control" name="org_text" id="org_text"
+                                                           placeholder="选择部门"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label  class="col-sm-2 control-label" for="description">描述</label>
+                                                <div class="col-sm-10">
+                                                    <textarea type="text" class="form-control" id="description"
+                                                           placeholder="输入对用户的描述"></textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">角色分配</h3>
+                                        </div>
+                                        <div class="panel-body" id="roles">
+
+                                        </div>
+                                    </div>
+                                </@ui.form>
+							</@ui.widget>
+						</div>
+					</div>
+				</div>
+				<!-- page-content end -->
+			</div>
+			<!-- Main end -->
+        </div>
+
+        <@ui.modal id="orgModle" title="选择部门" >
+            <@ui.tree url="../org/tree.do" id='orgTree'  label="name" nodeid="code" mutil="true">
+
+            </@ui.tree>
+        </@ui.modal>
+</body>
+</html>

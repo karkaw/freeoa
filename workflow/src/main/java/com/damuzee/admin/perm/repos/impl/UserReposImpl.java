@@ -43,6 +43,11 @@ public class UserReposImpl  extends UserRepos {
        return  template.find(USERINFO,map);
     }
 
+    @Override
+    public Map findUser(Map map) {
+        return  template.findOne(USERINFO,map);
+    }
+
     public  Map findUserByPage(Map map){
         return  template.findByPage(USERINFO,map);
     }

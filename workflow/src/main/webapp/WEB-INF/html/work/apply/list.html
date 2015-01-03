@@ -51,7 +51,7 @@
                             $("#form-preview").append(tpl["content"]);
                             for(var key in tpl){
                                 if(key == "_id"){
-                                    $("input[name='form_id']", $("#form-preview")).val(tpl["_id"]);
+                                    $("input[name='tpl_id']", $("#form-preview")).val(tpl["_id"]);
                                 }else{
                                     var input = $("*[name='"+ key +"']", $("#form-preview"));
                                     input.val(tpl[key]);
@@ -64,27 +64,6 @@
                     });
                 }
 
-                //提交保存
-                UI.get("applyModle").getSubmitBtn().unbind("click").bind("click",function(){
-                    // 提交保存数据
-                    $("#applyForm").ajaxSubmit({
-                        url : "save.do",
-                        type : "post",
-                        success : function(data) {
-                            if($.gritter){
-                                $.gritter.add({
-                                    title: '提示信息',
-                                    text: data.msg || "操作成功！",
-                                    class_name: 'gritter-' + data.msgType
-                                });
-                            }else{
-                                alert(data.msg);
-                            }
-                            UI.get("applyModle").hide();
-                            UI.get("applyGrid").reload();
-                        }
-                    });
-                });
 
                 //修改按钮
                 $("#applyGrid").find("tr a:eq(0)").bind("click",function(){
@@ -106,6 +85,28 @@
                             modal.css({width:"60%"});
                             modal.show();
                         });
+                    });
+                });
+
+                //提交保存
+                UI.get("applyModle").getSubmitBtn().unbind("click").bind("click",function(){
+                    // 提交保存数据
+                    $("#applyForm").ajaxSubmit({
+                        url : "save.do",
+                        type : "post",
+                        success : function(data) {
+                            if($.gritter){
+                                $.gritter.add({
+                                    title: '提示信息',
+                                    text: data.msg || "操作成功！",
+                                    class_name: 'gritter-' + data.msgType
+                                });
+                            }else{
+                                alert(data.msg);
+                            }
+                            UI.get("applyModle").hide();
+                            UI.get("applyGrid").reload();
+                        }
                     });
                 });
             });

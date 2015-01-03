@@ -1,5 +1,7 @@
 package com.damuzee.engine;
 
+import com.damuzee.engine.domain.Order;
+
 import java.util.Map;
 
 /**
@@ -7,5 +9,7 @@ import java.util.Map;
  */
 public interface AbstractRepos {
 
-    public Map getProcessById (String id);
+    public Map getFlowById(String id);
+
+    public String saveOrder(Order order);
 }

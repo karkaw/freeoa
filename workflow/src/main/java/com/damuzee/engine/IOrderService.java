@@ -20,7 +20,7 @@ public interface IOrderService {
      * @param args 参数列表
      * @return Order 活动流程实例对象
      */
-    Order createOrder(Flow flow, String operator, Map<String, Object> args);
+    public Order createOrder(Flow flow, String operator, Map<String, Object> args);
 
     /**
      * 根据流程、操作人员、父流程实例ID创建流程实例
@@ -31,5 +31,18 @@ public interface IOrderService {
      * @param parentNodeName 父流程节点模型
      * @return 活动流程实例对象
      */
-    Order createOrder(Flow flow, String operator, Map<String, Object> args, String parentId, String parentNodeName);
+    public Order createOrder(Flow flow, String operator, Map<String, Object> args, String parentId, String parentNodeName);
+
+    /**
+     * 更新流程实例
+     * @param order 流程实例对象
+     */
+    public String save(Order order);
+
+    /**
+     * 更新流程实例
+     * @param order 流程实例对象
+     */
+    public void update(Order order);
+
 }

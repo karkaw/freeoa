@@ -5,6 +5,8 @@ import com.damuzee.core.util.JSONUtil;
 import com.damuzee.core.web.bean.JsonResult;
 import com.damuzee.core.web.session.SessionProvider;
 import com.damuzee.engine.WFEngine;
+import com.damuzee.engine.domain.Order;
+import com.damuzee.engine.domain.Task;
 import com.damuzee.web.util.ObjectConvert;
 import com.damuzee.work.apply.domain.Apply;
 import com.damuzee.work.apply.repos.ApplyRepos;
@@ -44,18 +46,25 @@ public class ApplyAct {
 
     @RequestMapping(value = "jlist.do", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> jlist(String json){
+    public Map<String,Object> jlist(String json,HttpServletRequest request){
         Map<String,Object> mapvo = JSONUtil.stringToMap(json);
+
+        //创建人
+        Map userMap = (Map)session.getAttribute(request, ShiroUser.LOGIN_USER_KEY);
+        mapvo.put(Task.OPERATOR,userMap.get(ShiroUser.USER_NAME));
+
         Map<String,Object> map = applyTepos.findApplyByPage(mapvo);
         return map ;
     }
 
     @RequestMapping(value = "/get.do", method = RequestMethod.POST)
     @ResponseBody
-    public Map get(String id) {
+    public Map get(String id,HttpServletRequest request) {
         if(id != null && !id.equals("")){
             Map map = new HashMap();
             map.put("_id",new ObjectId(id));
+
+
             Map temp = applyTepos.findApply(map);
 
             Map outMap = new HashMap();
@@ -74,15 +83,21 @@ public class ApplyAct {
 
         params.put(Apply.CREATOR,userMap.get(ShiroUser.USER_NAME));
         String id  = (String)params.remove("_id") ;
+
+
+
         if (id.equals("")){
              id = applyTepos.saveApply(params);
+
+            //启用工作流参数
+            Map args = new HashMap() ;
+            args.put(Order.FORM_ID,id) ;
+            //开始工作流
+            engine.startInstanceByName((String)params.get("object_code"),(String)userMap.get(ShiroUser.USER_NAME) ,args);
         }else{
              params.put("_id",new ObjectId(id));
-              applyTepos.updateApply(params);
+             applyTepos.updateApply(params);
         }
-
-        //开始工作流
-        engine.startInstanceByName((String)params.get("object_code"),(String)userMap.get(ShiroUser.USER_NAME));
 
         return JsonResult.success(id);
     }
