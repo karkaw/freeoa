@@ -20,6 +20,14 @@ public interface IQueryService {
     public List  queryUserByOrgAndRole(List<Map> roles);
 
     /**
+     * 获取定义的参与者
+     *
+     * @param node
+     * @return
+     */
+    public List  getActorUser(Map node);
+
+    /**
      * 获取流程单
      * @param orderId
      * @return
