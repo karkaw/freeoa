@@ -3,6 +3,7 @@ package com.damuzee.engine.core;
 import com.damuzee.common.Constants;
 import com.damuzee.core.auth.repos.impl.AuthUserReposImpl;
 import com.damuzee.engine.IQueryService;
+import com.damuzee.engine.domain.Flow;
 import com.damuzee.engine.domain.Order;
 import com.damuzee.engine.domain.Task;
 import org.bson.types.ObjectId;
@@ -64,6 +65,38 @@ public class QueryServiceImpl extends ReposImpl  implements IQueryService {
         }
 
         logger.log(Level.INFO,"------------查询到的角色---------参数： " + userList.toString());
+        return userList;
+    }
+
+    @Override
+    public List getActorUser(Map node) {
+
+        List<Map> actorList = (List)Task.getPropValue(node,Flow.ROLES);
+        List userList = new ArrayList();
+
+        for (Map o : actorList){
+
+            String roleType  = (String)o.get(Flow.ROLE_TYPE);
+            if(roleType.equals("5")){
+                userList.add(o.get(Flow.ORG_TEXT));
+            }else{
+                List roles = new ArrayList();
+                Map orgs = new HashMap();
+                String orgcode  = (String)o.get(Flow.ORG_TEXT);
+                List<Map> rolecodes = (List) o.get(Flow.ROLE_CODE);
+
+                String [] key = orgcode.split(",") ;
+                List value = new ArrayList() ;
+                for(Map role : rolecodes){
+                    if((Boolean)role.get(Flow.CHECKED)){
+                        value.add(role.get(Flow.VALUE));
+                    }
+                }
+                orgs.put(key[0],value);
+                roles.add(orgs);
+                userList.addAll(queryUserByOrgAndRole(roles));
+            }
+        }
         return userList;
     }
 

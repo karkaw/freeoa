@@ -86,7 +86,7 @@ public class TaskServiceImpl  extends ReposImpl  implements ITaskService {
         task.warp(taskModel,execution);
 
         //获取任务处理的用户
-        List useList = queryService.queryUserByOrgAndRole(task.getActorUser(taskModel)) ;
+        List useList = queryService.getActorUser(taskModel);
         task.put(Task.ACTOR_IDS,useList) ;
 
         saveTask(task);

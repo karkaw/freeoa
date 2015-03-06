@@ -103,6 +103,8 @@ public class Flow extends BaseMap implements Map<String, Object>, Serializable {
 
     public static final String ROLE_CODE = "role_code";
 
+    public static final String ROLE_TYPE = "type";
+
     public static final String CHECKED = "checked" ;
 
     FlowModel model;

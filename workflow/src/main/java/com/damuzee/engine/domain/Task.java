@@ -121,30 +121,21 @@ public class Task  extends BaseMap implements Map<String, Object>, Serializable 
        return this;
     }
 
+    /**
+     * 获取节点参与者
+     *
+     * @param node
+     * @return
+     */
     public List getActorUser(Map node){
         List<Map> actorList = (List)getPropValue(node,Flow.ROLES);
 
-        List roles = new ArrayList();
-        for (Map o : actorList){
-            Map orgs = new HashMap();
-            String orgcode  = (String)o.get(Flow.ORG_TEXT);
-            List<Map> rolecodes = (List) o.get(Flow.ROLE_CODE);
 
-            String [] key = orgcode.split(",") ;
-            List value = new ArrayList() ;
-            for(Map role : rolecodes){
-                if((Boolean)role.get(Flow.CHECKED)){
-                    value.add(role.get(Flow.VALUE));
-                }
-            }
-            orgs.put(key[0],value);
-            roles.add(orgs);
-        }
-        return roles ;
+        return actorList ;
     }
 
     //解析流程定义的props值
-    public Object getPropValue(Map node,String key){
+    public static Object getPropValue(Map node,String key){
 
         Map props = (Map)node.get(Flow.PROPS);
         Map value = (Map)props.get(key);
