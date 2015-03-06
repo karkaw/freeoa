@@ -1,7 +1,5 @@
 package com.damuzee.service.report.domain;
 
-import com.damuzee.engine.BaseMap;
-
 /**
  * 举报信息
  * <p/>

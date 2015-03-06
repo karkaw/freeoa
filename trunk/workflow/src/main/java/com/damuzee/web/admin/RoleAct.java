@@ -2,7 +2,7 @@ package com.damuzee.web.admin;
 
 import com.damuzee.core.util.JSONUtil;
 import com.damuzee.core.web.bean.JsonResult;
-import com.damuzee.admin.perm.repos.RoleRepos;
+import com.damuzee.service.perm.repos.RoleRepos;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;

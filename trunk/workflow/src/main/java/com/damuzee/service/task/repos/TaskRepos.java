@@ -1,4 +1,4 @@
-package com.damuzee.work.task.repos;
+package com.damuzee.service.task.repos;
 
 import java.util.List;
 import java.util.Map;

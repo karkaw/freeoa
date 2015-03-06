@@ -1,6 +1,6 @@
-package com.damuzee.admin.perm.repos.impl;
+package com.damuzee.service.perm.repos.impl;
 
-import com.damuzee.admin.perm.repos.ResourceRepos;
+import com.damuzee.service.perm.repos.ResourceRepos;
 import org.damuzee.mongo.MongoTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

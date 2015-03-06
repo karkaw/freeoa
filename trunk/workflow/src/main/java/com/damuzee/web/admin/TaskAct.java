@@ -8,7 +8,7 @@ import com.damuzee.engine.domain.Task;
 import com.damuzee.core.util.ObjectConvert;
 import com.damuzee.service.apply.domain.Apply;
 import com.damuzee.service.apply.repos.ApplyRepos;
-import com.damuzee.work.task.repos.TaskRepos;
+import com.damuzee.service.task.repos.TaskRepos;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,7 +1,7 @@
 package com.damuzee.web.admin;
 
-import com.damuzee.admin.perm.domain.Org;
-import com.damuzee.admin.perm.repos.OrgRepos;
+import com.damuzee.service.perm.domain.Org;
+import com.damuzee.service.perm.repos.OrgRepos;
 import com.damuzee.common.util.MongodbUtil;
 import com.damuzee.core.util.JSONUtil;
 import com.damuzee.core.web.bean.JsonResult;
