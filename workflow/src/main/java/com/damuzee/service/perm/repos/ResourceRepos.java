@@ -1,4 +1,4 @@
-package com.damuzee.admin.perm.repos;
+package com.damuzee.service.perm.repos;
 
 import java.util.List;
 import java.util.Map;

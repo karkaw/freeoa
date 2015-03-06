@@ -1,4 +1,4 @@
-package com.damuzee.admin.perm.domain;
+package com.damuzee.service.perm.domain;
 
 /**
  * Created by Administrator on 14-11-27.

@@ -1,6 +1,6 @@
-package com.damuzee.work.task.repos.impl;
+package com.damuzee.service.task.repos.impl;
 
-import com.damuzee.work.task.repos.TaskRepos;
+import com.damuzee.service.task.repos.TaskRepos;
 import org.damuzee.mongo.MongoTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.damuzee.work.task.domain;
+package com.damuzee.service.task.domain;
 
 /**
  * Created by Administrator on 2014/11/27.

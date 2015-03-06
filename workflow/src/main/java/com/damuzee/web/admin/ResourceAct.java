@@ -1,9 +1,9 @@
 package com.damuzee.web.admin;
 
-import com.damuzee.admin.perm.domain.Resource;
+import com.damuzee.service.perm.domain.Resource;
 import com.damuzee.core.util.JSONUtil;
 import com.damuzee.core.web.bean.JsonResult;
-import com.damuzee.admin.perm.repos.ResourceRepos;
+import com.damuzee.service.perm.repos.ResourceRepos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
