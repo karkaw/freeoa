@@ -53,18 +53,7 @@
     <listener>
         <listener-class>com.damuzee.core.web.listener.WebConfigListener</listener-class>
     </listener>
-	<servlet>
-		<servlet-name>module</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath*:servlet-module.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
 
-	
 	<servlet>
 		<servlet-name>admin</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet
@@ -75,16 +64,6 @@
 		</init-param>
 		<load-on-startup>4</load-on-startup>
 	</servlet>
-    <servlet>
-        <servlet-name>workflow</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet
-        </servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath*:servlet-workflow.xml</param-value>
-        </init-param>
-        <load-on-startup>4</load-on-startup>
-    </servlet>
 
     <servlet>
         <servlet-name>auth</servlet-name>
@@ -106,50 +85,9 @@
         <load-on-startup>4</load-on-startup>
     </servlet>
 
-    <servlet>
-        <servlet-name>work</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath*:servlet-work.xml</param-value>
-        </init-param>
-        <load-on-startup>4</load-on-startup>
-    </servlet>
-
-    <servlet>
-        <servlet-name>system</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath*:servlet-system.xml</param-value>
-        </init-param>
-        <load-on-startup>4</load-on-startup>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>system</servlet-name>
-        <url-pattern>/system/*</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet-mapping>
-        <servlet-name>work</servlet-name>
-        <url-pattern>/work/*</url-pattern>
-    </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>front</servlet-name>
         <url-pattern>/f/*</url-pattern>
-    </servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>module</servlet-name>
-		<url-pattern>/module/*</url-pattern>
-	</servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>workflow</servlet-name>
-        <url-pattern>/wf/*</url-pattern>
     </servlet-mapping>
 
 	<servlet-mapping>

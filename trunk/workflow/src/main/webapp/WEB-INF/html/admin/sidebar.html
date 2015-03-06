@@ -1,0 +1,108 @@
+<script type="text/javascript">
+ $(function(){
+    var pathname =  window.location.pathname.split("/") ;
+     $("#" + pathname[2]).addClass("active");
+ })
+</script>
+<a class="menu-toggler" id="menu-toggler" href="#">
+	<span class="menu-text"></span>
+</a>
+
+<div class="sidebar" id="sidebar">
+
+	<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+		<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+			<button class="btn btn-success">
+				<i class="icon-signal"></i>
+			</button>
+
+			<button class="btn btn-info">
+				<i class="icon-pencil"></i>
+			</button>
+
+			<button class="btn btn-warning">
+				<i class="icon-group"></i>
+			</button>
+
+			<button class="btn btn-danger">
+				<i class="icon-cogs"></i>
+			</button>
+		</div>
+
+		<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+			<span class="btn btn-success"></span>
+
+			<span class="btn btn-info"></span>
+
+			<span class="btn btn-warning"></span>
+
+			<span class="btn btn-danger"></span>
+		</div>
+	</div><!-- #sidebar-shortcuts -->
+  
+	<ul class="nav nav-list">
+		<li>
+			<a href="#" class="dropdown-toggle">
+				<i class="icon-desktop"></i>
+				<span class="menu-text">首页  </span>
+			</a>
+        </li>
+        <li id="admin">
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-dashboard"></i>
+                <span class="menu-text"> 权限管理 </span>
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li ><a href="${base}/admin/resource/list.do"><i class="icon-double-angle-right"></i>资源管理</a></li>
+                <li><a href="${base}/admin/employee/list.do"><i class="icon-double-angle-right"></i>员工管理</a></li>
+                <li><a href="${base}/admin/role/list.do"><i class="icon-double-angle-right"></i>角色管理</a></li>
+                <li><a href="${base}/admin/org/list.do"><i class="icon-double-angle-right"></i>机构管理</a></li>
+            </ul>
+        </li>
+        <li id="wf">
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-dashboard"></i>
+                <span class="menu-text"> 工作流 </span>
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li><a href="${base}/admin/wf/flow/list.do"><i class="icon-double-angle-right"></i>流程定义 </a></li>
+                <li><a href="${base}/admin/wf/object/list.do"><i class="icon-double-angle-right"></i>对象定义</a></li>
+                <li><a href="${base}/admin/wf/template/list.do"><i class="icon-double-angle-right"></i>模板管理</a></li>
+            </ul>
+        </li>
+        <li id="work">
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-dashboard"></i>
+                <span class="menu-text"> 工作空间 </span>
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li><a href="${base}/admin/work/apply/list.do"><i class="icon-double-angle-right"></i>我的申请</a></li>
+                <li><a href="${base}/admin/work/task/list.do"><i class="icon-double-angle-right"></i>我的任务</a></li>
+            </ul>
+        </li>
+
+        <li id="system">
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-dashboard"></i>
+                <span class="menu-text"> 系统管理 </span>
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li><a href="${base}/admin/system/task/list.do"><i class="icon-double-angle-right"></i>系统全局配置</a></li>
+                <li><a href="${base}/admin/system/task/list.do"><i class="icon-double-angle-right"></i>码值管理</a></li>
+                <li><a href="${base}/admin/system/menu/list.do"><i class="icon-double-angle-right"></i>菜单管理</a></li>
+            </ul>
+
+	</ul><!-- /.nav-list -->
+
+	<div class="sidebar-collapse" id="sidebar-collapse">
+		<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+	</div>
+</div>
