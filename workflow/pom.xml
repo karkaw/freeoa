@@ -13,36 +13,48 @@
 	<artifactId>workflow</artifactId>
 	<name>${project.artifactId}</name>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<configuration>
+					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+					<overlays>
+						<overlay>
+							<groupId>com.damuzee</groupId>
+							<artifactId>freeui</artifactId>
+						</overlay>
+					</overlays>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
 	<dependencies>
-        <dependency>
-            <groupId>com.damuzee</groupId>
-            <artifactId>freeui</artifactId>
-            <version>1.0.0</version>
-            <type>war</type>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
-            <version>1.2.3</version>
-        </dependency>
+		<dependency>
+			<groupId>com.damuzee</groupId>
+			<artifactId>freeui</artifactId>
+			<version>1.0.0</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>1.2.3</version>
+		</dependency>
 
-        <dependency>
+		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-web</artifactId>
 			<version>1.2.3</version>
 		</dependency>
 
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>1.2.3</version>
-        </dependency>
-
 		<dependency>
-			<groupId>com.damuzee</groupId>
-			<artifactId>sqlbuilder</artifactId>
-			<version>1.0.0</version>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>1.2.3</version>
 		</dependency>
 
 		<dependency>
@@ -75,41 +87,22 @@
 			<version>1.6.0</version>
 		</dependency>
 
-        <dependency>
-            <groupId>com.damuzee</groupId>
-            <artifactId>mongodb</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+		<dependency>
+			<groupId>com.damuzee</groupId>
+			<artifactId>mongodb</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-        </dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${org.springframework-version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 	</dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
-                <configuration>
-                    <packagingExcludes>WEB-INF/web.xml</packagingExcludes>
-                    <overlays>
-                        <overlay>
-                            <groupId>com.damuzee</groupId>
-                            <artifactId>freeui</artifactId>
-                        </overlay>
-                    </overlays>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>

@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns:t>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+		<!-- Title and other stuffs -->
+		<title>对象定义管理</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="author" content="" />
+
+        <#include "../../head.html"/>
+        <@head />
+        <script src="${res}/freeui/js/form.js"></script>
+
+		<!-- jQuery -->
+		<script>
+			$(function() {
+				var widget = UI.get("objectWidget");
+				var addbut = widget.addButton('addbnt', '添加');
+                addbut.bind("click",function(){
+                    window.location.href = 'add.do';
+                });
+
+                //多选删除
+                var delbut = widget.addButton('delbnt', '删除');
+                delbut.unbind("click").bind("click",function(){
+                    var ids = UI.get("objectGrid").getSelectValues(true);
+                    if(ids != null){
+                        deleteResource(ids);
+                    }
+                });
+
+                //删除按钮
+                $("#objectGrid").find("tr a:eq(1)").bind("click",function(){
+                    var id = $(this).parent().parent("tr").find("input:checkbox").val();
+                    if(id != null){
+                        deleteResource([id]);
+                    }
+                });
+
+                //提交删除数据
+                var deleteResource = function(data){
+                    var form = new UI.Form({url:'delete.do'});
+                    form.submit({"ids":data},function(){
+                        // UI.get("roleGrid").reload();   //提交完成刷新grid
+                        UI.get("objectGrid").removeRowById(data);
+                    })
+                };
+
+			});
+		</script>
+</head>
+
+<body>
+	<!-- Header starts -->
+	<#include "../../header.html"/>
+	<!-- Header ends -->
+
+	<!-- Main starts -->
+	<div class="main-container" id="main-container">
+		<div class="main-container-inner">
+			<#include "../../sidebar.html"/>
+
+			<div class="main-content">
+				<div class="breadcrumbs" id="breadcrumbs">
+					<ul class="breadcrumb">
+						<li><i class="icon-home home-icon"></i> <a href="#">首页</a></li>
+						<li class="active">控制台</li>
+					</ul>
+					<!-- .breadcrumb -->
+
+					<div class="nav-search" id="nav-search">
+						<form class="form-search">
+							<span class="input-icon"> <input type="text"
+								placeholder="Search /html." class="nav-search-input"
+								id="nav-search-input" autocomplete="off" /> <i
+								class="icon-search nav-search-icon"></i>
+							</span>
+						</form>
+					</div>
+					<!-- #nav-search -->
+				</div>
+
+				<!-- page-content stats -->
+				<div class="page-content">
+					<div class="page-header">
+						<h1>
+							控制台 <small><i class="icon-double-angle-right"></i>对象定义管理</small>
+						</h1>
+					</div>
+					<!-- /.page-header -->
+
+					<div class="row">
+						<div class="col-xs-12">
+							<@ui.widget id="objectWidget">
+                                <@ui.grid id="objectGrid"  action="jlist.do"  height="450px" >
+                                    <@ui.column type='checkbox'   name="_id"></@ui.column>
+                                    <@ui.column title="名称"      name="name"></@ui.column>
+                                    <@ui.column title="上级"      name="extend" class="hidden-sm hidden-xs"></@ui.column>
+                                    <@ui.column title="编码"      name="code"></@ui.column>
+                                    <@ui.column title="类型"       name="type"></@ui.column>
+                                    <@ui.column title="描述"      name="description" class="hidden-xs"></@ui.column>
+                                    <@ui.column title="操作" align="center">
+                                        <a>修改</a> <a>删除</a>
+                                    </@ui.column>
+                                </@ui.grid>
+							</@ui.widget>
+						</div>
+					</div>
+				</div>
+				<!-- page-content end -->
+			</div>
+			<!-- Main end -->
+        </div>
+    </div>
+</body>
+</html>
