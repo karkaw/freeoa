@@ -7,12 +7,12 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:webApplicationCntent.xml
+            classpath:webApplicationCntent.xml
             classpath:application-worlflow.xml
-			classpath:kaptcha-config.xml
-			classpath:application-content.xml
-			classpath:spring-shiro.xml
-		</param-value>
+            classpath:kaptcha-config.xml
+            classpath:application-content.xml
+            classpath:spring-shiro.xml
+        </param-value>
 	</context-param>
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -66,16 +66,6 @@
 	</servlet>
 
     <servlet>
-        <servlet-name>auth</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath*:spring-shiro.xml</param-value>
-        </init-param>
-        <load-on-startup>4</load-on-startup>
-    </servlet>
-
-    <servlet>
         <servlet-name>front</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
@@ -87,7 +77,7 @@
 
     <servlet-mapping>
         <servlet-name>front</servlet-name>
-        <url-pattern>/f/*</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
 	<servlet-mapping>
@@ -95,11 +85,6 @@
 		<url-pattern>/admin/*</url-pattern>
 	</servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>auth</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
-	
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.jpg</url-pattern>

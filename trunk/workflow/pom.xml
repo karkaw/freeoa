@@ -10,7 +10,7 @@
 	</parent>
 
 	<packaging>war</packaging>
-	<artifactId>workflow</artifactId>
+	<artifactId>xin</artifactId>
 	<name>${project.artifactId}</name>
 
 	<build>
