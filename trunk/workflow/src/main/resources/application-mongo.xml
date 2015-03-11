@@ -12,7 +12,7 @@
     <bean id="mongoFactory" class="org.damuzee.mongo.factory.SimpleMongoFactory">
         <property name="host" value="localhost"></property>
         <property name="port" value="27017"></property>
-        <property name="dbName" value="xin"></property>
+        <property name="dbName" value="workflow"></property>
     </bean>
 
     <bean id="mongoTemplate" class="org.damuzee.mongo.MongoTemplate">
