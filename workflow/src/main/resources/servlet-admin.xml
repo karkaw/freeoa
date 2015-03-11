@@ -6,7 +6,7 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 		
 		 
- 	<context:component-scan base-package="com.damuzee.web.admin"/>
+ 	<context:component-scan base-package="com.damuzee.web.admin,com.damuzee.core.auth.action"/>
 
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="cacheSeconds" value="-1"/>

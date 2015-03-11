@@ -5,7 +5,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-
     <context:component-scan base-package="com.damuzee.web.front"/>
 
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -61,7 +60,7 @@
 	<bean id="freemarkerViewResolver" class="com.damuzee.core.web.springmvc.RichFreeMarkerViewResolver">
 		<property name="cache" value="true"/>
 		<property name="suffix" value=".html"/>
-		<property name="root" value="front"/>
+        <property name="root" value="html/front"/>
 		<property name="contentType" value="text/html; charset=UTF-8"/>
 		<property name="exposeRequestAttributes" value="false"/>
 		<property name="exposeSessionAttributes" value="false"/>
