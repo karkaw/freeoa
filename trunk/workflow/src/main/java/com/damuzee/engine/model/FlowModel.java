@@ -48,7 +48,6 @@ public class FlowModel extends BaseModel{
         for (String key  : pathMap.keySet()){
             Map<String,Object> path = (Map<String,Object>)pathMap.get(key);
             if (path != null && path.get(Flow.FROM)!= null &&  path.get(Flow.FROM).equals(nodeCode)){
-
                 path.put(Task.TASK_NAME,key) ;
                list.add(path);
             }

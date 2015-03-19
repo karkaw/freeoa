@@ -1,5 +1,7 @@
 package com.damuzee.service.perm.repos.impl;
 
+import com.damuzee.core.auth.domain.ShiroUser;
+import com.damuzee.core.auth.util.EndecryptUtils;
 import com.damuzee.service.perm.domain.Employee;
 import com.damuzee.core.auth.util.EncryptUtils;
 import com.damuzee.service.perm.repos.UserRepos;
@@ -23,9 +25,13 @@ public class UserReposImpl  extends UserRepos {
     MongoTemplate template;
 
     public String saveUser(Map map) {
+        String username = (String)map.get(Employee.USER_NAME);
         String password = (String)map.get(Employee.PASS_WORD);
+
+        ShiroUser user = EndecryptUtils.md5Password(username, password);
         if (password != null){
-            map.put(Employee.PASS_WORD, EncryptUtils.encryptMD5(password));
+            map.put(Employee.PASS_WORD, user.getPassword());
+            map.put(Employee.SALT, user.getSalt());
         }
         String org_text = (String)map.get(Employee.ORG_TEXT);
         List orgList = new ArrayList();

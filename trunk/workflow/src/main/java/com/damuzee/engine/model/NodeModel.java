@@ -3,8 +3,10 @@ package com.damuzee.engine.model;
 import com.damuzee.engine.Action;
 import com.damuzee.engine.core.Execution;
 import com.damuzee.engine.domain.Flow;
+import com.damuzee.engine.domain.Task;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -14,6 +16,10 @@ import java.util.logging.Logger;
  * Created by karka.w on 14-12-10.
  */
 public abstract class NodeModel extends BaseModel implements Action{
+
+    public String currentNodename = null;
+
+    private Map<String,Object> params = new HashMap<String,Object>();
 
     Logger logger = Logger.getLogger("NodeModel");
 
@@ -36,6 +42,10 @@ public abstract class NodeModel extends BaseModel implements Action{
     }
 
     public void run(Execution execution){
+        if(nextModel == null || nextModel.size() ==0){
+            FlowModel model = execution.getFlow().getModel();
+            nextModel = model.getNextNodes(currentNodename);
+        }
         ProcessModel processModel = new ProcessModel(nextModel);
         processModel.exec(execution);
     }
@@ -62,5 +72,13 @@ public abstract class NodeModel extends BaseModel implements Action{
 
     public void setNextModel(List<Map> nextModel) {
         this.nextModel = nextModel;
+    }
+
+    public void setParams(String key ,Object value) {
+        this.params.put(key,value);
+    }
+
+    public Object getParam(String key) {
+        return params.get(key);
     }
 }

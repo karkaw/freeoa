@@ -16,31 +16,37 @@
                     <bean class="com.damuzee.core.auth.shiro.BaseFormAuthenticationFilter"/>
                 </entry>
                 <entry key="logout">
-                    <bean class="com.damuzee.core.auth.shiro.LogoutFilter"/>
+                    <bean class="com.damuzee.core.auth.shiro.LogoutFilter">
+                        <property name="redirectUrl" value="/admin/login.do" />
+                    </bean>
                 </entry>
             </map>
         </property>
         <property name="filterChainDefinitions">
             <value>
-                /admin/login.do = anon
+                /admin/login.do = authc
                 /admin/logout.do = logout
                 /res/** = anon
-                /admin/** = authc
+                /admin/** = user
             </value>
         </property>
     </bean>
 
     <!--自定义Realm 继承自AuthorizingRealm -->
-    <bean id="shiroDbRealm" class="com.damuzee.core.auth.shiro.ShiroDbRealm"></bean>
+    <bean id="shiroDbRealm" class="com.damuzee.core.auth.shiro.ShiroDbRealm">
+        <property name="credentialsMatcher" ref="passwordMatcher"></property>
+    </bean>
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager"></bean>
-    <!--<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager"/>-->
+    <bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager"/>
 
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <!--设置自定义realm -->
         <property name="realm" ref="shiroDbRealm" />
        <!-- <property name="sessionManager" ref="sessionManager"/>-->
-        <!--<property name="cacheManager" ref="shiroCacheManager" />-->
+        <property name="cacheManager" ref="shiroCacheManager" />
     </bean>
+
+    <bean id="passwordMatcher" class="com.damuzee.core.auth.match.LimitRetryHashedMatcher"/>
 
     <!-- securityManager -->
     <bean  class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">

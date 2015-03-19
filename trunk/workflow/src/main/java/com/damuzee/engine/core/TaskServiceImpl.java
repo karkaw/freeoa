@@ -81,7 +81,10 @@ public class TaskServiceImpl  extends ReposImpl  implements ITaskService {
 
     @Override
     public List<Task> createTask(Map taskModel, Execution execution) {
+        logger.log(Level.INFO,"----------------检查是否存在相同的任务---------------------+++++" );
+
         logger.log(Level.INFO,"----------------创建一个新的任务---------------------+++++" );
+
         Task task = new Task();
         task.warp(taskModel,execution);
 
