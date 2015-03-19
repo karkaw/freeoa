@@ -88,6 +88,8 @@ public class Flow extends BaseMap implements Map<String, Object>, Serializable {
      */
     public static  final String TASK = "task" ;
 
+    public static  final String FORK = "fork" ;
+
     /**
      * 节点类型  结束
      */

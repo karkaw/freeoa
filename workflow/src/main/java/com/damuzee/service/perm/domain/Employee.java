@@ -6,6 +6,7 @@ package com.damuzee.service.perm.domain;
 public class Employee {
 
     public static final String USER_NAME = "username" ;
+    public static final String SALT  = "salt" ;
     public static final String PASS_WORD = "password" ;
     public static final String FIRST_NAME = "firstname" ;
     public static final String LAST_NAME = "lastname" ;

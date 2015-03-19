@@ -35,10 +35,13 @@ public class ProcessModel extends NodeModel implements Action {
                 nextNode.put(Task.TASK_NAME,model.get(Flow.TO));
                 if(nextNode != null){
                     String type = (String)nextNode.get(Flow.TYPE);
-                    if(type.equals(Flow.TASK)){
+                    if(type.equals(Flow.TASK)){//下一步是任务节点，创建一个新任务
                        fire(new CreateTaskHandler(nextNode),execution);
-                    }else{
-
+                    }else if (type.equals(Flow.FORK)){ //下一步是分支节点，继续执行
+                        NodeModel nodeModel = new ForkModel();
+                        nodeModel.currentNodename = (String)model.get(Flow.TO);
+                        nodeModel.setParams(Task.TASK_NAME,model.get(Flow.TO));
+                        nodeModel.execute(execution);
                     }
                 }
             }
