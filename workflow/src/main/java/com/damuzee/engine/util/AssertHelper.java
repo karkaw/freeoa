@@ -19,7 +19,7 @@ package com.damuzee.engine.util;
  * @author yuqs
  * @since 1.0
  */
-public abstract class Assert {
+public abstract class AssertHelper {
 	/**
 	 * 断言表达式为true
 	 * @param expression

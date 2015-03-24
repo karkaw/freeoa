@@ -1,14 +1,16 @@
 package com.damuzee.engine.core;
 
 import com.damuzee.common.util.DateUtil;
+import com.damuzee.core.util.StringUtil;
 import com.damuzee.engine.*;
 import com.damuzee.engine.domain.Flow;
 import com.damuzee.engine.domain.Order;
 import com.damuzee.engine.domain.Task;
 import com.damuzee.engine.model.FlowModel;
 import com.damuzee.engine.model.NodeModel;
+import com.damuzee.engine.model.ProcessModel;
 import com.damuzee.engine.model.StartModel;
-import com.damuzee.engine.util.Assert;
+import com.damuzee.engine.util.AssertHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -71,7 +73,7 @@ public class WFEngineImpl implements WFEngine {
      * @param name       实例编号
      * @param operner  操作人
      * @param args
-     * @return
+     * @return 返回审批单
      */
     public Map startInstanceByName(String name, String operner,Map args) {
         //获取定义
@@ -86,7 +88,7 @@ public class WFEngineImpl implements WFEngine {
         StartModel start = flow.getModel().getStart();
         start.execute(execution);
 
-        return null;
+        return execution.getOrder();
     }
 
     /**
@@ -139,7 +141,7 @@ public class WFEngineImpl implements WFEngine {
         }
 
         Order order = query().getOrder(task.getOrderId());
-        Assert.notNull(order, "指定的流程实例[id=" + task.getOrderId() + "]已完成或不存在");
+        AssertHelper.notNull(order, "指定的流程实例[id=" + task.getOrderId() + "]已完成或不存在");
         order.put(Order.LAST_UPDATOR, operator);
         order.put(Order.LAST_UPDATE_TIME, DateUtil.getCurrentDateTime(DateUtil.FORMAT_DATETIME));
         order().update(order);
@@ -151,4 +153,33 @@ public class WFEngineImpl implements WFEngine {
         execution.setTask(task);
         return execution;
     }
+
+    /**
+     * 跳转任务
+     *
+     * @param taskId   任务Id
+     * @param operator 操作人
+     * @param args
+     * @param nodeName 当前任务名称
+     * @return
+     */
+    public List<Task> rejectTask(String taskId, String operator, Map<String, Object> args, String nodeName){
+        Execution execution = execute(taskId, operator, args);
+        if(execution == null) return Collections.emptyList();
+        FlowModel model = execution.getFlow().getModel();
+        if(StringUtil.isBlank(nodeName)) {
+            Task newTask = task().rejectTask(model, execution.getTask());
+            execution.addTask(newTask);
+        }else {
+           /* NodeModel nodeModel = model.getNodeByName(nodeName);
+            AssertHelper.notNull(nodeModel, "根据节点名称[" + nodeName + "]无法找到节点模型");
+            //动态创建转移对象，由转移对象执行execution实例
+            ProcessModel tm = new ProcessModel(nodeModel);
+            tm.setTarget(nodeModel);
+            tm.setEnabled(true);
+            tm.execute(execution);*/
+        }
+        return execution.getTasks();
+    }
+
 }

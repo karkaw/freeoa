@@ -18,7 +18,10 @@ public class ProcessModel extends NodeModel implements Action {
 
     Logger logger = Logger.getLogger("ProcessModel");
 
-    ProcessModel(List<Map> nextModel){
+    public ProcessModel(){
+    }
+
+    public ProcessModel(List<Map> nextModel){
         setNextModel(nextModel);
     }
 
