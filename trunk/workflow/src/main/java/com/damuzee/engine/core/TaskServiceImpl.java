@@ -1,7 +1,7 @@
 package com.damuzee.engine.core;
 
 import com.damuzee.common.util.DateUtil;
-import com.damuzee.engine.util.Assert;
+import com.damuzee.engine.util.AssertHelper;
 import com.damuzee.engine.IQueryService;
 import com.damuzee.engine.ITaskService;
 import com.damuzee.engine.domain.History;
@@ -58,7 +58,7 @@ public class TaskServiceImpl  extends ReposImpl  implements ITaskService {
     public Task complete(String taskId, String operator,Map map) {
 
         Task task = queryService.getTask(taskId);
-        Assert.notNull(task, "指定的任务[id=" + taskId + "]不存在");
+        AssertHelper.notNull(task, "指定的任务[id=" + taskId + "]不存在");
         //task.setVariable(JsonHelper.toJson(args));
        /* if(!isAllowed(task, operator)) {
             throw new Exception("当前参与者[" + operator + "]不允许执行任务[taskId=" + taskId + "]");
