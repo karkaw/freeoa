@@ -19,10 +19,7 @@ import java.util.*;
  */
 public class Task  extends BaseMap implements Map<String, Object>, Serializable {
 
-    /**
-     * 主键ID
-     */
-    public static final  String ID = "_id";
+   
 
     /**
      * 流程实例ID
@@ -85,6 +82,7 @@ public class Task  extends BaseMap implements Map<String, Object>, Serializable 
      * 节点名称name
      */
     public static final String TASK_NAME = "task_name" ;
+    
 
     /**
      * 任务附属变量
@@ -110,7 +108,12 @@ public class Task  extends BaseMap implements Map<String, Object>, Serializable 
         this.put(NAME,getPropValue(params,NAME));
         //任务标题
         this.put(TITLE,getPropValue(params,NAME));
-
+        
+        Task currentTask = execution.getTask();
+        if(currentTask != null){
+	        //上一个任务节点名称
+	        this.put(PARENT_TASK_ID,currentTask.get(Task.ID));
+	    }
         //根据角色和部门查询出员工
         this.put(ACTOR_IDS,execution.getOperator());
         //任务创建人
@@ -129,8 +132,6 @@ public class Task  extends BaseMap implements Map<String, Object>, Serializable 
      */
     public List getActorUser(Map node){
         List<Map> actorList = (List)getPropValue(node,Flow.ROLES);
-
-
         return actorList ;
     }
 

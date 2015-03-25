@@ -96,4 +96,21 @@ public class TaskAct {
 
         return null;
     }
+    
+    @RequestMapping(value = "/reject.do", method = RequestMethod.POST)
+    @ResponseBody
+    public Map reject(String taskId,String context,HttpServletRequest request) {
+    	Map params = new HashMap();
+    	Map userMap = (Map)session.getAttribute(request, ShiroUser.LOGIN_USER_KEY);
+    	
+    	params.put(Apply.CREATOR,userMap.get(ShiroUser.USER_NAME));
+    	
+    	//启用工作流参数
+    	Map args = new HashMap() ;
+    	args.put("context",context) ;
+    	//开始工作流
+    	engine.executeToTask(taskId,(String)userMap.get(ShiroUser.USER_NAME) ,args,null);
+    	
+    	return null;
+    }
 }

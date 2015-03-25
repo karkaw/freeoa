@@ -60,6 +60,11 @@
                 });
 
                 var rejectBtn = modal.addButton('reject',"驳回");
+                rejectBtn.bind("click",function(){
+                    $.post("reject.do",{taskId:taskId,context:$("#context").val()},function(data){
+                        modal.hide();
+                    });
+                });
 
                 var resumeBtn = modal.addButton('resume',"转交");
             });

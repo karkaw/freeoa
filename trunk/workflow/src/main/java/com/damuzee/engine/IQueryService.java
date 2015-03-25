@@ -1,5 +1,6 @@
 package com.damuzee.engine;
 
+import com.damuzee.engine.domain.History;
 import com.damuzee.engine.domain.Order;
 import com.damuzee.engine.domain.Task;
 
@@ -37,6 +38,12 @@ public interface IQueryService {
     /**
      * 获取任务
      */
-
     public Task getTask(String taskId);
+    
+    /**
+     * 获取历史任务
+     */
+    public History getHistoryTask(String taskId);
+    
+    
 }

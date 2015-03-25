@@ -7,9 +7,12 @@ import com.damuzee.engine.ITaskService;
 import com.damuzee.engine.domain.History;
 import com.damuzee.engine.domain.Task;
 import com.damuzee.engine.model.FlowModel;
+import com.damuzee.engine.model.NodeModel;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.NotActiveException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -76,6 +79,21 @@ public class TaskServiceImpl  extends ReposImpl  implements ITaskService {
 
     @Override
     public Task rejectTask(FlowModel model, Task currentTask) {
+    	//判断当节点是否驳回
+    	//NodeModel current = model.getNodeByName(currentTask.getString(Task.TASK_NAME));
+     
+    	String parentTaskId = currentTask.getString(Task.PARENT_TASK_ID);
+    	History history = queryService.getHistoryTask(parentTaskId);
+		//NodeModel parent = model.getNodeByName(history.getString(Task.TASK_NAME));
+		/*if(!current.canRejected(parent)) {
+			throw new  Exception("无法驳回至上一步处理，请确认上一步骤并非fork、join、suprocess以及会签任务");
+		}*/
+    	if(history.getString(History.TASK_ID) == null){
+    		return null ;
+    	}
+		
+		Task task = history.undoTask();
+		saveTask(task);
         return null;
     }
 

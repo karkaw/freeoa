@@ -22,8 +22,15 @@ import java.util.Set;
  * @date 2014年8月20日
  */
 public class BaseMap implements Map<String, Object>, Serializable {
+	
 	private static final long serialVersionUID = -1114652284164682999L;
+	
 	private Map<String, Object> warp;
+	
+	 /**
+     * 主键ID
+     */
+    public static final  String ID = "_id";
 	
 	public BaseMap() {
 		warp = new HashMap();
@@ -39,7 +46,7 @@ public class BaseMap implements Map<String, Object>, Serializable {
 	}
 	
 	public String id() {
-		return getString("_id");
+		return getString(ID);
 	}
 	
 	public Integer getInteger(String key) {
