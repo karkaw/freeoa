@@ -11,8 +11,10 @@ import com.damuzee.engine.model.NodeModel;
 import com.damuzee.engine.model.ProcessModel;
 import com.damuzee.engine.model.StartModel;
 import com.damuzee.engine.util.AssertHelper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -156,6 +158,8 @@ public class WFEngineImpl implements WFEngine {
 
     /**
      * 跳转任务
+     * 
+     * nodeName 为null时，拒绝到上一步 。
      *
      * @param taskId   任务Id
      * @param operator 操作人
@@ -163,11 +167,11 @@ public class WFEngineImpl implements WFEngine {
      * @param nodeName 当前任务名称
      * @return
      */
-    public List<Task> rejectTask(String taskId, String operator, Map<String, Object> args, String nodeName){
+    public List<Task> executeToTask(String taskId, String operator, Map<String, Object> args, String nodeName){
         Execution execution = execute(taskId, operator, args);
         if(execution == null) return Collections.emptyList();
         FlowModel model = execution.getFlow().getModel();
-        if(StringUtil.isBlank(nodeName)) {
+        if(nodeName== null) {
             Task newTask = task().rejectTask(model, execution.getTask());
             execution.addTask(newTask);
         }else {

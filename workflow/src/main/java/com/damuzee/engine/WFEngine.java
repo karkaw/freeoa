@@ -60,5 +60,18 @@ public interface WFEngine {
      * @return
      */
     public List<Task> executeTask(String taskId, String operator, Map<String, Object> args);
+    
+    /**
+     * 跳转任务
+     * 
+     * nodeName 为null时，拒绝到上一步 。
+     *
+     * @param taskId   任务Id
+     * @param operator 操作人
+     * @param args
+     * @param nodeName 当前任务名称
+     * @return
+     */
+    public List<Task> executeToTask(String taskId, String operator, Map<String, Object> args, String nodeName);
 
 }

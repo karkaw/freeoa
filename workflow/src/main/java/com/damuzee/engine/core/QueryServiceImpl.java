@@ -4,8 +4,10 @@ import com.damuzee.common.Constants;
 import com.damuzee.core.auth.repos.impl.AuthUserReposImpl;
 import com.damuzee.engine.IQueryService;
 import com.damuzee.engine.domain.Flow;
+import com.damuzee.engine.domain.History;
 import com.damuzee.engine.domain.Order;
 import com.damuzee.engine.domain.Task;
+
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,8 @@ public class QueryServiceImpl extends ReposImpl  implements IQueryService {
     public static final String ORDER = "order" ;
 
     public static final String TASK = "task" ;
+    
+    public static final String HISTORY = "history" ;
 
     //通过组织结构和角色查询用户
     public List queryUserByOrgAndRole(List<Map> roles) {
@@ -104,12 +108,13 @@ public class QueryServiceImpl extends ReposImpl  implements IQueryService {
      * 根据流程ID获取流程
      */
     public Order getOrder(String orderId){
-        Map queryMap = new HashMap();
-        queryMap.put("_id",new ObjectId(orderId));
+        Map<String,Object> queryMap = new HashMap();
+        queryMap.put(Order.ID,new ObjectId(orderId));
 
         Order order = new Order();
         order.putAll(template.findOne(ORDER, queryMap));
         order.put(Order.ORDER_ID,orderId);
+        order.put(Order.ID,new ObjectId(orderId));
         return order ;
     }
 
@@ -119,11 +124,18 @@ public class QueryServiceImpl extends ReposImpl  implements IQueryService {
      * @return
      */
     public Task getTask(String taskId){
-        Map queryMap = new HashMap();
-        queryMap.put("_id",new ObjectId(taskId));
+        Map<String,Object> queryMap = new HashMap();
+        queryMap.put(Task.ID,new ObjectId(taskId));
 
         Task task =  new Task();
         task.putAll(template.findOne(TASK,queryMap));
         return task ;
     }
+
+	@Override
+	public History getHistoryTask(String taskId) {
+		 History history =  new History(taskId);
+		 history.putAll(template.findOne(HISTORY,history));
+		return history;
+	}
 }

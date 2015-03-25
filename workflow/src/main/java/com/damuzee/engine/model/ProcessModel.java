@@ -35,7 +35,8 @@ public class ProcessModel extends NodeModel implements Action {
             if(model != null){
                 String nextNodeName = (String)model.get(Flow.TO);
                 Map<String,Object> nextNode = (Map<String,Object>)nodeMap.get(nextNodeName);
-                nextNode.put(Task.TASK_NAME,model.get(Flow.TO));
+                nextNode.put(Task.TASK_NAME,model.get(Flow.TO)); //从定义中获取任务名称
+               
                 if(nextNode != null){
                     String type = (String)nextNode.get(Flow.TYPE);
                     if(type.equals(Flow.TASK)){//下一步是任务节点，创建一个新任务
