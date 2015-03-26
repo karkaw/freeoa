@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * 节点处理模型
+ * 
  * Created by karka.w on 14-12-19.
  */
 public class ProcessModel extends NodeModel implements Action {

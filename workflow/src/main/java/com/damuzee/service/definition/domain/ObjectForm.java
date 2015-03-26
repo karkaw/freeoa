@@ -1,7 +1,7 @@
 package com.damuzee.service.definition.domain;
 
 /**
- * Created by Administrator on 2014/11/6.
+ * Created by karka.w on 2014/11/6.
  */
 public class ObjectForm {
 

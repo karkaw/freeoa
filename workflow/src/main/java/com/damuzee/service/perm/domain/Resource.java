@@ -1,7 +1,7 @@
 package com.damuzee.service.perm.domain;
 
 /**
- * Created by Administrator on 2014/11/28.
+ * Created by karka.w on 2014/11/28.
  */
 public class Resource {
     public static final String CODE = "code";

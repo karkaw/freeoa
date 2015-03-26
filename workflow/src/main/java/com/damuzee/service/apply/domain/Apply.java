@@ -1,7 +1,7 @@
 package com.damuzee.service.apply.domain;
 
 /**
- * Created by Administrator on 2014/11/27.
+ * Created by karka.w on 2014/11/27.
  */
 public class Apply {
     public static final String CREATOR  = "creator" ;

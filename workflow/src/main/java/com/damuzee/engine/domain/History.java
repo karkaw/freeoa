@@ -9,7 +9,8 @@ import java.util.Map;
 
 import org.bson.types.ObjectId;
 
-/**
+/**历史任务
+ * 
  * Created by karka.w on 14-12-25.
  */
 public class History  extends BaseMap implements Map<String, Object>, Serializable {

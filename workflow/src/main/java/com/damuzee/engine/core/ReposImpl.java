@@ -1,6 +1,5 @@
 package com.damuzee.engine.core;
 
-
 import com.damuzee.engine.AbstractRepos;
 import com.damuzee.engine.domain.Order;
 import com.damuzee.engine.domain.Task;
@@ -13,6 +12,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 流程数据模型操作类
+ * 
+ * 流程 flow
+ * 表单order
+ * 任务 task
+ * 历史 history
+ * 
  * Created by karka.w on 2014/12/8.
  */
 @Service
@@ -99,7 +105,10 @@ public class ReposImpl implements AbstractRepos {
         template.deleteById(TASK, taskId);
     }
 
-    //保存历史
+    /**
+     * 保存历史
+     * @param history
+     */
     public void saveHistory(Map history){
         template.save(HISTORY,history) ;
     }

@@ -8,7 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
+/**流程定义模型
+ * 
  * Created by karka.w on 2014/12/8.
  */
 public class FlowModel extends BaseModel{

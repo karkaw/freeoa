@@ -5,7 +5,8 @@ import com.damuzee.engine.handlers.IHandler;
 
 import java.io.Serializable;
 
-/**
+/**基础模型
+ * 
  * Created by karka.w on 14-12-18.
  */
 public class BaseModel implements Serializable {
