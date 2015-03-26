@@ -6,6 +6,8 @@ import com.damuzee.engine.core.Execution;
 import java.util.logging.Level;
 
 /**
+ * 任务处理模型
+ * 
  * Created by karka.w on 14-12-10.
  */
 public class TaskModel extends NodeModel implements Action{

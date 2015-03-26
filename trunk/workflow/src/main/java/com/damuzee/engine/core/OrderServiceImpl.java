@@ -12,7 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-/**
+/**流程表单的服务
+ * 
  * Created by karka.w on 2014/12/8.
  */
 @Service
@@ -46,19 +47,9 @@ public class OrderServiceImpl  extends ReposImpl  implements IOrderService {
         order.put(Order.FLOW_ID, flow.get(Flow.FLOW_ID));
         FlowModel model = flow.getModel();
         if(model != null && args != null) {
-           /* if(StringHelper.isNotEmpty(model.getExpireTime())) {
-                String expireTime = DateHelper.parseTime(args.get(model.getExpireTime()));
-                order.put(Order.EXPIRE_TIME,expireTime);
-            }*/
-           /* String orderNo = (String)args.get(SnakerEngine.ID);
-            if(StringHelper.isNotEmpty(orderNo)) {
-                order.setOrderNo(orderNo);
-            } else {
-                order.setOrderNo(model.getGenerator().generate(model));
-            }*/
+       
         }
 
-        //order.setVariable(JsonHelper.toJson(args));
         String id =  save(order);
         order.put(Order.ORDER_ID,id) ;
         return order;

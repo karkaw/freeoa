@@ -5,7 +5,8 @@ import com.damuzee.engine.BaseMap;
 import java.io.Serializable;
 import java.util.Map;
 
-/**
+/**表单
+ * 
  * Created by karka.w on 2014/12/8.
  */
 public class Order  extends BaseMap implements Map<String, Object>, Serializable {

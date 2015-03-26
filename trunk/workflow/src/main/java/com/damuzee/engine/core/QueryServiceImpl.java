@@ -19,6 +19,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * 查询服务
+ * 
+ * 表单
+ * 任务
+ * 历史
+ * 
  * Created by karka.w on 2014/12/8.
  */
 @Service
@@ -34,7 +40,12 @@ public class QueryServiceImpl extends ReposImpl  implements IQueryService {
     
     public static final String HISTORY = "history" ;
 
-    //通过组织结构和角色查询用户
+    /**
+     * 通过角色获取用户
+     * 
+     * 根据角色
+     * 
+     */
     public List queryUserByOrgAndRole(List<Map> roles) {
 
         logger.log(Level.INFO,"------------获取用户---------参数： " + roles.toString());
@@ -72,7 +83,9 @@ public class QueryServiceImpl extends ReposImpl  implements IQueryService {
         return userList;
     }
 
-    @Override
+   /**
+    * 从流程定义中获取参与任务用户
+    */
     public List getActorUser(Map node) {
 
         List<Map> actorList = (List)Task.getPropValue(node,Flow.ROLES);
@@ -132,7 +145,9 @@ public class QueryServiceImpl extends ReposImpl  implements IQueryService {
         return task ;
     }
 
-	@Override
+	/**
+	 * 根据任务编号获取历史任务
+	 */
 	public History getHistoryTask(String taskId) {
 		 History history =  new History(taskId);
 		 history.putAll(template.findOne(HISTORY,history));

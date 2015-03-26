@@ -10,7 +10,8 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.Set;
 
-/**
+/**流程定义
+ * 
  * Created by karka.w on 2014/12/8.
  */
 public class Flow extends BaseMap implements Map<String, Object>, Serializable {

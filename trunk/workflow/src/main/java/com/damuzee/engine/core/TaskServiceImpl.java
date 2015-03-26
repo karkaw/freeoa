@@ -77,27 +77,31 @@ public class TaskServiceImpl  extends ReposImpl  implements ITaskService {
         return task;
     }
 
-    @Override
+    /**
+     * 驳回任务
+     */
     public Task rejectTask(FlowModel model, Task currentTask) {
     	//判断当节点是否驳回
     	//NodeModel current = model.getNodeByName(currentTask.getString(Task.TASK_NAME));
      
     	String parentTaskId = currentTask.getString(Task.PARENT_TASK_ID);
     	History history = queryService.getHistoryTask(parentTaskId);
+    	//判断当前节点能否驳回
 		//NodeModel parent = model.getNodeByName(history.getString(Task.TASK_NAME));
-		/*if(!current.canRejected(parent)) {
-			throw new  Exception("无法驳回至上一步处理，请确认上一步骤并非fork、join、suprocess以及会签任务");
-		}*/
+		 
+    	//-------在历史中查找是否存有该节点------------
     	if(history.getString(History.TASK_ID) == null){
     		return null ;
     	}
 		
 		Task task = history.undoTask();
 		saveTask(task);
-        return null;
+        return task;
     }
 
-    @Override
+    /**
+     * 创建新任务
+     */
     public List<Task> createTask(Map taskModel, Execution execution) {
         logger.log(Level.INFO,"----------------检查是否存在相同的任务---------------------+++++" );
 

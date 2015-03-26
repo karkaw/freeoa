@@ -15,6 +15,8 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
+ * 任务
+ * 
  * Created by karka.w on 2014/12/8.
  */
 public class Task  extends BaseMap implements Map<String, Object>, Serializable {

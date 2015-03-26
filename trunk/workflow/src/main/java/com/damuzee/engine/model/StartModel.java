@@ -6,6 +6,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * 开始节点处理模型
+ * 
  * Created by karka.w on 14-12-18.
  */
 public class StartModel extends NodeModel{

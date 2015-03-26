@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2014/10/27.
+ * Created by karka.w on 2014/10/27.
  */
 public interface RoleRepos {
     public abstract  String saveRole(Map map);

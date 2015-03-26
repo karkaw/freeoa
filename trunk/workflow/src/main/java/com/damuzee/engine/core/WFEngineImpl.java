@@ -24,7 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by Administrator on 2014/12/8.
+ * Created by karka.w on 2014/12/8.
  */
 @Service
 public class WFEngineImpl implements WFEngine {
@@ -171,17 +171,15 @@ public class WFEngineImpl implements WFEngine {
         Execution execution = execute(taskId, operator, args);
         if(execution == null) return Collections.emptyList();
         FlowModel model = execution.getFlow().getModel();
-        if(nodeName== null) {
+        if(nodeName== null) { //驳回
             Task newTask = task().rejectTask(model, execution.getTask());
             execution.addTask(newTask);
-        }else {
+        }else { //跳转到任意节点
            /* NodeModel nodeModel = model.getNodeByName(nodeName);
             AssertHelper.notNull(nodeModel, "根据节点名称[" + nodeName + "]无法找到节点模型");
             //动态创建转移对象，由转移对象执行execution实例
-            ProcessModel tm = new ProcessModel(nodeModel);
-            tm.setTarget(nodeModel);
-            tm.setEnabled(true);
-            tm.execute(execution);*/
+            ProcessModel pm = new ProcessModel(nodeModel);
+            pm.execute(execution);*/
         }
         return execution.getTasks();
     }

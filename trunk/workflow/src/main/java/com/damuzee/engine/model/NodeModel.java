@@ -13,6 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * 节点模型
+ * 
  * Created by karka.w on 14-12-10.
  */
 public abstract class NodeModel extends BaseModel implements Action{

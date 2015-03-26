@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by karkaw on 2014/12/8.
+ * 查询接口，任务、表单、历史
+ * 
+ * Created by karka.w on 2014/12/8.
  */
 public interface IQueryService {
 

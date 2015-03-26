@@ -1,7 +1,7 @@
 package com.damuzee.service.perm.domain;
 
 /**
- * Created by Administrator on 14-11-27.
+ * Created by karka.w on 14-11-27.
  */
 public class Org {
 

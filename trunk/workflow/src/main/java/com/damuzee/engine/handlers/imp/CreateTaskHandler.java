@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 创建新任务处理handler
+ * 
  * Created by karka.w on 14-12-19.
  */
 public class CreateTaskHandler implements IHandler {
@@ -32,6 +34,6 @@ public class CreateTaskHandler implements IHandler {
         List<Task> tasks = execution.getEngine().task().createTask(model, execution);
         execution.addTasks(tasks);
         //从服务上下文中查找任务拦截器列表，依次对task集合进行拦截处理
-
+        
     }
 }

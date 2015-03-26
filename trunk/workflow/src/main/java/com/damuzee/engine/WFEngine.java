@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 工作流引擎接口
+ * 
  * Created by karka.w on 2014/12/4.
  */
 public interface WFEngine {
