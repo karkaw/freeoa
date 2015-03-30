@@ -95,6 +95,9 @@
                     $("#formid").val(data);
                 });
             });
+            
+             var json_props = eval('(' + '${json_props!}' + ')');
+             $.formdesign.builder.build(json_props);
         })
     </script>
 </head>
@@ -218,7 +221,10 @@
                         </div>
                     </div>
                     <div id="editView" class="form-design pull-left">
-                        <div id="form-view" class="form-view">
+                    <#if content??>
+                    	${content!}
+                    <#else>
+                     <div id="form-view" class="form-view">
                             <div class="form-head form-head_js">
                                 <input type="hidden" name="form_title" value=""/>
                                 <input type="hidden" name="form_desc"  value=""/>
@@ -226,13 +232,14 @@
                                 <div class="form-description">标题描述 </div>
                             </div>
                             <div id="widget-control" class="widget-control form-view_js ui-sortable" style="min-height:112px;">
-
+								
                             </div>
                         </div>
+                    </#if>
                     </div>
                     <div id="formEdit" class="pull-left form-widget">
                         <div class="form-lead">
-                            控件设置
+                            	控件设置
                         </div>
                         <div id="edit-widget" class="form-widget-list">
                             <div class="form-Edit-content bg-white">

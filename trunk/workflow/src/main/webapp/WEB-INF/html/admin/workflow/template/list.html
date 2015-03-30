@@ -43,6 +43,11 @@
                     })
                 };
 
+                //修改按钮
+                $("#tempGrid").find("tr a:eq(0)").bind("click",function(){
+                    var id = $(this).parent().parent("tr").find("input:checkbox").val();
+                    window.location.href = "design.do?id=" + id ;
+                });
 			});
 		</script>
 </head>
