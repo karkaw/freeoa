@@ -1,20 +1,26 @@
 package com.damuzee.web.admin;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.bson.types.ObjectId;
+import org.damuzee.mongo.MongoConstaints;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSON;
 import com.damuzee.core.util.ConfigUtil;
 import com.damuzee.core.util.JSONUtil;
 import com.damuzee.core.web.bean.JsonResult;
 import com.damuzee.service.definition.repos.TemplateRepos;
 import com.damuzee.service.file.repos.FileRepos;
-import org.damuzee.mongo.MongoConstaints;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by K.K on 2014/11/12.
@@ -45,8 +51,14 @@ public class TemplateAct {
     }
 
     @RequestMapping(value = "design.do")
-    public String design(){
-
+    public String design(String id,HttpServletRequest request,ModelMap model){
+    	if(id != null){
+    		Map<String,Object> mapvo = new HashMap<String,Object>();
+    		mapvo.put("_id", new ObjectId(id));
+    		Map<String,Object> map = templateRepos.findTemplateById(mapvo);
+    		model.put("json_props", JSON.toJSONString(map.get("props"))) ;
+    		model.put("content", map.get("content")) ;
+    	}
         return "/workflow/template/design" ;
     }
 
