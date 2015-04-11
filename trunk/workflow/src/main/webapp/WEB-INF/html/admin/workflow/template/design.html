@@ -51,7 +51,7 @@
 
                 var controls = $("#editView").find(".field");
 
-                var props = [] ;
+            /*     var props = [] ;
                 controls.each(function(idx,ele){
                     var control = $(ele) ;
                     var type = control.data("type");
@@ -65,7 +65,7 @@
                         }
                     }
                     props.push(prop);
-                });
+                }); */
 
                 var preview = $("#form-preview").html($("#editView").html());
                 preview.find(".field-active").removeClass("field-active");
@@ -81,7 +81,8 @@
 
                 var name = $("#form-preview .form-name").text();
                 var desc = $("#form-preview .form-description").text();
-                var ocode = $.formdesign.attrs.object.code ;
+                var ocode = $.formdesign.props.form.object.value ;
+                var props = $.formdesign.props ;
                 var thtml = preview.html();
 
                 //判断是否是修改
